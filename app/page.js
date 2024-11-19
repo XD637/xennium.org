@@ -1,101 +1,134 @@
-import Image from "next/image";
+"use client";
+import { useCallback } from "react";
+import dynamic from "next/dynamic";
+import CodeSnippet from "./components/CodeSnippet";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import Cube from "./components/Cube";
+import FeaturesSection from "./components/Card";
+import ContractButton from "./components/Contract";
+
+
+
+
+
+const Particles = dynamic(() => import("react-tsparticles"), { ssr: false });
+import { loadFull } from "tsparticles";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const particlesInit = useCallback(async (engine) => {
+    await loadFull(engine);
+  }, []);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const code = `// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
+
+contract XenniumToken is ERC20, Ownable, ERC20Permit {
+    uint256 private constant INITIAL_SUPPLY = 19_000_000 * 10**18; // 19 million tokens
+    uint256 private constant OWNER_RESERVE = 1_000_000 * 10**18;  // 1 million tokens reserved for the owner
+
+    // Declare event for minting
+    event TokensMinted(address indexed to, uint256 amount);
+
+    constructor() ERC20("Xennium", "XENX") ERC20Permit("Xennium") Ownable(msg.sender) {
+        _mint(msg.sender, OWNER_RESERVE); // Reserve 1 million tokens for the owner
+        _mint(address(this), INITIAL_SUPPLY - OWNER_RESERVE); // Mint remaining supply to the contract
+    }
+
+    // Prevent the last coin from being spent (Xennium special rule)
+    function _safeTransferCheck(address from, uint256 amount) internal view {
+        require(balanceOf(from) - amount >= 1, "XENX: Cannot spend the last coin");
+    }
+
+    // Override transfer with last coin check
+    function transfer(address to, uint256 amount) public override returns (bool) {
+        _safeTransferCheck(msg.sender, amount);
+        return super.transfer(to, amount);
+    }
+
+    // Override transferFrom with last coin check
+    function transferFrom(address from, address to, uint256 amount) public override returns (bool) {
+        _safeTransferCheck(from, amount);
+        return super.transferFrom(from, to, amount);
+    }
+
+    // Allow the owner to mint new tokens only to the contract's balance
+    function mint(uint256 amount) external onlyOwner {
+        _mint(address(this), amount);
+        emit TokensMinted(address(this), amount);
+    }
+}
+`;
+
+  return (
+    <div className="relative min-h-screen bg-[#1c1c1e] text-gray-200">
+      {/* Particles Background */}
+      <Particles
+        id="tsparticles"
+        init={particlesInit}
+        options={{
+          background: { color: { value: "#1c1c1e" } },
+          particles: {
+            number: { value: 50, density: { enable: true, value_area: 800 } },
+            color: { value: "#ffffff" },
+            opacity: { value: 0.5 },
+            size: { value: 4, random: true },
+            move: { enable: true, speed: 1 },
+            line_linked: {
+              enable: true,
+              distance: 150,
+              color: "#ffffff",
+              opacity: 0.1,
+              width: 1.5,
+            },
+          },
+          retina_detect: true,
+        }}
+        className="absolute top-0 left-0 w-full h-full z-0"
+      />
+
+      {/* Navbar */}
+      <Navbar />
+
+      {/* Main Content */}
+      <main className="relative flex flex-col items-center justify-center text-center z-10 px-8 sm:px-16 pt-24 sm:pt-32 gap-6">
+        <h1 className="text-4xl sm:text-5xl font-extrabold text-white">
+          Xennium - Next Gen Crypto
+        </h1>
+        <p className="text-lg text-gray-300 italic">
+          "The Last coin cannot be spent"
+        </p>
+        <p className="text-md text-gray-400 mt-3 max-w-2xl mx-auto">
+          Xennium Token (XENX) is an ERC-20 token built on Ethereum. With its unique feature
+          'Last coin cannot be spent', XENX can be used in Gamification, Governance, Voting,
+          Identification (shareholders), and endless ideas!
+        </p>
+        <div>
+        <ContractButton />
         </div>
+        
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+      {/* Cube */}
+      <div className="relative flex items-center justify-center h-[250px]">
+        <Cube />
+      </div>
+
+      {/* Code Snippet */}
+      <section className="relative z-10 pat-12 px-8 sm:px-16 text-left mb-12">
+      <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-12 relative z-10 tex text-center">Transparency</h2>
+        <CodeSnippet code={code} />
+      </section>
+      <FeaturesSection />
+
+      {/* Footer */}
+      <div className="pt-40">
+        <Footer />
+      </div>
     </div>
   );
 }
