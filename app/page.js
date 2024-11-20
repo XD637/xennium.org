@@ -100,11 +100,11 @@ contract XenniumToken is ERC20, Ownable, ERC20Permit {
           Xennium - Next Gen Crypto
         </h1>
         <p className="text-lg text-gray-300 italic">
-          "The Last coin cannot be spent"
+        &quot;The Last coin cannot be spent&quot;
         </p>
         <p className="text-md text-gray-400 mt-3 max-w-2xl mx-auto">
           Xennium Token (XENX) is an ERC-20 token built on Ethereum. With its unique feature
-          'Last coin cannot be spent', XENX can be used in Gamification, Governance, Voting,
+          &apos;Last coin cannot be spent&apos;, XENX can be used in Gamification, Governance, Voting,
           Identification (shareholders), and endless ideas!
         </p>
         <div>

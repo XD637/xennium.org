@@ -99,7 +99,7 @@ export default function Docs() {
             {selectedSection === "minting" && (
               <p>
                 <strong>Minting:</strong> The owner can mint additional tokens,
-                but these are directly added to the contract's balance. This
+                but these are directly added to the contract&apos;s balance. This
                 ensures controlled token distribution.
               </p>
             )}
@@ -107,7 +107,7 @@ export default function Docs() {
               <p>
                 <strong>Last Coin Rule:</strong> A unique feature of Xennium is
                 that users cannot spend their last token. This is enforced by
-                overriding the `transfer` and `transferFrom` methods.
+                overriding the &apos;transfer&apos; and &apos;transferFrom&apos; methods.
               </p>
             )}
             {selectedSection === "functions" && (
