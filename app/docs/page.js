@@ -54,7 +54,7 @@ export default function Docs() {
       {/* Navbar */}
       <Navbar />
 
-      <div className="relative flex min-h-screen pt-16"> {/* Adjusted padding-top for space after navbar */}
+      <div className="relative flex min-h-screen pt-16">
         {/* Sidebar Container */}
         <div className="w-64 bg-[#2c2c2e] text-gray-300 p-4 fixed top-0 left-0 bottom-0 z-10">
           <h2 className="text-lg font-bold mb-4">Docs</h2>
@@ -83,46 +83,60 @@ export default function Docs() {
           <div className="text-gray-300 space-y-4">
             {selectedSection === "overview" && (
               <p>
-                The XenniumToken contract is an ERC20 token with additional
-                functionalities, such as preventing spending the last token and
-                allowing minting only by the owner.
+                The XenniumToken contract is an ERC20 token that goes beyond the
+                standard, adding functionalities such as preventing spending
+                the last token and allowing minting exclusively by the owner.
+                XENX&apos;s unique feature, &apos;Last coin cannot be spent&apos;, makes it
+                a standout choice for applications in gamification,
+                governance, voting, and identity management, including shareholder
+                roles. The contract ensures compatibility with decentralized
+                apps and wallets while introducing a thoughtful design to
+                enhance utility and functionality.
               </p>
             )}
             {selectedSection === "initialSupply" && (
               <p>
-                <strong>Initial Supply:</strong> The contract starts with a
-                total supply of 19,000,000 tokens. 1,000,000 tokens are reserved
-                for the owner, while the remaining supply is allocated to the
-                contract.
+                <strong>Initial Supply:</strong> The contract begins with
+                19,000,000 XENX tokens. Of these, 1,000,000 tokens are reserved
+                for the owner to use for administrative or ecosystem-building
+                purposes. The remaining tokens are allocated to the contract,
+                ready for distribution as the ecosystem grows.
               </p>
             )}
             {selectedSection === "minting" && (
               <p>
-                <strong>Minting:</strong> The owner can mint additional tokens,
-                but these are directly added to the contract&apos;s balance. This
-                ensures controlled token distribution.
+                <strong>Minting:</strong> The controlled minting feature ensures
+                that only the owner can mint additional tokens, and any minted
+                tokens are automatically added to the contract&apos;s balance.
+                This approach provides transparency and ensures the ecosystem
+                avoids unnecessary inflation, maintaining trust among
+                stakeholders.
               </p>
             )}
             {selectedSection === "lastCoinRule" && (
               <p>
-                <strong>Last Coin Rule:</strong> A unique feature of Xennium is
-                that users cannot spend their last token. This is enforced by
-                overriding the &apos;transfer&apos; and &apos;transferFrom&apos; methods.
+                <strong>Last Coin Rule:</strong> A distinctive feature of
+                Xennium is the &apos;Last coin cannot be spent&apos; rule. This is
+                implemented by overriding the transfer and transferFrom
+                methods. It guarantees that users always retain a symbolic
+                minimum balance, essential for applications requiring ownership
+                continuity or identity preservation.
               </p>
             )}
             {selectedSection === "functions" && (
               <ul className="list-disc list-inside">
                 <li>
-                  <code>transfer</code>: Transfers tokens between users while
-                  adhering to the last coin rule.
+                  <code>transfer</code>: Transfers tokens while respecting the
+                  &apos;Last coin cannot be spent&apos; rule.
                 </li>
                 <li>
-                  <code>transferFrom</code>: Allows transfers on behalf of other
-                  users with the same rule.
+                  <code>transferFrom</code>: Allows transfers on behalf of
+                  another user, adhering to the same rule.
                 </li>
                 <li>
-                  <code>mint</code>: Lets the owner mint additional tokens to
-                  the contract.
+                  <code>mint</code>: Enables the owner to mint additional
+                  tokens, which are directly added to the contract&apos;s
+                  balance.
                 </li>
               </ul>
             )}
