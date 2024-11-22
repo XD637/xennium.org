@@ -274,11 +274,11 @@ function mint(address to, uint256 amount) { /* ... */ }`,
   </li>
   <li>
     Even with a large initial balance, the algorithm ensures that the last 
-    coin cannot be spent, maintaining its unique property of becoming "valueless."
+    coin cannot be spent, maintaining its unique property of becoming &quot;valueless.&quot;
   </li>
   <li>
     Tracks and visualizes depreciation, offering an intuitive way to observe 
-    the effects of spending behavior on the coin's value.
+    the effects of spending behavior on the coin&apos;s value.
   </li>
 </ul>
 
@@ -310,8 +310,8 @@ of the depreciation history, making it easy to track how spending affects the
 
 <strong>Conclusion:</strong> This algorithm highlights the peculiar way 
 Xennium coins behave, where every spend impacts their true value, regardless 
-of the initial balance. It enforces a rule that the last coin becomes "non-spendable," 
-adding a layer of complexity and uniqueness to the coin's usage. 
+of the initial balance. It enforces a rule that the last coin becomes &quot;non-spendable,&quot; 
+adding a layer of complexity and uniqueness to the coin&apos;s usage. 
 
                 </div>
               </>
@@ -328,19 +328,19 @@ adding a layer of complexity and uniqueness to the coin's usage.
                   <CodeSnippet code={codeSnippets.initialSupply} />
                 </div>
                 <div className="pb-24">
-                The <code>constructor</code> initializes the <strong>Xennium (XENX)</strong> token with specific configurations and initial minting logic. It ensures proper setup of the token's metadata, ownership, and initial token distribution.
+                The <code>constructor</code> initializes the <strong>Xennium (XENX)</strong> token with specific configurations and initial minting logic. It ensures proper setup of the token&apos;s metadata, ownership, and initial token distribution.
 
 <br /><br />
 
 <strong>Function Breakdown:</strong>
 <ul>
   <li>
-    <code>ERC20("Xennium", "XENX")</code>: This initializes the token with a name 
-    <strong>"Xennium"</strong> and symbol <strong>"XENX"</strong>. The <code>ERC20</code> 
+    <code>ERC20(&quot;Xennium&quot;, &quot;XENX&quot;)</code>: This initializes the token with a name 
+    <strong>&quot;Xennium&quot;</strong> and symbol <strong>&quot;XENX&quot;</strong>. The <code>ERC20</code> 
     constructor from OpenZeppelin handles basic ERC-20 functionality.
   </li>
   <li>
-    <code>ERC20Permit("Xennium")</code>: Enables <strong>permit</strong> functionality, 
+    <code>ERC20Permit(&quot;Xennium&quot;)</code>: Enables <strong>permit</strong> functionality, 
     allowing token approvals via signatures instead of on-chain transactions. 
     This saves gas fees and enhances user experience.
   </li>
@@ -352,7 +352,7 @@ adding a layer of complexity and uniqueness to the coin's usage.
   <li>
     <code>_mint(msg.sender, OWNER_RESERVE)</code>: Mints a predefined number of tokens 
     (e.g., <strong>1 million</strong>) to the owner&apos;s address. This serves as 
-    the owner's reserved supply for future use.
+    the owner&apos;s reserved supply for future use.
   </li>
   <li>
     <code>_mint(address(this), INITIAL_SUPPLY - OWNER_RESERVE)</code>: Mints the 
@@ -515,7 +515,7 @@ distributed, adding a layer of <strong>accountability</strong>.
       1. <strong><code>_safeTransferCheck</code> function:</strong><br />
       This function checks whether the sender is trying to spend the last remaining coin.
       It verifies if the sender&apos;s balance minus the amount they want to transfer is greater than or equal to 1.<br />
-      If not, it triggers an error with the message: <code>"XENX: Cannot spend the last coin"</code>.
+      If not, it triggers an error with the message: <code>&quot;XENX: Cannot spend the last coin&quot;</code>.
       
       <br /><br />
       2. <strong><code>transfer</code> function (overridden):</strong><br />
@@ -668,7 +668,7 @@ distributed, adding a layer of <strong>accountability</strong>.
   </li>
   <li>
     <code>approve</code> and <code>allowance</code> should be carefully monitored 
-    to avoid vulnerabilities, such as the well-known "approve front-running" issue.
+    to avoid vulnerabilities, such as the well-known &quot;approve front-running&quot; issue.
   </li>
   <li>
     The <code>permit</code> function introduces an additional layer of security 
