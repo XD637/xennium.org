@@ -16,6 +16,7 @@ export default function Docs() {
 
   const [selectedSection, setSelectedSection] = useState("overview");
 
+
   // Sidebar Navigation Items
   const sections = [
     { id: "overview", label: "Overview" },
@@ -24,6 +25,11 @@ export default function Docs() {
     { id: "lastCoinRule", label: "Last Coin Rule" },
     { id: "functions", label: "Functions" },
   ];
+
+  const handleSectionClick = (sectionId) => {
+    setSelectedSection(sectionId);
+    window.scrollTo({ top: 0, behavior: "smooth" });  // Scroll to the top of the page
+  };
 
   const codeSnippets = {
     overview: `""" let's assume you have initially 10 xennium coins, call it iv (initial value). 
@@ -158,7 +164,7 @@ function mint(address to, uint256 amount) { /* ... */ }`,
                   className={`cursor-pointer p-2 rounded-md ${
                     selectedSection === section.id ? "bg-[#3c3c3e] text-white" : ""
                   }`}
-                  onClick={() => setSelectedSection(section.id)}
+                  onClick={() => handleSectionClick(section.id)} // Handle section click
                 >
                   {section.label}
                 </li>
