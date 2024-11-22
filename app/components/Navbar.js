@@ -27,7 +27,7 @@ const Navbar = () => {
 
   const links = [
     { href: "/", label: "Home", icon: <FaHome /> },
-    { href: "/docs", label: "Docs", icon: <FaBook />, target: "_blank" },
+    { href: "/docs", label: "Docs", icon: <FaBook />},
     { href: "/community", label: "Community", icon: <FaUsers /> },
     { href: "/support", label: "Support", icon: <FaEthereum /> },
   ];
