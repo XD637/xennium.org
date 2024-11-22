@@ -60,7 +60,7 @@ export default function Community() {
           href="https://discord.gg/7KmMBrrJEz" // Replace with your Discord invite link
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-24 flex items-center space-x-3 px-6 py-3 bg-gradient-to-br from-purple-500 to-indigo-600 text-white rounded-full shadow-lg hover:scale-105 transition-transform duration-300"
+          className="mt-18 flex items-center space-x-3 px-6 py-3 bg-gradient-to-br from-purple-500 to-indigo-600 text-white rounded-full shadow-lg hover:scale-105 transition-transform duration-300"
         >
           <span>Join Discord</span>
           <HiArrowRight className="w-5 h-5" /> {/* Arrow icon */}
