@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { FaHome, FaBook, FaUsers, FaEthereum, FaCubes } from "react-icons/fa"; // Updated icons
+import { FaHome, FaBook, FaUsers, FaEthereum } from "react-icons/fa"; // Updated icons
 
 const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -27,7 +27,7 @@ const Navbar = () => {
 
   const links = [
     { href: "/", label: "Home", icon: <FaHome /> },
-    { href: "/docs", label: "Docs", icon: <FaBook /> },
+    { href: "/docs", label: "Docs", icon: <FaBook />, target: "_blank" },
     { href: "/community", label: "Community", icon: <FaUsers /> },
     { href: "/support", label: "Support", icon: <FaEthereum /> },
   ];
@@ -44,6 +44,8 @@ const Navbar = () => {
           <Link
             key={index}
             href={link.href}
+            target={link.target || "_self"} // Apply target here
+            rel={link.target === "_blank" ? "noopener noreferrer" : undefined} // Apply rel here
             onMouseEnter={() => setHoveredLink(link.label)}
             onMouseLeave={() => setHoveredLink(null)}
             className="relative group"
