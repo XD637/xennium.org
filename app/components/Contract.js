@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { FaCubes } from "react-icons/fa";
 import { ethers } from "ethers";
+import WalletConnectProvider from "@walletconnect/web3-provider";
 
 const ContractButton = () => {
   const [walletAddress, setWalletAddress] = useState(null);
@@ -8,7 +9,7 @@ const ContractButton = () => {
   const [isConnected, setIsConnected] = useState(false);
 
   const connectWallet = async () => {
-    if (typeof window.ethereum !== "undefined") {
+    if (typeof window.ethereum !== "undefined" && window.ethereum.isMetaMask) {
       try {
         const accounts = await window.ethereum.request({
           method: "eth_requestAccounts",
@@ -33,15 +34,39 @@ const ContractButton = () => {
         alert("Connection failed: " + (error.message || "Unknown error"));
       }
     } else {
-      alert("Please install MetaMask or another Ethereum wallet!");
+      // Use WalletConnect for mobile or unsupported wallets
+      try {
+        const walletConnectProvider = new WalletConnectProvider({
+          rpc: {
+            1: `https://eth-mainnet.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`, // Mainnet
+            11155111: `https://eth-sepolia.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`, // Sepolia testnet
+          },
+        });
+
+        await walletConnectProvider.enable();
+        const wcProvider = new ethers.BrowserProvider(walletConnectProvider);
+        const signer = wcProvider.getSigner();
+
+        const accounts = await signer.getAddress();
+        setWalletAddress(accounts);
+        setProvider(wcProvider);
+        setIsConnected(true);
+      } catch (error) {
+        console.error("WalletConnect failed:", error.message || error);
+        alert("WalletConnect failed: " + (error.message || "Unknown error"));
+      }
     }
   };
 
   const disconnectWallet = () => {
+    if (provider instanceof WalletConnectProvider) {
+      provider.disconnect().catch((err) => console.error("Error disconnecting WalletConnect:", err));
+    }
     setWalletAddress(null);
     setIsConnected(false);
     setProvider(null);
   };
+  
 
   useEffect(() => {
     if (typeof window.ethereum !== "undefined") {
