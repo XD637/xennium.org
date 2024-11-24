@@ -11,9 +11,11 @@
   "dependencies": {
     "@react-three/drei": "^9.117.2",
     "@react-three/fiber": "^8.17.10",
+    "@walletconnect/qrcode-modal": "^1.8.0",
     "@walletconnect/web3-provider": "^1.8.0",
     "@web3modal/ethereum": "^2.7.1",
     "axios": "^1.7.7",
+    "dotnet": "^1.1.4",
     "ethers": "^6.13.4",
     "mongodb": "^6.10.0",
     "next": "15.0.3",
@@ -21,6 +23,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.3.0",
+    "react-responsive-modal": "^6.4.2",
     "react-tsparticles": "^2.12.2",
     "three": "^0.170.0",
     "tsparticles": "^2.11.1"

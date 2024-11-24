@@ -30,3 +30,13 @@ input[type="text"]:focus {
   border-color: rgba(255, 255, 255, 0.7);
   box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
 }
+
+
+/* Custom modal overrides */
+.custom-modal {
+  background: transparent !important; /* Ensure the background is fully transparent */
+  padding: 0 !important; /* Remove any extra padding */
+  border: none !important; /* Eliminate borders */
+  box-shadow: none !important; /* Eliminate shadows */
+  
+}

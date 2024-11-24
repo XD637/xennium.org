@@ -1,111 +1,176 @@
 import { useState, useEffect } from "react";
-import { FaCubes } from "react-icons/fa";
 import { ethers } from "ethers";
 import WalletConnectProvider from "@walletconnect/web3-provider";
+import QRCodeModal from "@walletconnect/qrcode-modal"; // Import the QRCodeModal
+import { Modal } from "react-responsive-modal";
+import "react-responsive-modal/styles.css";
+import { FaCubes } from "react-icons/fa";
+
 
 const ContractButton = () => {
   const [walletAddress, setWalletAddress] = useState(null);
-  const [provider, setProvider] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [walletConnectProvider, setWalletConnectProvider] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
-  const connectWallet = async () => {
-    if (typeof window.ethereum !== "undefined" && window.ethereum.isMetaMask) {
-      try {
+  const connectWithWallet = async (wallet) => {
+    try {
+      let provider;
+
+      if (wallet === "metamask" && window.ethereum?.isMetaMask) {
         const accounts = await window.ethereum.request({
           method: "eth_requestAccounts",
         });
-        const currentAddress = accounts[0];
-        setWalletAddress(currentAddress);
-        setIsConnected(true);
-
-        const ethProvider = new ethers.JsonRpcProvider(
-          `https://eth-mainnet.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`
-        );
-        setProvider(ethProvider);
-
-        window.ethereum.on("accountsChanged", (accounts) => {
-          setWalletAddress(accounts[0]);
+        const ethProvider = new ethers.BrowserProvider(window.ethereum);
+        provider = ethProvider;
+        setWalletAddress(accounts[0]);
+      } else if (wallet === "coinbase" && window.coinbase) {
+        const accounts = await window.coinbase.request({
+          method: "eth_requestAccounts",
         });
-        window.ethereum.on("chainChanged", () => {
-          window.location.reload();
-        });
-      } catch (error) {
-        console.error("Wallet connection failed:", error.message || error);
-        alert("Connection failed: " + (error.message || "Unknown error"));
+        const ethProvider = new ethers.BrowserProvider(window.coinbase);
+        provider = ethProvider;
+        setWalletAddress(accounts[0]);
+      } else if (wallet === "phantom" && window.solana?.isPhantom) {
+        const { publicKey } = await window.solana.connect();
+        setWalletAddress(publicKey.toString());
+        provider = new ethers.JsonRpcProvider("https://api.mainnet-beta.solana.com");
+      } else if (wallet === "walletconnect") {
+        try {
+          const wcProvider = new WalletConnectProvider({
+            rpc: {
+              1: `https://mainnet.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_API_KEY}`,
+            },
+            qrcodeModal: QRCodeModal,
+          });
+
+          wcProvider.on("disconnect", () => {
+            console.log("WalletConnect disconnected.");
+            cleanupWalletConnectProvider();
+          });
+
+          await wcProvider.enable();
+          const wcBrowserProvider = new ethers.BrowserProvider(wcProvider);
+
+          const signer = wcBrowserProvider.getSigner();
+          const address = await signer.getAddress();
+
+          setWalletConnectProvider(wcProvider);
+          provider = wcBrowserProvider;
+          setWalletAddress(address);
+        } catch (error) {
+          if (error.message && error.message.includes("User closed modal")) {
+            setErrorMessage(null);
+            return;
+          } else {
+            setErrorMessage("Connection failed: " + error.message);
+            return;
+          }
+        }
+      } else {
+        alert("Unsupported wallet or wallet not installed.");
+        return;
       }
-    } else {
-      // Use WalletConnect for mobile or unsupported wallets
+
+      setIsConnected(true);
+      setIsModalOpen(false);
+      setErrorMessage(null);
+    } catch (error) {
+      setErrorMessage("Connection failed: " + error.message);
+      setIsConnected(false);
+    }
+  };
+
+  const cleanupWalletConnectProvider = () => {
+    if (walletConnectProvider) {
       try {
-        const walletConnectProvider = new WalletConnectProvider({
-          rpc: {
-            1: `https://eth-mainnet.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`, // Mainnet
-            11155111: `https://eth-sepolia.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`, // Sepolia testnet
-          },
-        });
-
-        await walletConnectProvider.enable();
-        const wcProvider = new ethers.BrowserProvider(walletConnectProvider);
-        const signer = wcProvider.getSigner();
-
-        const accounts = await signer.getAddress();
-        setWalletAddress(accounts);
-        setProvider(wcProvider);
-        setIsConnected(true);
+        walletConnectProvider.disconnect();
       } catch (error) {
-        console.error("WalletConnect failed:", error.message || error);
-        alert("WalletConnect failed: " + (error.message || "Unknown error"));
+        console.warn("Error during WalletConnect cleanup:", error.message);
       }
+      setWalletConnectProvider(null);
     }
   };
 
   const disconnectWallet = () => {
-    if (provider instanceof WalletConnectProvider) {
-      provider.disconnect().catch((err) => console.error("Error disconnecting WalletConnect:", err));
-    }
+    cleanupWalletConnectProvider();
     setWalletAddress(null);
     setIsConnected(false);
-    setProvider(null);
   };
-  
 
   useEffect(() => {
-    if (typeof window.ethereum !== "undefined") {
-      const checkConnection = async () => {
-        const accounts = await window.ethereum.request({ method: "eth_accounts" });
-        if (accounts.length > 0) {
-          setWalletAddress(accounts[0]);
-          setIsConnected(true);
-
-          const ethProvider = new ethers.JsonRpcProvider(
-            `https://eth-mainnet.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`
-          );
-          setProvider(ethProvider);
-        }
-      };
-      checkConnection();
+    if (!isModalOpen && walletConnectProvider) {
+      cleanupWalletConnectProvider();
     }
-  }, []);
+  }, [isModalOpen]);
 
   return (
-    <div className="relative flex items-center">
+    <div className="relative flex flex-col items-center text-center">
       {isConnected ? (
         <button
           onClick={disconnectWallet}
-          className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-br from-purple-500 to-indigo-600 text-white rounded-full shadow-lg hover:scale-105 transition-transform duration-300"
+          className="flex items-center justify-center space-x-2 px-4 py-2 bg-gradient-to-br from-purple-500 to-indigo-600 text-white rounded-full shadow-lg hover:scale-105 transition-transform duration-300"
         >
           <span>
             Connected: {walletAddress ? `${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}` : "Reload..."}
           </span>
-          <FaCubes />
         </button>
       ) : (
-        <button
-          onClick={connectWallet}
-          className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-br from-purple-500 to-indigo-600 text-white rounded-full shadow-lg hover:scale-105 transition-transform duration-300"
-        >
-          <span>Connect Wallet</span>
-          <FaCubes />
-        </button>
+        <>
+
+<button
+  onClick={() => setIsModalOpen(true)}
+  className="flex items-center justify-center space-x-2 px-4 py-2 bg-gradient-to-br from-purple-500 to-indigo-600 text-white rounded-full shadow-lg hover:scale-105 transition-transform duration-300"
+>
+  <span className="flex items-center gap-2">
+    Connect Wallet <FaCubes size={18} />
+  </span>
+</button>
+
+
+          <Modal
+            open={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            center
+            classNames={{
+              modal: "custom-modal",
+            }}
+          >
+            <div
+              className="p-6 rounded-lg text-white space-y-4"
+              style={{
+                background: "linear-gradient(145deg, #1b1b1b, #232323)",
+                boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.5)",
+              }}
+            >
+              <h2 className="text-2xl font-semibold mb-4 text-center pb-2">Connect Wallet</h2>
+              {errorMessage && (
+                <div className="text-red-500 text-center mb-4">{errorMessage}</div>
+              )}
+              <div className="flex flex-col gap-4 items-center">
+                {[
+                  { wallet: "metamask", color: "#f6851b", logo: "/wallet-logos/metamask-logo.svg", name: "MetaMask" },
+                  { wallet: "walletconnect", color: "#3999fc", logo: "/wallet-logos/walletconnect-logo.svg", name: "WalletConnect" },
+                  { wallet: "coinbase", color: "#0052FF", logo: "/wallet-logos/coinbase-logo.svg", name: "Coinbase Wallet" },
+                  { wallet: "phantom", color: "#AB9FF2", logo: "/wallet-logos/phantom-logo.svg", name: "Phantom Wallet" },
+                ].map(({ wallet, color, logo, name }) => (
+                  <button
+                    key={wallet}
+                    onClick={() => connectWithWallet(wallet)}
+                    className="flex items-center gap-2 w-56 px-4 py-3 text-white rounded-lg transition-all duration-300"
+                    style={{ backgroundColor: "transparent", border: `1px solid transparent` }}
+                    onMouseEnter={(e) => (e.target.style.backgroundColor = color)}
+                    onMouseLeave={(e) => (e.target.style.backgroundColor = "transparent")}
+                  >
+                    <img src={logo} alt={name} className="h-6 w-6" />
+                    {name}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </Modal>
+        </>
       )}
     </div>
   );
