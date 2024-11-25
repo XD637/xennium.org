@@ -167,7 +167,7 @@ const ContractButton = () => {
                 boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.5)",
               }}
             >
-              <h2 className="text-2xl font-semibolds mb-4 text-center pb-2">Connect Wallet</h2>
+              <h2 className="text-2xl font-semibolds mb-4 text-center pt-2 pb-2">Connect Wallet<i class="bi bi-arrow-right-short"></i></h2>
               {errorMessage && (
                 <div className="text-white text-center mb-4">{errorMessage}</div>
               )}
