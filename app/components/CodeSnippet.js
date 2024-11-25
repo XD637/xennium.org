@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import { HiClipboardCopy } from "react-icons/hi";
-import { FaEthereum } from "react-icons/fa";  // Ethereum icon
+import { HiCheck } from "react-icons/hi"; // Check icon
+import { FaEthereum } from "react-icons/fa"; // Ethereum icon
 
 const CodeSnippet = ({ code }) => {
   const [copied, setCopied] = useState(false);
@@ -9,7 +9,7 @@ const CodeSnippet = ({ code }) => {
   const copyToClipboard = () => {
     navigator.clipboard.writeText(code);
     setCopied(true);
-    setTimeout(() => setCopied(false), 2000);  // Reset after 2 seconds
+    setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
   };
 
   return (
@@ -21,15 +21,25 @@ const CodeSnippet = ({ code }) => {
       </div>
 
       <pre className="text-xs font-mono whitespace-pre-wrap">{code}</pre>
-      
+
       {/* Copy button */}
       <button
         onClick={copyToClipboard}
-        className="absolute top-2 right-2 p-2 bg-transparent text-white rounded-md border border-gray-600"
+        className="absolute top-2 right-2 flex items-center gap-1 p-2 bg-transparent text-white rounded-md transition-all duration-200 hover:bg-gray-800"
       >
-        <HiClipboardCopy 
-          className={`text-alg ${copied ? "text-black" : "text-white"}`} 
-        /> {/* White by default, black when copied */}
+        {copied ? (
+          <>
+            <HiCheck className="text-white w-4 h-4" /> {/* White tick icon */}
+          </>
+        ) : (
+          <>
+            <img
+              src="/basic-icons/copy.svg"
+              alt="Copy"
+              className="w-4 h-4 filter invert" // Smaller size and white color
+            /> {/* Custom SVG icon */}
+          </>
+        )}
       </button>
     </div>
   );
