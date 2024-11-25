@@ -38,6 +38,5 @@ input[type="text"]:focus {
   padding: 0 !important; /* Remove any extra padding */
   border: none !important; /* Eliminate borders */
   box-shadow: none !important; /* Eliminate shadows */
-  
 }
 

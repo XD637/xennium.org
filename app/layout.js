@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import App from './App';  // Import the App component
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,7 +25,8 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        {/* Wrapping children inside App component */}
+        <App>{children}</App>
       </body>
     </html>
   );
