@@ -133,10 +133,33 @@ const ContractButton = () => {
             open={isModalOpen}
             onClose={() => setIsModalOpen(false)}
             center
+            showCloseIcon={false} // Hide default close icon
             classNames={{
               modal: "custom-modal",
-            }}
+            }} 
           >
+            {/* Custom Close Button */}
+        <button
+          onClick={() => setIsModalOpen(false)}
+          className="absolute top-2 right-2 z-50 p-1"
+          style={{
+            backgroundColor: "transparent",
+            border: "none",
+          }}
+        >
+          
+          <img
+            src="/basic-icons/x.svg" // Path to your custom SVG
+            alt="Close"
+            style={{
+              width: "20px",
+              height: "20px",
+              cursor: "pointer",
+              filter: "invert(1)", 
+            }}
+          />
+        </button>
+
             <div
               className="p-6 rounded-lg text-white space-y-4"
               style={{
@@ -144,9 +167,9 @@ const ContractButton = () => {
                 boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.5)",
               }}
             >
-              <h2 className="text-2xl font-semibold mb-4 text-center pb-2">Connect Wallet</h2>
+              <h2 className="text-2xl font-semibolds mb-4 text-center pb-2">Connect Wallet</h2>
               {errorMessage && (
-                <div className="text-red-500 text-center mb-4">{errorMessage}</div>
+                <div className="text-white text-center mb-4">{errorMessage}</div>
               )}
               <div className="flex flex-col gap-4 items-center">
                 {[
