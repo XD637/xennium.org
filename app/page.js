@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
-import dynamic from "next/dynamic";
 import { motion } from "framer-motion"; // Import Framer Motion
 import CodeSnippet from "./components/CodeSnippet";
 import Footer from "./components/Footer";
@@ -9,13 +8,13 @@ import Cube from "./components/Cube";
 import FeaturesSection from "./components/Card";
 import ContractButton from "./components/Contract";
 
-const Particles = dynamic(() => import("react-tsparticles"), { ssr: false });
-import { loadFull } from "tsparticles";
+//const Particles = dynamic(() => import("react-tsparticles"), { ssr: false });
+//import { loadFull } from "tsparticles";
 
 export default function Home() {
-  const particlesInit = useCallback(async (engine) => {
-    await loadFull(engine);
-  }, []);
+  //const particlesInit = useCallback(async (engine) => {
+    //await loadFull(engine);
+  //}, []);
 
   const [code, setCode] = useState(""); // State to store the code snippet
 
