@@ -12,25 +12,37 @@ const Cube = () => {
     // Initialize Scene, Camera, and Renderer
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
-      75,
-      canvasRef.current.clientWidth / canvasRef.current.clientHeight,
-      0.1,
-      1000
+      75, // Field of view
+      1, // Aspect ratio (1:1 for square canvas)
+      0.1, // Near plane
+      1000 // Far plane
     );
 
     const renderer = new THREE.WebGLRenderer({ alpha: true, canvas: canvasRef.current });
-    renderer.setSize(canvasRef.current.clientWidth, canvasRef.current.clientHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
+
+    // Handle resizing the canvas to always be square and fixed height
+    const handleResize = () => {
+      const height = 250; // Fixed height
+      canvasRef.current.height = height;
+      canvasRef.current.width = height; // Width equal to height for square canvas
+
+      // Update camera aspect ratio and renderer size
+      camera.aspect = 1; // Aspect ratio 1:1 for square canvas
+      camera.updateProjectionMatrix();
+      renderer.setSize(height, height);
+    };
+
+    handleResize(); // Initial call to set size
 
     // Create and Add the Cube
     const cube = new THREE.Mesh(
-      new THREE.BoxGeometry(2, 2, 2),
+      new THREE.BoxGeometry(2, 2, 2), // Cube size
       new THREE.MeshBasicMaterial({ color: 0x8a2be2, wireframe: true })
     );
     scene.add(cube);
 
-    // Set Camera Position
-    camera.position.set(0, 0, 5);
+    // Set Camera Position to ensure the cube is centered
+    camera.position.set(0, 0, 5); // Adjust the camera's distance from the cube
 
     // Animation Loop
     const animate = () => {
@@ -41,26 +53,20 @@ const Cube = () => {
     };
     animate();
 
-    // Handle Window Resize
-    const handleResize = () => {
-      const { clientWidth, clientHeight } = canvasRef.current;
-      camera.aspect = clientWidth / clientHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(clientWidth, clientHeight);
-    };
+    // Resize listener
     window.addEventListener("resize", handleResize);
 
     setIsInitialized(true);
 
     return () => {
-      // Clean-up on Unmount
+      // Clean-up on unmount
       window.removeEventListener("resize", handleResize);
       renderer.dispose();
     };
   }, [isInitialized]); // Only run this effect once on mount
 
   return (
-    <div className="relative w-full h-full">
+    <div className="relative" style={{ width: "250px", height: "250px" }}>
       {/* Attach Canvas via Ref */}
       <canvas ref={canvasRef} style={{ display: "block", width: "100%", height: "100%" }} />
     </div>

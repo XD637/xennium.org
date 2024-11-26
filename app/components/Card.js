@@ -1,5 +1,6 @@
 import React from "react";
 import { FaGamepad, FaGavel, FaVoteYea, FaIdBadge, FaInfinity, FaTools } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const FeaturesSection = () => {
   const features = [
@@ -35,6 +36,20 @@ const FeaturesSection = () => {
     },
   ];
 
+  // Motion Variants for smoother end animation
+  const featureVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { 
+        duration: 1, 
+        ease: [0.25, 0.8, 0.25, 1], // Ease-out curve for smoother end
+        delay: 0.1, // Small delay for smooth entry
+      },
+    },
+  };
+
   return (
     <section className="relative z-10 py-12 px-4 sm:px-8 text-center bg-transparent backdrop-blur-none rounded-lg mx-auto max-w-7xl">
       {/* Section Heading */}
@@ -43,9 +58,13 @@ const FeaturesSection = () => {
       {/* Features Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 relative z-10">
         {features.map((feature, index) => (
-          <div
+          <motion.div
             key={index}
             className="group relative p-6 rounded-md overflow-auto bg-[#2d2d2d] text-white border border-gray-700 shadow-lg transform transition-transform duration-200 hover:scale-105 mx-auto"
+            initial="hidden"
+            whileInView="visible"
+            variants={featureVariants}
+            viewport={{ once: false, amount: 0.3 }} // Trigger animation on every scroll
           >
             {/* Glossy Effect */}
             <div className="absolute top-0 left-0 w-full h-full bg-black/30 backdrop-blur-lg rounded-md z-0"></div>
@@ -60,7 +79,7 @@ const FeaturesSection = () => {
 
             {/* Description */}
             <p className="text-gray-400 text-sm relative z-10">{feature.description}</p>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>
