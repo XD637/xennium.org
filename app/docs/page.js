@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import CodeSnippet from "../components/CodeSnippet";
+import ParticlesBackground from "../components/Particle";
 
 const Particles = dynamic(() => import("react-tsparticles"), { ssr: false });
 import { loadFull } from "tsparticles";
@@ -125,29 +126,7 @@ function mint(address to, uint256 amount) { /* ... */ }`,
   return (
     <div className="relative min-h-screen bg-[#1c1c1e] text-gray-200">
       {/* Particles Background */}
-      <Particles
-        id="tsparticles"
-        init={particlesInit}
-        options={{
-          background: { color: { value: "#1c1c1e" } },
-          particles: {
-            number: { value: 50, density: { enable: true, value_area: 800 } },
-            color: { value: "#ffffff" },
-            opacity: { value: 0.5 },
-            size: { value: 4, random: true },
-            move: { enable: true, speed: 1 },
-            line_linked: {
-              enable: true,
-              distance: 150,
-              color: "#ffffff",
-              opacity: 0.1,
-              width: 1.5,
-            },
-          },
-          retina_detect: true,
-        }}
-        className="absolute top-0 left-0 w-full h-full z-0"
-      />
+      <ParticlesBackground/>
 
       {/* Navbar */}
       <Navbar />
@@ -190,7 +169,7 @@ function mint(address to, uint256 amount) { /* ... */ }`,
                   governance, voting, and identity management, including shareholder
                   roles.
                 </p>
-                <div className="mt-8 pb-10">
+                <div className="mt-8 pb-6">
                   <CodeSnippet code={codeSnippets.overview} />
                 </div>
                 <div className="pb-24">
@@ -330,7 +309,7 @@ adding a layer of complexity and uniqueness to the coin&apos;s usage.
                   for the owner to use for administrative or ecosystem-building
                   purposes.
                 </p>
-                <div className="mt-8 pb-10">
+                <div className="mt-8 pb-6">
                   <CodeSnippet code={codeSnippets.initialSupply} />
                 </div>
                 <div className="pb-24">
@@ -419,7 +398,7 @@ standard ERC-20 practices.
                   <strong>Minting:</strong> The controlled minting feature ensures
                   that only the owner can mint additional tokens.
                 </p>
-                <div className="mt-8 pb-10">
+                <div className="mt-8 pb-6">
                   <CodeSnippet code={codeSnippets.minting} />
                 </div>
                 <div className="pb-24">The <code>mint</code> function allows the <strong>owner</strong> of the 
@@ -513,7 +492,7 @@ distributed, adding a layer of <strong>accountability</strong>.
                   <strong>Last Coin Rule:</strong> A distinctive feature of
                   Xennium is the &apos;Last coin cannot be spent&apos; rule.
                 </p>
-                <div className="mt-8 pb-10">
+                <div className="mt-8 pb-6">
                   <CodeSnippet code={codeSnippets.lastCoinRule} />
                 </div>
                 <div className="pb-20">
@@ -554,7 +533,7 @@ distributed, adding a layer of <strong>accountability</strong>.
                   balance.
                 </li>
                 </ul>
-                <div className="mt-8 pb-10">
+                <div className="mt-8 pb-6">
                   <CodeSnippet code={codeSnippets.functions} />
                 </div>
                 <div className="pb-24">
