@@ -7,7 +7,6 @@ import Navbar from "./components/Navbar";
 import Cube from "./components/Cube";
 import FeaturesSection from "./components/Card";
 import ContractButton from "./components/Contract";
-import ParticlesBackground from "./components/Particle";
 
 
 
@@ -66,11 +65,7 @@ contract XenniumToken is ERC20, Ownable, ERC20Permit {
 `;
 
   return (
-    <div className="relative min-h-screen bg-[#1c1c1e] text-gray-200">
-    {/* Particles Background */}
-    <ParticlesBackground />
-
-    
+    <div className="relative min-h-screen bg-[#1c1c1e] text-gray-200">   
       {/* Navbar */}
       <Navbar />
 

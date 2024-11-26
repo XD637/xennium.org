@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import CodeSnippet from "../components/CodeSnippet";
-import ParticlesBackground from "../components/Particle";
+
 
 const Particles = dynamic(() => import("react-tsparticles"), { ssr: false });
 import { loadFull } from "tsparticles";
@@ -125,8 +125,6 @@ function mint(address to, uint256 amount) { /* ... */ }`,
 
   return (
     <div className="relative min-h-screen bg-[#1c1c1e] text-gray-200">
-      {/* Particles Background */}
-      <ParticlesBackground/>
 
       {/* Navbar */}
       <Navbar />

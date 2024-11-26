@@ -2,15 +2,11 @@
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import ParticlesBackground from "../components/Particle";
 import { HiArrowRight } from "react-icons/hi";
 
 export default function Community() {
   return (
     <div className="relative min-h-screen bg-[#1c1c1e] text-gray-200">
-      {/* Particles Background */}
-      <ParticlesBackground />
-
       {/* Navbar */}
       <Navbar />
 
