@@ -4,6 +4,7 @@ import { motion } from "framer-motion"; // Import Framer Motion
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import CodeSnippet from "../components/CodeSnippet";
+import ParticlesBackground from "../components/Particle";
 
 export default function Support() {
   const code = "0x20E6827DC9FC44C747f551A08aF8244bA14046a6";
@@ -21,6 +22,10 @@ export default function Support() {
 
   return (
     <div className="relative min-h-screen bg-[#1c1c1e] text-gray-200">
+      
+       {/* Particle */}
+       <ParticlesBackground />
+
       {/* Navbar */}
       <Navbar />
 

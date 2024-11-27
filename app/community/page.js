@@ -4,6 +4,9 @@ import { motion } from "framer-motion"; // Import Framer Motion
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { HiArrowRight } from "react-icons/hi";
+import { useState } from "react";
+import GrantsApplicationModal from "../components/Grants"; // Ensure the modal is in the right path
+import ParticlesBackground from "../components/Particle";
 
 export default function Community() {
   // Animation Variants
@@ -17,8 +20,16 @@ export default function Community() {
     visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
   };
 
+  // State for modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="relative min-h-screen bg-[#1c1c1e] text-gray-200">
+
+       {/* Particle */}
+       <ParticlesBackground />
+
+       
       {/* Navbar */}
       <Navbar />
 
@@ -57,11 +68,32 @@ export default function Community() {
           target="_blank"
           rel="noopener noreferrer"
           className="mt-8 flex items-center space-x-3 px-4 py-2 bg-transparent border-2 border-purple-500 border-gradient-to-br from-purple-500 to-indigo-600 text-white rounded-full shadow-lg hover:bg-gradient-to-br hover:from-purple-500 hover:to-indigo-600 hover:border-gradient-to-br hover:scale-105 transition-all duration-300"
->
+        >
           <span>Join Discord</span>
           <HiArrowRight className="w-5 h-5" /> {/* Arrow icon */}
         </motion.a>
-      </motion.main>
+        </motion.main>
+        {/* Apply for Grants Button */}
+        {/*<motion.button
+          variants={staggerContainer}
+          aria-label="Apply for Grants"
+          onClick={() => setIsModalOpen(true)} // Opens the modal
+          className="mt-8 flex items-center space-x-3 px-4 py-2 bg-transparent border-2 border-purple-500 border-gradient-to-br from-purple-500 to-indigo-600 text-white rounded-full shadow-lg hover:bg-gradient-to-br hover:from-purple-500 hover:to-indigo-600 hover:border-gradient-to-br hover:scale-105 transition-all duration-300"
+        >
+          <span>Apply for Grants</span>
+          <HiArrowRight className="w-5 h-5" />
+        </motion.button>
+      */}
+
+      {/* Modal */}
+      {/*{isModalOpen && (
+        <GrantsApplicationModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)} // Closes the modal
+        />
+      )}
+      */}
+
 
       {/* Footer (No Animation) */}
       <Footer />

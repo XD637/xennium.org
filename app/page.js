@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import Cube from "./components/Cube";
 import FeaturesSection from "./components/Card";
 import ContractButton from "./components/Contract";
+import ParticlesBackground from "./components/Particle";
 
 //const Particles = dynamic(() => import("react-tsparticles"), { ssr: false });
 //import { loadFull } from "tsparticles";
@@ -40,6 +41,11 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen bg-[#1c1c1e] text-gray-200">
+
+      {/* Particle */}
+      <ParticlesBackground />
+
+
       {/* Navbar */}
       <Navbar />
 
