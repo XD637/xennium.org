@@ -1,21 +1,22 @@
 "use client";
+
 import { useEffect, useState } from "react";
-import '@rainbow-me/rainbowkit/styles.css';  // Import RainbowKit styles
-import { WagmiProvider } from 'wagmi';  // Import Wagmi provider
-import { mainnet, polygon, optimism, arbitrum, base } from 'wagmi/chains';  // Import chains from Wagmi
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";  // Import React Query provider
+import '@rainbow-me/rainbowkit/styles.css'; // Import RainbowKit styles
+import { getDefaultConfig } from '@rainbow-me/rainbowkit'; // Import at the top
+import { WagmiProvider } from 'wagmi'; // Import Wagmi provider
+import { mainnet, polygon, optimism, arbitrum, base } from 'wagmi/chains'; // Import chains from Wagmi
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query"; // Import React Query provider
 import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 
 const App = ({ children }) => {
   const [config, setConfig] = useState(null);
 
   useEffect(() => {
-    const { getDefaultConfig } = require('@rainbow-me/rainbowkit'); // Dynamically import to run only on the client side
     const rainbowConfig = getDefaultConfig({
       appName: 'Xennium',
-      projectId: 'YOUR_PROJECT_ID',  // Replace with your actual project ID
-      chains: [mainnet, polygon, optimism, arbitrum, base],  // Add more chains if needed
-      ssr: true,  // Enable SSR (Server Side Rendering) if needed
+      projectId: '3841a0406d66a8b07e27422fa585bc6d', // Replace with your actual project ID
+      chains: [mainnet, polygon, optimism, arbitrum, base], // Add more chains if needed
+      ssr: true, // Enable SSR (Server Side Rendering) if needed
     });
     setConfig(rainbowConfig); // Set the config when it is available
   }, []);
@@ -31,9 +32,9 @@ const App = ({ children }) => {
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider
           theme={darkTheme({
-            accentColor: '#7b3fe4',  // Custom accent color
-            accentColorForeground: 'white',  // Custom foreground color
-            borderRadius: 'medium',  // Custom border radius
+            accentColor: '#7b3fe4', // Custom accent color
+            accentColorForeground: 'white', // Custom foreground color
+            borderRadius: 'medium', // Custom border radius
           })}
           chains={config.chains}
         >
