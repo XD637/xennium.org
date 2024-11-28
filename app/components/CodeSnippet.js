@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { HiCheck } from "react-icons/hi"; // Check icon
 import { FaEthereum } from "react-icons/fa"; // Ethereum icon
+import Image from "next/image";
 
 const CodeSnippet = ({ code }) => {
   const [copied, setCopied] = useState(false);
@@ -33,7 +34,7 @@ const CodeSnippet = ({ code }) => {
           </>
         ) : (
           <>
-            <img
+            <Image
               src="/basic-icons/copy.svg"
               alt="Copy"
               className="w-4 h-4 filter invert" // Smaller size and white color
