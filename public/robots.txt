@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://xennium.org
+
+# Sitemaps
+Sitemap: https://xennium.org/sitemap.xml
