@@ -170,12 +170,13 @@ function mint(address to, uint256 amount) { /* ... */ }`,
                   a standout choice for applications in gamification,
                   governance, voting, and identity management, including shareholder
                   roles.
+                  <br /><br />
                 </p>
                 <div className="mt-8 pb-6">
                   <CodeSnippet code={codeSnippets.overview} />
                 </div>
                 <div className="pb-24">
-<strong>Algorithm Overview:</strong>
+<strong>Algorithm Overview:</strong><br /><br />
 <ul>
   <li>
     The simulation begins with an <code>initial value (iv)</code> of Xennium coins. 
@@ -193,7 +194,7 @@ function mint(address to, uint256 amount) { /* ... */ }`,
 
 <br /><br />
 
-<strong>Code Breakdown:</strong>
+<strong>Code Breakdown:</strong><br /><br />
 <ul>
   <li>
     <code>class xennium:</code> 
@@ -253,7 +254,7 @@ function mint(address to, uint256 amount) { /* ... */ }`,
 
 <br /><br />
 
-<strong>Special Properties of the Algorithm:</strong>
+<strong>Special Properties of the Algorithm:</strong><br /><br />
 <ul>
   <li>
     The <code>True Value</code> is sensitive to every spend, regardless of how 
@@ -271,7 +272,7 @@ function mint(address to, uint256 amount) { /* ... */ }`,
 
 <br /><br />
 
-<strong>Example Scenario:</strong>
+<strong>Example Scenario:</strong><br /><br />
 <ul>
   <li>
     <strong>Initial Coins:</strong> A user starts with 10 Xennium coins.
@@ -289,13 +290,13 @@ function mint(address to, uint256 amount) { /* ... */ }`,
 
 <br /><br />
 
-<strong>Visualization:</strong> The algorithm provides a graphical representation 
+<strong>Visualization:</strong> <br /><br />The algorithm provides a graphical representation 
 of the depreciation history, making it easy to track how spending affects the 
 <code>True Value</code> over time.
 
 <br /><br />
 
-<strong>Conclusion:</strong> This algorithm highlights the peculiar way 
+<strong>Conclusion:</strong> <br /><br />This algorithm highlights the peculiar way 
 Xennium coins behave, where every spend impacts their true value, regardless 
 of the initial balance. It enforces a rule that the last coin becomes &quot;non-spendable,&quot; 
 adding a layer of complexity and uniqueness to the coin&apos;s usage. 
@@ -309,37 +310,38 @@ adding a layer of complexity and uniqueness to the coin&apos;s usage.
                   <strong>Initial Supply:</strong> The contract begins with
                   19,000,000 XENX tokens. Of these, 1,000,000 tokens are reserved
                   for the owner to use for administrative or ecosystem-building
-                  purposes.
+                  purposes.The <code>constructor</code> initializes the <strong>Xennium (XENX)</strong> token with specific configurations and initial minting logic. It ensures proper setup of the token&apos;s metadata, ownership, and initial token distribution.
+
+                  <br /><br />
                 </p>
                 <div className="mt-8 pb-6">
                   <CodeSnippet code={codeSnippets.initialSupply} />
                 </div>
                 <div className="pb-24">
-                The <code>constructor</code> initializes the <strong>Xennium (XENX)</strong> token with specific configurations and initial minting logic. It ensures proper setup of the token&apos;s metadata, ownership, and initial token distribution.
+                
 
-<br /><br />
-
-<strong>Function Breakdown:</strong>
+<strong>Function Breakdown:</strong><br /><br />
 <ul>
   <li>
     <code>ERC20(&quot;Xennium&quot;, &quot;XENX&quot;)</code>: This initializes the token with a name 
     <strong>&quot;Xennium&quot;</strong> and symbol <strong>&quot;XENX&quot;</strong>. The <code>ERC20</code> 
     constructor from OpenZeppelin handles basic ERC-20 functionality.
+    <br /><br />
   </li>
   <li>
     <code>ERC20Permit(&quot;Xennium&quot;)</code>: Enables <strong>permit</strong> functionality, 
     allowing token approvals via signatures instead of on-chain transactions. 
-    This saves gas fees and enhances user experience.
+    This saves gas fees and enhances user experience.<br /><br />
   </li>
   <li>
     <code>Ownable(msg.sender)</code>: Sets the <strong>owner</strong> of the contract 
     as the address deploying it (<code>msg.sender</code>). This uses OpenZeppelin&apos;s 
-    <code>Ownable</code> contract, which provides owner-based access control.
+    <code>Ownable</code> contract, which provides owner-based access control.<br /><br />
   </li>
   <li>
     <code>_mint(msg.sender, OWNER_RESERVE)</code>: Mints a predefined number of tokens 
     (e.g., <strong>1 million</strong>) to the owner&apos;s address. This serves as 
-    the owner&apos;s reserved supply for future use.
+    the owner&apos;s reserved supply for future use.<br /><br />
   </li>
   <li>
     <code>_mint(address(this), INITIAL_SUPPLY - OWNER_RESERVE)</code>: Mints the 
@@ -351,7 +353,7 @@ adding a layer of complexity and uniqueness to the coin&apos;s usage.
 
 <br /><br />
 
-<strong>Use Cases:</strong>
+<strong>Use Cases:</strong><br /><br />
 <ul>
   <li>
     <strong>Owner&apos;s Reserve:</strong> The owner&apos;s reserved tokens can be used 
@@ -366,7 +368,7 @@ adding a layer of complexity and uniqueness to the coin&apos;s usage.
 
 <br /><br />
 
-<strong>Security Mechanisms:</strong>
+<strong>Security Mechanisms:</strong><br /><br />
 <ul>
   <li>
     The <code>Ownable</code> constructor ensures that only the owner has 
@@ -380,16 +382,16 @@ adding a layer of complexity and uniqueness to the coin&apos;s usage.
 
 <br /><br />
 
-<strong>Example Scenario:</strong> When deploying the Xennium token, the constructor 
+<strong>Example Scenario:</strong><br /><br /> When deploying the Xennium token, the constructor 
 automatically sets up the token&apos;s metadata and allocates the initial supply 
 based on predefined rules. This ensures a fair and controlled distribution from 
-the outset.
+the outset.This implementation demonstrates a <strong>well-structured</strong> approach to token 
+deployment, ensuring clear ownership and token allocation while aligning with 
+standard ERC-20 practices.
 
 <br /><br />
 
-This implementation demonstrates a <strong>well-structured</strong> approach to token 
-deployment, ensuring clear ownership and token allocation while aligning with 
-standard ERC-20 practices.
+
 
                 </div>
               </>
@@ -398,12 +400,7 @@ standard ERC-20 practices.
               <>
                 <p>
                   <strong>Minting:</strong> The controlled minting feature ensures
-                  that only the owner can mint additional tokens.
-                </p>
-                <div className="mt-8 pb-6">
-                  <CodeSnippet code={codeSnippets.minting} />
-                </div>
-                <div className="pb-24">The <code>mint</code> function allows the <strong>owner</strong> of the 
+                  that only the owner can mint additional tokens.The <code>mint</code> function allows the <strong>owner</strong> of the 
 contract to mint (create) new tokens and add them to the 
 <strong>contract&apos;s balance</strong>, not to any user&apos;s balance. 
 This ensures that the newly minted tokens are part of the contract&apos;s 
@@ -411,8 +408,13 @@ holdings and can later be distributed, sold, or used as specified in the
 contract logic.
 
 <br /><br />
+                </p>
+                <div className="mt-8 pb-6">
+                  <CodeSnippet code={codeSnippets.minting} />
+                </div>
+                <div className="pb-24">
 
-<strong>Function Breakdown:</strong> 
+<strong>Function Breakdown:</strong> <br /><br />
 <ul>
   <li>
     <code>external onlyOwner</code>: The <code>external</code> modifier 
@@ -420,14 +422,14 @@ contract logic.
     contract. The <code>onlyOwner</code> modifier restricts access 
     to the <strong>owner</strong> of the contract, ensuring that 
     no other address can mint tokens. This is typically implemented 
-    using OpenZeppelin&apos;s <code>Ownable</code> contract.
+    using OpenZeppelin&apos;s <code>Ownable</code> contract.<br /><br />
   </li>
   <li>
     <code>_mint(address(this), amount)</code>: This calls the internal 
     <code>_mint</code> function to create <code>amount</code> of new 
     tokens. These tokens are credited to the <code>contract&apos;s address 
     (address(this))</code>, effectively adding them to the contract&apos;s 
-    balance.
+    balance.<br /><br />
   </li>
   <li>
     <code>emit TokensMinted(address(this), amount)</code>: This triggers 
@@ -441,7 +443,7 @@ contract logic.
 
 <br /><br />
 
-<strong>Use Cases:</strong> 
+<strong>Use Cases:</strong><br /><br /> 
 <ul>
   <li>
     <strong>Controlled Supply Expansion:</strong> The function allows the 
@@ -458,7 +460,7 @@ contract logic.
 
 <br /><br />
 
-<strong>Security Mechanisms:</strong> 
+<strong>Security Mechanisms:</strong> <br /><br />
 <ul>
   <li>
     The <code>onlyOwner</code> modifier ensures that only the contract 
@@ -474,17 +476,17 @@ contract logic.
 
 <br /><br />
 
-<strong>Example Scenario:</strong> In a decentralized application (dApp), 
+<strong>Example Scenario:</strong><br /><br /> In a decentralized application (dApp), 
 the owner might use the <code>mint</code> function to create additional 
 tokens to reward users for staking, participating in governance, or 
-completing tasks within the ecosystem.
-
-<br /><br />
-
-This implementation aligns with good tokenomics by expanding the token 
+completing tasks within the ecosystem.This implementation aligns with good tokenomics by expanding the token 
 supply in a <strong>controlled and transparent manner</strong>. Minted 
 tokens remain in the contract&apos;s custody until they are intentionally 
 distributed, adding a layer of <strong>accountability</strong>.
+
+<br /><br />
+
+
 </div>
               </>
             )}
@@ -493,6 +495,7 @@ distributed, adding a layer of <strong>accountability</strong>.
                 <p>
                   <strong>Last Coin Rule:</strong> A distinctive feature of
                   Xennium is the &apos;Last coin cannot be spent&apos; rule.
+                  <br /><br />
                 </p>
                 <div className="mt-8 pb-6">
                   <CodeSnippet code={codeSnippets.lastCoinRule} />
@@ -514,7 +517,7 @@ distributed, adding a layer of <strong>accountability</strong>.
       3. <strong><code>transferFrom</code> function (overridden):</strong><br />
       This function works similarly to the <code>transfer</code> function, but it allows transfers from an account other than the sender.<br />
       Like the <code>transfer</code> function, it first calls the <code>_safeTransferCheck</code> function to validate the last coin rule and proceeds with the <code>super.transferFrom(from, to, amount)</code> function if the check passes.
-    </p>
+    </p><br /><br />
     </div>
               </>
             )}
@@ -532,7 +535,7 @@ distributed, adding a layer of <strong>accountability</strong>.
                 <li>
                   <code>mint</code>: Enables the owner to mint additional
                   tokens, which are directly added to the contract&apos;s
-                  balance.
+                  balance.<br /><br />
                 </li>
                 </ul>
                 <div className="mt-8 pb-6">
@@ -540,7 +543,7 @@ distributed, adding a layer of <strong>accountability</strong>.
                 </div>
                 <div className="pb-24">
 
-<strong>Function Breakdown:</strong>
+<strong>Function Breakdown:</strong><br /><br />
 <ul>
   <li>
     <code>transfer(address to, uint256 amount)</code>: 
@@ -595,7 +598,7 @@ distributed, adding a layer of <strong>accountability</strong>.
 
 <br /><br />
 
-<strong>Additional ERC-20 Functions:</strong>
+<strong>Additional ERC-20 Functions:</strong><br /><br />
 <ul>
   <li>
     <code>approve(address spender, uint256 amount)</code>: 
@@ -629,7 +632,7 @@ distributed, adding a layer of <strong>accountability</strong>.
 
 <br /><br />
 
-<strong>ERC-20 Permit Extensions:</strong>
+<strong>ERC-20 Permit Extensions:</strong><br /><br />
 <ul>
   <li>
     <code>permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s)</code>: 
@@ -647,7 +650,7 @@ distributed, adding a layer of <strong>accountability</strong>.
 
 <br /><br />
 
-<strong>Security Mechanisms:</strong>
+<strong>Security Mechanisms:</strong><br /><br />
 <ul>
   <li>
     <code>mint</code> functions are typically restricted to the owner or a trusted 
@@ -665,7 +668,7 @@ distributed, adding a layer of <strong>accountability</strong>.
 
 <br /><br />
 
-<strong>Example Scenarios:</strong>
+<strong>Example Scenarios:</strong><br /><br />
 <ul>
   <li>
     <strong>Token Transfers:</strong> Users send tokens to each other using the 
@@ -684,8 +687,6 @@ distributed, adding a layer of <strong>accountability</strong>.
 
 <br /><br />
 
-This implementation aligns with ERC-20 standards and extensions, ensuring a 
-<strong>robust and flexible</strong> token design suitable for various use cases.
 
                 </div>
               </>
