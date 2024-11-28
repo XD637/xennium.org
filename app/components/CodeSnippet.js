@@ -36,6 +36,8 @@ const CodeSnippet = ({ code }) => {
           <>
             <Image
               src="/basic-icons/copy.svg"
+              width={10}
+              height={10}
               alt="Copy"
               className="w-4 h-4 filter invert" // Smaller size and white color
             /> {/* Custom SVG icon */}
