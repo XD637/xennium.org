@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import CodeSnippet from "../components/CodeSnippet";
 import ParticlesBackground from "../components/Particle";
+import CustomSnippet from "../components/CustomSnippet"; 
 
 
 const Particles = dynamic(() => import("react-tsparticles"), { ssr: false });
@@ -173,7 +174,8 @@ function mint(address to, uint256 amount) { /* ... */ }`,
                   <br /><br />
                 </p>
                 <div className="mt-8 pb-6">
-                  <CodeSnippet code={codeSnippets.overview} />
+                  <CustomSnippet code={codeSnippets.overview}
+                  title={"Python"} />
                 </div>
                 <div className="pb-24">
 <strong>Algorithm Overview:</strong><br /><br />

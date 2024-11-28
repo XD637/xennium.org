@@ -88,7 +88,7 @@ export default function Home() {
 
       {/* Code Snippet (No Animation) */}
       <section className="relative z-10 pat-12 px-8 sm:px-16 text-left mb-12">
-        <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-12 relative z-10 text-center">
+        <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-12 relative z-10 text-center pt-3">
           Transparency
         </h2>
         <div>

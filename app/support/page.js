@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"; // Import Framer Motion
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import CodeSnippet from "../components/CodeSnippet";
+import CustomSnippet from "../components/CustomSnippet"; // Changed import to CustomSnippet
 import ParticlesBackground from "../components/Particle";
 
 export default function Support() {
@@ -23,8 +23,8 @@ export default function Support() {
   return (
     <div className="relative min-h-screen bg-[#1c1c1e] text-gray-200">
       
-       {/* Particle */}
-       <ParticlesBackground />
+      {/* Particle */}
+      <ParticlesBackground />
 
       {/* Navbar */}
       <Navbar />
@@ -59,7 +59,7 @@ export default function Support() {
 
       {/* Code Snippet (No Animation) */}
       <section className="relative z-10 pt-12 px-8 sm:px-16 text-left mb-12">
-        <CodeSnippet code={code} />
+        <CustomSnippet code={code} title="Wallet Address" />
       </section>
 
       {/* Footer (No Animation) */}
