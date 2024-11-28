@@ -1,42 +1,54 @@
-import { FaGithub } from 'react-icons/fa'; // GitHub icon
-import { FaDiscord } from 'react-icons/fa'; // Discord icon
-import { FaCube } from 'react-icons/fa'; // Etherscan/Ethereum icon
+import { useState } from "react";
+import { FaGithub, FaDiscord, FaCube } from "react-icons/fa";
 
 const Footer = () => {
+  const [hoveredLink, setHoveredLink] = useState(null);
+
+  const links = [
+    {
+      href: "https://github.com/XD637/xenx/",
+      label: "GitHub",
+      icon: <FaGithub className="text-xl" />,
+    },
+    {
+      href: "https://discord.gg/7KmMBrrJEz",
+      label: "Discord",
+      icon: <FaDiscord className="text-xl" />,
+    },
+    {
+      href: "https://amoy.polygonscan.com/token/0xab114351697f1f563d6aca9cf076e88e79546097",
+      label: "Etherscan",
+      icon: <FaCube className="text-xl" />,
+    },
+  ];
+
   return (
     <footer className="absolute bottom-0 w-full bg-transparent text-gray-400 py-4 flex flex-col items-center justify-center z-10">
-      {/* Social media links (GitHub, Discord, and Etherscan) */}
+      {/* Social media links */}
       <div className="flex space-x-6 mb-2">
-        <a
-          href="https://github.com/XD637/xenx/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-white transform transition-transform duration-300 hover:scale-110"
-        >
-          <div className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 text-white shadow-lg transform transition-all duration-300 hover:scale-110">
-            <FaGithub className="text-xl" />
-          </div>
-        </a>
-        <a
-          href="https://discord.gg/7KmMBrrJEz"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-white transform transition-transform duration-300 hover:scale-110"
-        >
-          <div className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 text-white shadow-lg transform transition-all duration-300 hover:scale-110">
-            <FaDiscord className="text-xl" />
-          </div>
-        </a>
-        <a
-          href="https://amoy.polygonscan.com/token/0xab114351697f1f563d6aca9cf076e88e79546097"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-white transform transition-transform duration-300 hover:scale-110"
-        >
-          <div className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 text-white shadow-lg transform transition-all duration-300 hover:scale-110">
-            <FaCube className="text-xl" />
-          </div>
-        </a>
+        {links.map((link, index) => (
+          <a
+            key={index}
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            onMouseEnter={() => setHoveredLink(link.label)}
+            onMouseLeave={() => setHoveredLink(null)}
+            className="relative group"
+          >
+            {/* Icon Button */}
+            <div className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 text-white shadow-lg transform transition-all duration-300 hover:scale-110">
+              {link.icon}
+            </div>
+
+            {/* Floating Label */}
+            {hoveredLink === link.label && (
+              <span className="absolute top-full mt-2 px-3 py-1 bg-black/70 text-white rounded-lg text-sm shadow-md">
+                {link.label}
+              </span>
+            )}
+          </a>
+        ))}
       </div>
 
       {/* Copyright message */}
