@@ -4,11 +4,12 @@ import { useCallback } from "react";
 import dynamic from "next/dynamic";
 import { loadFull } from "tsparticles";
 
+// Dynamically import the Particles component to avoid server-side rendering
 const Particles = dynamic(() => import("react-tsparticles"), { ssr: false });
 
 const ParticlesBackground = () => {
   const particlesInit = useCallback(async (engine) => {
-    await loadFull(engine);
+    await loadFull(engine); // Load full configuration for the particles engine
   }, []);
 
   return (
@@ -34,7 +35,7 @@ const ParticlesBackground = () => {
             width: 1.5,
           },
         },
-        retina_detect: true,
+        retina_detect: true, // Enable retina detection for high-res screens
       }}
       className="absolute top-0 left-0 w-full h-full z-0"
     />

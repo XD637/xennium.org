@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import dynamic from "next/dynamic"; // For lazy loading components
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import Head from "next/head";
 import Footer from "./components/Footer";
@@ -9,39 +9,41 @@ import ContractButton from "./components/Contract";
 
 // Lazy load heavy components
 const ParticlesBackground = dynamic(() => import("./components/Particle"), { ssr: false });
-const Cube = dynamic(() => import("./components/Cube"));
-const FeaturesSection = dynamic(() => import("./components/Card"));
-const CodeSnippet = dynamic(() => import("./components/CodeSnippet"));
+const Cube = dynamic(() => import("./components/Cube"), { ssr: false });
+const FeaturesSection = dynamic(() => import("./components/Card"), { ssr: false });
+const CodeSnippet = dynamic(() => import("./components/CodeSnippet"), { ssr: false });
+
+// Animation Variants
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
+};
 
 export default function Home() {
-  const [code, setCode] = useState(""); // State to store the code snippet
+  const [code, setCode] = useState(""); // State for code snippet
 
   // Fetch code snippet
   useEffect(() => {
     const fetchCode = async () => {
       try {
         const response = await fetch("/codes/xennium.txt");
-        if (!response.ok) throw new Error("Failed to load code snippet.");
+        if (!response.ok) {
+          throw new Error(`Failed to load code snippet: ${response.statusText}`);
+        }
         const text = await response.text();
         setCode(text);
       } catch (error) {
-        console.error(error.message);
+        console.error("Error loading code snippet:", error);
         setCode("Code snippet could not be loaded.");
       }
     };
     fetchCode();
   }, []);
-
-  // Animation Variants
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-  };
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
-  };
 
   return (
     <>
@@ -58,18 +60,17 @@ export default function Home() {
           content="Explore the futuristic features of Xennium Token (XENX)."
         />
         <meta property="og:image" content="/Xen.png" />
-        <meta name="twitter:card" content="/Xen.png" />
+        <meta name="twitter:card" content="summary_large_image" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              "name": "Xennium",
-              "url": "https://xennium.org",
-              "logo": "https://xennium.org/Xen.png",
-              "description":
-                "Xennium is ERC 20 Token with unique - Last coin cannot be spent - constraint.",
+              name: "Xennium",
+              url: "https://xennium.org",
+              logo: "https://xennium.org/Xen.png",
+              description: "Xennium is ERC 20 Token with unique - Last coin cannot be spent - constraint.",
             }),
           }}
         />
@@ -77,13 +78,13 @@ export default function Home() {
 
       {/* Main Container */}
       <div className="relative min-h-screen bg-[#1c1c1e] text-gray-200">
-        {/* Particle Background */}
+        {/* Background Particles */}
         <ParticlesBackground />
 
         {/* Navbar */}
         <Navbar />
 
-        {/* Main Content (Animated) */}
+        {/* Main Content */}
         <motion.main
           variants={staggerContainer}
           initial="hidden"
@@ -113,23 +114,21 @@ export default function Home() {
           </motion.div>
         </motion.main>
 
-        {/* Cube (Lazy Loaded) */}
+        {/* Cube Section */}
         <div className="relative flex items-center justify-center h-[250px]">
           <Cube />
         </div>
 
         {/* Code Snippet Section */}
         <section className="relative z-10 pt-12 px-8 sm:px-16 text-left mb-12">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-12 relative z-10 text-center pt-3">
+          <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-12 text-center">
             Transparency
           </h2>
-          <div>
-            <CodeSnippet code={code} />
-          </div>
+          <CodeSnippet code={code} />
         </section>
 
         {/* Features Section */}
-        <div className="relative z-10 pt-12 px-8 sm:px-16 text-left mb-12">
+        <div className="relative z-10 pt-12 px-8 sm:px-16 mb-12">
           <FeaturesSection />
         </div>
 
