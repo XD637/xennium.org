@@ -1,7 +1,8 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import App from './App';  // Import the App component
+import App from './App'; // Import the App component
+import Script from "next/script"; // Import the Script component for external scripts
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -22,7 +23,7 @@ export const metadata = {
     title: "Xennium - Next Gen Crypto",
     description: "Discover the power of Xennium Token (XENX), the future of cryptocurrency.",
     url: "https://xennium.org", // Update this if necessary
-    image: "https://xennium.org/Xen.png", // Ensure this image exists in public folder
+    image: "https://xennium.org/Xen.png", // Ensure this image exists in the public folder
   },
 };
 
@@ -32,6 +33,20 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-23X6JNL9XL"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-23X6JNL9XL');
+          `}
+        </Script>
+
         {/* Wrapping children inside App component */}
         <App>{children}</App>
       </body>

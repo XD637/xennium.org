@@ -59,10 +59,17 @@ export default function Support() {
         </motion.p>
       </motion.main>
 
-      {/* Code Snippet */}
-      <section className="relative z-10 pt-12 px-8 sm:px-16 text-left mb-12">
-        <CustomSnippet code={code} title="Wallet Address" />
-      </section>
+      {/* Code Snippet (Animated) */}
+      <motion.section
+        variants={staggerContainer}
+        initial="hidden"
+        animate="visible"
+        className="relative z-10 pt-12 px-8 sm:px-16 text-left mb-12"
+      >
+        <motion.div variants={fadeInUp}>
+          <CustomSnippet code={code} title="Wallet Address" />
+        </motion.div>
+      </motion.section>
 
       {/* Footer */}
       <Footer />
