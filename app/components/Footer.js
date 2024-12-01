@@ -23,9 +23,9 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="absolute bottom-0 w-full bg-transparent text-gray-400 py-4 flex flex-col items-center justify-center z-10">
+    <footer className="relative w-full bg-transparent text-gray-400 py-4 flex flex-col items-center justify-center z-10">
       {/* Social media links */}
-      <div className="flex space-x-6 mb-2">
+      <div className="flex flex-wrap justify-center space-x-6 md:space-x-8 mb-4">
         {links.map((link, index) => (
           <a
             key={index}
@@ -34,7 +34,7 @@ const Footer = () => {
             rel="noopener noreferrer"
             onMouseEnter={() => setHoveredLink(link.label)}
             onMouseLeave={() => setHoveredLink(null)}
-            className="relative group"
+            className="relative group flex items-center justify-center"
           >
             {/* Icon Button */}
             <div className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 text-white shadow-lg transform transition-all duration-300 hover:scale-110">
@@ -43,7 +43,7 @@ const Footer = () => {
 
             {/* Floating Label */}
             {hoveredLink === link.label && (
-              <span className="absolute top-full mt-2 px-3 py-1 bg-black/70 text-white rounded-lg text-sm shadow-md">
+              <span className="absolute top-full mt-2 px-3 py-1 bg-black/70 text-white rounded-lg text-sm shadow-md whitespace-nowrap">
                 {link.label}
               </span>
             )}
@@ -52,7 +52,7 @@ const Footer = () => {
       </div>
 
       {/* Copyright message */}
-      <p className="text-center text-sm text-gray-400 pt-7">
+      <p className="text-center text-sm text-gray-400 px-4 md:px-0">
         © {new Date().getFullYear()} Xennium. All rights reserved.
       </p>
     </footer>

@@ -6,8 +6,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import CodeSnippet from "../components/CodeSnippet";
 import ParticlesBackground from "../components/Particle";
-import CustomSnippet from "../components/CustomSnippet"; 
-
+import CustomSnippet from "../components/CustomSnippet";
 
 const Particles = dynamic(() => import("react-tsparticles"), { ssr: false });
 import { loadFull } from "tsparticles";
@@ -18,7 +17,6 @@ export default function Docs() {
   }, []);
 
   const [selectedSection, setSelectedSection] = useState("overview");
-
 
   // Sidebar Navigation Items
   const sections = [
@@ -31,7 +29,7 @@ export default function Docs() {
 
   const handleSectionClick = (sectionId) => {
     setSelectedSection(sectionId);
-    window.scrollTo({ top: 0, behavior: "smooth" });  // Scroll to the top of the page
+    window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to the top of the page
   };
 
   const codeSnippets = {
@@ -42,7 +40,7 @@ the true value (tv) of the xennium coin becomes 0% (initially it was 100%),
 which means you can not spend the last xennium coin since it lost it's true value.
 Means 1 became 0 """
 
-#Xennium Algorithm
+# Xennium Algorithm
 
 import matplotlib.pyplot as plt
 
@@ -84,15 +82,11 @@ class xennium:
         plt.grid(True)
         plt.show()
 
-# funtion calling
+# function calling
 if __name__ == "__main__":
     initial_xennium = 10
     xennium_simulator = xennium(initial_xennium)
     xennium_simulator.x_algorithm()
-
-"""this algorithm shows the peculiar way of depreciation based on the how much you spend,
-you may not realise but even if you spend the smallest amount , it changes the true value and depreciates it's value,
-Regardless of the amount of xennium coins you initially had!
 """`,
     initialSupply: ` constructor() ERC20("Xennium", "XENX") ERC20Permit("Xennium") Ownable(msg.sender) {
         _mint(msg.sender, OWNER_RESERVE); // Reserve 1 million tokens for the owner
@@ -103,7 +97,7 @@ Regardless of the amount of xennium coins you initially had!
         _mint(address(this), amount);
         emit TokensMinted(address(this), amount);
   }`,
-    lastCoinRule: ` // Prevent the last coin from being spent (Xennium special rule)
+    lastCoinRule: `// Prevent the last coin from being spent (Xennium special rule)
     function _safeTransferCheck(address from, uint256 amount) internal view {
         require(balanceOf(from) - amount >= 1, "XENX: Cannot spend the last coin");
     }
@@ -129,7 +123,6 @@ function mint(address to, uint256 amount) { /* ... */ }`,
     <div className="relative min-h-screen bg-[#1c1c1e] text-gray-200">
       {/* Particle */}
       <ParticlesBackground />
-      
 
       {/* Navbar */}
       <Navbar />
@@ -154,6 +147,7 @@ function mint(address to, uint256 amount) { /* ... */ }`,
             </ul>
           </nav>
         </div>
+
 
         {/* Main Content Container */}
         <div className="flex-1 ml-64 p-8 sm:p-16">
