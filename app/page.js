@@ -57,33 +57,35 @@ export default function Home() {
   return (
     <>
       {/* SEO Metadata */}
-      <Head>
-        <title>Xennium - Next Gen Crypto</title>
-        <meta
-          name="description"
-          content="Discover Xennium Token (XENX), a unique ERC-20 token with innovative features for gamification, governance, and more."
-        />
-        <meta property="og:title" content="Xennium - Next Gen Crypto" />
-        <meta
-          property="og:description"
-          content="Explore the futuristic features of Xennium Token (XENX)."
-        />
-        <meta property="og:image" content="/Xen.png" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "Xennium",
-              url: "https://xennium.org",
-              logo: "https://xennium.org/Xen.png",
-              description: "Xennium is ERC 20 Token with unique - Last coin cannot be spent - constraint.",
-            }),
-          }}
-        />
-      </Head>
+<Head>
+  <title>Xennium - Next Gen Crypto</title>
+  <meta
+    name="description"
+    content="Discover Xennium Token (XENX), a unique ERC-20 token with innovative features for gamification, governance, and more."
+  />
+  <meta property="og:title" content="Xennium - Next Gen Crypto" />
+  <meta
+    property="og:description"
+    content="Explore the futuristic features of Xennium Token (XENX)."
+  />
+  <meta property="og:image" content="/Xen.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: "Xennium",
+        url: "https://xennium.org",
+        logo: "https://xennium.org/Xen.png",
+        description: "Xennium is ERC 20 Token with unique - Last coin cannot be spent - constraint.",
+      }),
+    }}
+  />
+</Head>
+
 
       {/* Main Container */}
       <div className="relative min-h-screen bg-[#1c1c1e] text-gray-200">
