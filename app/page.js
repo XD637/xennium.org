@@ -27,9 +27,17 @@ const staggerContainer = {
 export default function Home() {
   const [code, setCode] = useState(""); // State for code snippet
 
-  // Fetch code snippet
+  // Fetch code snippet with caching
   useEffect(() => {
     const fetchCode = async () => {
+      // Check if cached version exists
+      const cachedCode = localStorage.getItem("xenniumCode");
+      if (cachedCode) {
+        setCode(cachedCode);
+        return;
+      }
+
+      // If not cached, fetch from the server
       try {
         const response = await fetch("/codes/xennium.txt");
         if (!response.ok) {
@@ -37,6 +45,7 @@ export default function Home() {
         }
         const text = await response.text();
         setCode(text);
+        localStorage.setItem("xenniumCode", text); // Cache the response
       } catch (error) {
         console.error("Error loading code snippet:", error);
         setCode("Code snippet could not be loaded.");
