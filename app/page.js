@@ -7,11 +7,13 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import ContractButton from "./components/Contract";
 
+
 // Lazy load heavy components
 const ParticlesBackground = dynamic(() => import("./components/Particle"), { ssr: false });
 const Cube = dynamic(() => import("./components/Cube"), { ssr: false });
 const FeaturesSection = dynamic(() => import("./components/Card"), { ssr: false });
 const CodeSnippet = dynamic(() => import("./components/CodeSnippet"), { ssr: false });
+
 
 // Animation Variants
 const fadeInUp = {
@@ -25,6 +27,7 @@ const staggerContainer = {
 };
 
 export default function Home() {
+  
   const [code, setCode] = useState(""); // State for code snippet
 
   // Fetch code snippet with caching

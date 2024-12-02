@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import dynamic from "next/dynamic";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -8,13 +8,11 @@ import CodeSnippet from "../components/CodeSnippet";
 import ParticlesBackground from "../components/Particle";
 import CustomSnippet from "../components/CustomSnippet";
 
-const Particles = dynamic(() => import("react-tsparticles"), { ssr: false });
-import { loadFull } from "tsparticles";
+;
+
 
 export default function Docs() {
-  const particlesInit = useCallback(async (engine) => {
-    await loadFull(engine);
-  }, []);
+
 
   const [selectedSection, setSelectedSection] = useState("overview");
 
