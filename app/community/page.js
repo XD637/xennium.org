@@ -25,11 +25,9 @@ export default function Community() {
 
   return (
     <div className="relative min-h-screen bg-[#1c1c1e] text-gray-200">
+      {/* Particle */}
+      <ParticlesBackground />
 
-       {/* Particle */}
-       <ParticlesBackground />
-
-       
       {/* Navbar */}
       <Navbar />
 
@@ -46,15 +44,12 @@ export default function Community() {
         >
           Join Our Community
         </motion.h1>
-        <motion.p
-          variants={fadeInUp}
-          className="text-lg text-gray-300 italic"
-        >
+        <motion.p variants={fadeInUp} className="text-lg text-gray-300 italic">
           Connect with innovators, developers, and enthusiasts.
         </motion.p>
         <motion.p
           variants={fadeInUp}
-          className="text-md text-gray-400 mt-3 max-w-2xl mx-auto"
+          className="text-md text-gray-400 mt-3 max-w-2xl mx-auto pb-6"
         >
           Be a part of the growing Xennium community, where ideas come to life,
           and innovation thrives. Collaborate, share, and grow together.
@@ -62,38 +57,17 @@ export default function Community() {
 
         {/* Join Discord Button */}
         <motion.a
-          variants={fadeInUp}
+          variants={fadeInUp} // Ensure it uses the same animation variant
           aria-label="Join our Discord community"
           href="https://discord.gg/7KmMBrrJEz" // Replace with your Discord invite link
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-8 flex items-center space-x-3 px-4 py-2 bg-transparent border-2 border-purple-500 border-gradient-to-br from-purple-500 to-indigo-600 text-white rounded-full shadow-lg hover:bg-gradient-to-br hover:from-purple-500 hover:to-indigo-600 hover:border-gradient-to-br hover:scale-105 transition-all duration-300"
+          className="flex items-center space-x-3 px-4 py-2 bg-transparent border-2 border-purple-500 border-gradient-to-br from-purple-500 to-indigo-600 text-white rounded-full shadow-lg hover:bg-gradient-to-br hover:from-purple-500 hover:to-indigo-600 hover:border-gradient-to-br hover:scale-105 transition-all duration-300"
         >
           <span>Join Discord</span>
           <HiArrowRight className="w-5 h-5" /> {/* Arrow icon */}
         </motion.a>
-        </motion.main>
-        {/* Apply for Grants Button */}
-        {/*<motion.button
-          variants={staggerContainer}
-          aria-label="Apply for Grants"
-          onClick={() => setIsModalOpen(true)} // Opens the modal
-          className="mt-8 flex items-center space-x-3 px-4 py-2 bg-transparent border-2 border-purple-500 border-gradient-to-br from-purple-500 to-indigo-600 text-white rounded-full shadow-lg hover:bg-gradient-to-br hover:from-purple-500 hover:to-indigo-600 hover:border-gradient-to-br hover:scale-105 transition-all duration-300"
-        >
-          <span>Apply for Grants</span>
-          <HiArrowRight className="w-5 h-5" />
-        </motion.button>
-      */}
-
-      {/* Modal */}
-      {/*{isModalOpen && (
-        <GrantsApplicationModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)} // Closes the modal
-        />
-      )}
-      */}
-
+      </motion.main>
 
       {/* Footer (No Animation) */}
       <Footer />
