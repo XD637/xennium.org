@@ -62,7 +62,7 @@ export default function Community() {
 
         {/* Join Discord Button */}
         <motion.a
-          variants={staggerContainer}
+          variants={fadeInUp}
           aria-label="Join our Discord community"
           href="https://discord.gg/7KmMBrrJEz" // Replace with your Discord invite link
           target="_blank"
