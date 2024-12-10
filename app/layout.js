@@ -3,6 +3,7 @@ import "./globals.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import App from './App'; // Import the App component
 import Script from "next/script"; // Import the Script component for external scripts
+import { SpeedInsights } from "@vercel/speed-insights/next"; // Import SpeedInsights
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -46,6 +47,9 @@ export default function RootLayout({ children }) {
             gtag('config', 'G-23X6JNL9XL');
           `}
         </Script>
+
+        {/* Speed Insights */}
+        <SpeedInsights />
 
         {/* Wrapping children inside App component */}
         <App>{children}</App>
