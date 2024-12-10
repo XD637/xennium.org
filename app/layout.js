@@ -1,7 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import App from './App'; // Import the App component
+import "bootstrap-icons/font/bootstrap-icons.css";
+import App from "./App"; // Import the App component
 import Script from "next/script"; // Import the Script component for external scripts
 import { SpeedInsights } from "@vercel/speed-insights/next"; // Import SpeedInsights
 
@@ -47,6 +47,13 @@ export default function RootLayout({ children }) {
             gtag('config', 'G-23X6JNL9XL');
           `}
         </Script>
+
+        {/* Google reCAPTCHA v3 */}
+        <Script
+  src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
+  strategy="lazyOnload"
+/>
+
 
         {/* Speed Insights */}
         <SpeedInsights />
