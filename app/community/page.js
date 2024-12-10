@@ -5,7 +5,6 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { HiArrowRight } from "react-icons/hi";
 import { useState } from "react";
-import GrantsApplicationModal from "../components/Grants"; // Ensure the modal is in the right path
 import ParticlesBackground from "../components/Particle";
 
 export default function Community() {
