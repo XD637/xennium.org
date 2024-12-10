@@ -1,10 +1,12 @@
-import React, { useEffect, useMemo } from "react";
-import { FaGamepad, FaGavel, FaVoteYea, FaIdBadge, FaInfinity, FaTools } from "react-icons/fa";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-// Register ScrollTrigger plugin
-gsap.registerPlugin(ScrollTrigger);
+import React, { useMemo } from "react";
+import {
+  FaGamepad,
+  FaGavel,
+  FaVoteYea,
+  FaIdBadge,
+  FaInfinity,
+  FaTools,
+} from "react-icons/fa";
 
 const FeaturesSection = () => {
   // Memoize the FEATURES array to avoid unnecessary re-renders
@@ -44,44 +46,6 @@ const FeaturesSection = () => {
     []
   );
 
-  useEffect(() => {
-    // Animate top three cards
-    gsap.fromTo(
-      ".feature-card.top-group",
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        stagger: 0.2,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".features-section",
-          start: "top 80%",
-          once: true,
-        },
-      }
-    );
-
-    // Animate remaining three cards with the same speed
-    gsap.fromTo(
-      ".feature-card.bottom-group",
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        stagger: 0.2,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".features-section",
-          start: "top 75%", // Slight offset to create a smooth flow
-          once: true,
-        },
-      }
-    );
-  }, []);
-
   return (
     <section className="features-section relative z-10 py-12 px-4 sm:px-8 text-center bg-transparent backdrop-blur-none rounded-lg mx-auto max-w-7xl">
       <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-12 relative z-10">Features</h2>
@@ -90,9 +54,7 @@ const FeaturesSection = () => {
         {FEATURES.map((feature, index) => (
           <div
             key={index}
-            className={`feature-card group relative p-6 rounded-md overflow-auto bg-[#2d2d2d] text-white border border-gray-700 shadow-lg transform transition-transform duration-200 hover:scale-105 mx-auto ${
-              index < 3 ? "top-group" : "bottom-group"
-            }`}
+            className="feature-card group relative p-6 rounded-md overflow-auto bg-[#2d2d2d] text-white border border-gray-700 shadow-lg transform transition-transform duration-200 hover:scale-105 mx-auto"
           >
             <div className="absolute top-0 left-0 w-full h-full bg-black/30 backdrop-blur-lg rounded-md z-0" />
             <div className="w-16 h-16 flex items-center justify-center bg-gray-800 rounded-full text-white mx-auto mb-4 relative z-10">
