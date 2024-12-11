@@ -136,7 +136,7 @@ export default function SignUp() {
                 </a>{" "}
                 and{" "}
                 <a
-                  href="/terms-conditions"
+                  href="/terms-and-conditions"
                   className="text-purple-500 hover:underline"
                 >
                   Terms & Conditions
