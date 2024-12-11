@@ -4,7 +4,7 @@ import { FaGithub, FaDiscord, FaCube } from "react-icons/fa";
 const Footer = () => {
   const [hoveredLink, setHoveredLink] = useState(null);
 
-  const links = [
+  const socialLinks = [
     {
       href: "https://github.com/XD637/xenx/",
       label: "GitHub",
@@ -22,11 +22,26 @@ const Footer = () => {
     },
   ];
 
+  const footerLinks = [
+    {
+      href: "/privacy",
+      label: "Privacy Policy",
+    },
+    {
+      href: "/terms-and-conditions",
+      label: "Terms and Conditions",
+    },
+    {
+      href: "mailto:contact@xennium.org",
+      label: "Contact Us",
+    },
+  ];
+
   return (
     <footer className="absolute bottom-0 w-full bg-transparent text-gray-400 py-4 flex flex-col items-center justify-center z-10">
       {/* Social media links */}
-      <div className="flex space-x-6 mb-2">
-        {links.map((link, index) => (
+      <div className="flex space-x-6 mb-4">
+        {socialLinks.map((link, index) => (
           <a
             key={index}
             href={link.href}
@@ -51,8 +66,21 @@ const Footer = () => {
         ))}
       </div>
 
+      {/* Footer navigation links */}
+      <div className="flex space-x-6 mb-4 text-sm">
+        {footerLinks.map((link, index) => (
+          <a
+            key={index}
+            href={link.href}
+            className="hover:text-gray-200 hover:underline transition-all duration-200"
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+
       {/* Copyright message */}
-      <p className="text-center text-sm text-gray-400 pt-7">
+      <p className="text-center text-sm text-gray-400 pt-4">
         © {new Date().getFullYear()} Xennium. All rights reserved.
       </p>
     </footer>
