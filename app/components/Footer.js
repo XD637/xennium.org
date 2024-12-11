@@ -25,7 +25,7 @@ const Footer = () => {
 
   const footerLinks = [
     {
-      href: "/privacy",
+      href: "/privacy-policy",
       label: "Privacy Policy",
     },
     {
