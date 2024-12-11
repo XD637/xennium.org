@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaGithub, FaDiscord, FaCube } from "react-icons/fa";
+import Link from "next/link"; // Import Next.js Link
 
 const Footer = () => {
   const [hoveredLink, setHoveredLink] = useState(null);
@@ -40,7 +41,7 @@ const Footer = () => {
   return (
     <footer className="absolute bottom-0 w-full bg-transparent text-gray-400 py-4 flex flex-col items-center justify-center z-10">
       {/* Social media links */}
-      <div className="flex space-x-6 mb-4">
+      <div className="flex space-x-6 mb-4 pb-6">
         {socialLinks.map((link, index) => (
           <a
             key={index}
@@ -69,13 +70,9 @@ const Footer = () => {
       {/* Footer navigation links */}
       <div className="flex space-x-6 mb-4 text-sm">
         {footerLinks.map((link, index) => (
-          <a
-            key={index}
-            href={link.href}
-            className="hover:text-gray-200 hover:underline transition-all duration-200"
-          >
+          <Link key={index} href={link.href} className="hover:text-gray-200 hover:underline transition-all duration-200">
             {link.label}
-          </a>
+          </Link>
         ))}
       </div>
 
