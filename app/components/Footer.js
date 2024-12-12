@@ -25,7 +25,7 @@ const Footer = () => {
 
   const footerLinks = [
     {
-      href: "/privacy-policy",
+      href: "https://www.xennium.org/privacy-policy",
       label: "Privacy Policy",
     },
     {
