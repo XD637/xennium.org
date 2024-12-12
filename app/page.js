@@ -92,6 +92,19 @@ export default function Home() {
             (shareholders), and endless ideas!
           </p>
           <ContractButton />
+          {/* Privacy Policy Link */}
+          <p className="text-md text-gray-400 mt-6">
+            Built on trust & transparency, Read our{" "}
+            <a
+              href="https://www.xennium.org/privacy-policy"
+              className="text-blue-500 underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Privacy Policy
+            </a>
+            .
+          </p>
         </main>
 
         {/* Cube Section */}

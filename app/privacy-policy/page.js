@@ -11,7 +11,7 @@ export default function PrivacyPolicy() {
       <p className="text-lg">
         Welcome to Xennium! Your privacy is important to us. This policy outlines how we collect, use, and protect your information.
       </p>
-      <section className="text-left max-w-4xl w-full">
+      <section className="text-left max-w-8xl w-full">
         <h2 className="text-2xl font-semibold">Information We Collect</h2>
         <p className="pb-6">
           We collect basic user information when you sign in using Google. This includes your name, email address, and profile picture. Additionally, we may collect information about your interactions with our platform to improve our services.
