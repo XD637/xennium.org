@@ -88,9 +88,6 @@ export const authOptions = {
 
   pages: {
     signIn: "/signin", // Custom sign-in page (optional)
-    signOut: "/auth/signout", // Custom sign-out page (optional)
-    error: "/auth/error", // Error redirect (optional)
-    verifyRequest: "/auth/verify-request", // Email verification (optional)
     newUser: "/", // Redirect after signup/signin
   },
 };

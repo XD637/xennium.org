@@ -1,3 +1,4 @@
+// App.js
 "use client";
 
 import { useEffect, useState } from "react";
@@ -7,8 +8,9 @@ import { WagmiProvider } from 'wagmi'; // Import Wagmi provider
 import { mainnet, polygon, optimism, arbitrum, base } from 'wagmi/chains'; // Import chains from Wagmi
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query"; // Import React Query provider
 import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import { SessionProvider } from "next-auth/react"; // Import SessionProvider here
 
-const App = ({ children }) => {
+const App = ({ children, session }) => {
   const [config, setConfig] = useState(null);
 
   useEffect(() => {
@@ -21,27 +23,27 @@ const App = ({ children }) => {
     setConfig(rainbowConfig); // Set the config when it is available
   }, []);
 
-  // Wait until config is loaded before rendering
-  if (!config) return null;
+  if (!config) return null; // Wait until config is loaded before rendering
 
-  // Create a new QueryClient instance for React Query
   const queryClient = new QueryClient();
 
   return (
-    <WagmiProvider config={config}>
-      <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider
-          theme={darkTheme({
-            accentColor: '#7b3fe4', // Custom accent color
-            accentColorForeground: 'white', // Custom foreground color
-            borderRadius: 'medium', // Custom border radius
-          })}
-          chains={config.chains}
-        >
-          {children}
-        </RainbowKitProvider>
-      </QueryClientProvider>
-    </WagmiProvider>
+    <SessionProvider session={session}>
+      <WagmiProvider config={config}>
+        <QueryClientProvider client={queryClient}>
+          <RainbowKitProvider
+            theme={darkTheme({
+              accentColor: '#7b3fe4', // Custom accent color
+              accentColorForeground: 'white', // Custom foreground color
+              borderRadius: 'medium', // Custom border radius
+            })}
+            chains={config.chains}
+          >
+            {children}
+          </RainbowKitProvider>
+        </QueryClientProvider>
+      </WagmiProvider>
+    </SessionProvider>
   );
 };
 

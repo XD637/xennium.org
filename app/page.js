@@ -5,6 +5,7 @@ import Head from "next/head";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import ContractButton from "./components/Contract";
+import SignInSignOutButton from "./components/AuthButton";
 
 // Lazy load heavy components
 const Cube = dynamic(() => import("./components/Cube"), { ssr: false });
@@ -76,6 +77,9 @@ export default function Home() {
       <div className="relative min-h-screen bg-[#1c1c1e] text-gray-200">
         {/* Navbar */}
         <Navbar />
+
+        {/* Sign In / Sign Out Button */}
+        <SignInSignOutButton /> {/* Use the new SignInSignOutButton component */}
 
         {/* Main Content */}
         <main className="relative flex flex-col items-center justify-center text-center z-10 px-8 sm:px-16 pt-24 sm:pt-32 gap-6">
