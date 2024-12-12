@@ -11,6 +11,7 @@ export default function SignIn() {
     password: "",
   });
   const [isClient, setIsClient] = useState(false); // State to check if we are on the client side
+  const [isSigningIn, setIsSigningIn] = useState(false); // State for signing-in status
   const router = useRouter(); // Initialize useRouter
 
   useEffect(() => {
@@ -26,6 +27,7 @@ export default function SignIn() {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSigningIn(true); // Set signing-in state to true
 
     try {
       // Call the custom sign-in API
@@ -55,11 +57,14 @@ export default function SignIn() {
     } catch (error) {
       console.error("Error during sign-in:", error);
       alert("An error occurred, please try again.");
+    } finally {
+      setIsSigningIn(false); // Reset signing-in state
     }
   };
 
   // Google sign-in handler
   const handleGoogleSignIn = () => {
+    setIsSigningIn(true); // Set signing-in state to true
     signIn("google", { callbackUrl: "/" });
   };
 
@@ -76,7 +81,7 @@ export default function SignIn() {
       <main className="relative flex flex-col items-center justify-center pt-24 sm:pt-32 px-4 sm:px-8 pb-20">
         <div className="relative p-4 rounded-md overflow-auto bg-[#2d2d2d] text-white border border-gray-700 shadow-lg w-full max-w-lg mx-auto">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-center text-white mb-6">
-            Sign In
+            {isSigningIn ? "Signing In..." : "Sign In"}
           </h1>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
@@ -128,8 +133,9 @@ export default function SignIn() {
             <button
               type="submit"
               className="flex items-center justify-center space-x-3 px-4 py-2 bg-transparent border-2 border-purple-500 text-white rounded-full shadow-lg hover:bg-gradient-to-br hover:from-purple-500 hover:to-indigo-600 hover:scale-105 transition-all duration-300"
+              disabled={isSigningIn}
             >
-              <span>Sign In</span>
+              <span>{isSigningIn ? "Signing In..." : "Sign In"}</span>
             </button>
 
             {/* OR Separator */}
@@ -144,8 +150,9 @@ export default function SignIn() {
               type="button"
               onClick={handleGoogleSignIn}
               className="flex items-center justify-center space-x-3 px-4 py-2 bg-transparent border-2 border-purple-500 text-white rounded-full shadow-lg hover:bg-gradient-to-br hover:from-purple-500 hover:to-indigo-600 hover:scale-105 transition-all duration-300"
+              disabled={isSigningIn}
             >
-              <span>Sign In with Google</span>
+              <span>{isSigningIn ? "Signing In..." : "Sign In with Google"}</span>
             </button>
           </form>
 
