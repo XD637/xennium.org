@@ -54,7 +54,7 @@ export default function SignUp() {
       if (response.ok) {
         alert("Signup successful!");
         if (isClient) {
-          router.push("/signin"); // Redirect after sign up
+          router.push("/confirm-email"); // Redirect after sign up
         }
       } else {
         const errorData = await response.json();
