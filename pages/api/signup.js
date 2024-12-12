@@ -60,10 +60,23 @@ async function sendVerificationEmail(email, code) {
   }
 }
 
+async function cleanupExpiredEntries(db) {
+  try {
+    const unregisteredCollection = db.collection("unregistered-users");
+    const result = await unregisteredCollection.deleteMany({
+      verificationExpiry: { $lte: new Date() },
+    });
+    console.log(`${result.deletedCount} expired entries removed from unregistered-users collection.`);
+  } catch (error) {
+    console.error("Error during cleanup:", error);
+  }
+}
+
 export default async function handler(req, res) {
   if (req.method === "POST") {
     const { email, password } = req.body;
 
+    // Input validation
     if (!email || !password) {
       return res.status(400).json({ message: "All fields are required" });
     }
@@ -72,22 +85,35 @@ export default async function handler(req, res) {
     try {
       await client.connect();
       const db = client.db(DATABASE_NAME);
-      const usersCollection = db.collection("users"); // Check the main users collection
+      const usersCollection = db.collection("users");
       const unregisteredCollection = db.collection("unregistered-users");
 
-      // Check if the user exists in the main collection
-      const existingUser = await usersCollection.findOne({ email });
-      if (existingUser) {
-        return res.status(409).json({ message: "User already exists" });
+      // Cleanup expired entries before proceeding
+      await cleanupExpiredEntries(db);
+
+      // Check if the user exists in either collection
+      const [existingUser, unregisteredUser] = await Promise.all([
+        usersCollection.findOne({ email }),
+        unregisteredCollection.findOne({ email }),
+      ]);
+
+      if (existingUser || unregisteredUser) {
+        return res
+          .status(409)
+          .json({ message: "User already exists or email is pending verification." });
       }
 
+      // Hash the password
       const hashedPassword = await bcrypt.hash(password, 12);
+
+      // Generate ECC key pair
       const { publicKey, privateKey } = await generateKeyPair();
 
       // Generate 6-digit verification code
       const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
       const expiry = new Date(Date.now() + VERIFICATION_EXPIRY);
 
+      // Prepare new user object
       const newUser = {
         email,
         password: hashedPassword,
@@ -98,20 +124,22 @@ export default async function handler(req, res) {
         createdAt: new Date(),
       };
 
-      // Store user in the unregistered-users collection temporarily
+      // Store the user in the unregistered-users collection
       await unregisteredCollection.insertOne(newUser);
 
       // Send verification email
       await sendVerificationEmail(email, verificationCode);
 
-      return res.status(201).json({ message: "User created successfully. Please check your email to verify." });
+      return res
+        .status(201)
+        .json({ message: "User created successfully. Please check your email to verify." });
     } catch (err) {
       console.error("Signup error:", err);
-      res.status(500).json({ message: "Internal server error" });
+      return res.status(500).json({ message: "Internal server error" });
     } finally {
       await client.close();
     }
   } else {
-    res.status(405).json({ message: "Method not allowed" });
+    return res.status(405).json({ message: "Method not allowed" });
   }
 }
