@@ -56,8 +56,16 @@ export const authOptions = {
           // Find the user by email
           const user = await usersCollection.findOne({ email: normalizedEmail });
           if (!user) {
-            throw new Error("Invalid credentials"); // No user found
+            throw new Error("Sign up before Sign in"); // No user found
           }
+
+          // Check if the user is a Google user
+          if (user.isGoogleUser) {
+            // If the user is a Google user, return a special message or handle differently
+            throw new Error("Sign in via Google"); // Skip password check if signed in via Google
+          }
+          
+
 
           // Compare the hashed password stored in the database with the input password
           const isPasswordValid = await bcrypt.compare(credentials.password, user.password);
@@ -80,30 +88,35 @@ export const authOptions = {
     async signIn({ user }) {
       const client = new MongoClient(MONGODB_URI);
       const normalizedEmail = user.email.toLowerCase(); // Normalize email to lowercase
+
       try {
         await client.connect();
         const db = client.db(DATABASE_NAME);
         const usersCollection = db.collection("users");
 
         const existingUser = await usersCollection.findOne({ email: normalizedEmail });
+
         if (!existingUser) {
+          // If user doesn't exist, create new user and set isGoogleUser flag
           const { publicKey, privateKey } = await generateKeyPair();
           const newUser = {
             email: normalizedEmail, // Store email as lowercase
             publicKey,
             privateKey,
-            isGoogleUser: user.isGoogleUser || false,
+            isGoogleUser: true, // Explicitly set to true for Google users
             createdAt: new Date(),
           };
 
+          console.log('Creating new user:', newUser); // Debugging log
           await usersCollection.insertOne(newUser);
         } else {
-          // Update user if needed
-          if (!existingUser.isGoogleUser) {
+          // If user exists and is not a Google user, update the isGoogleUser flag
+          if (!existingUser.isGoogleUser && user.provider === 'google') {
             await usersCollection.updateOne(
               { email: normalizedEmail },
               { $set: { isGoogleUser: true } }
             );
+            console.log('Updated existing user to be a Google user:', existingUser); // Debugging log
           }
         }
       } catch (err) {
@@ -117,11 +130,13 @@ export const authOptions = {
     },
     async session({ session, token }) {
       session.user.email = token.email;
+      session.user.isGoogleUser = token.isGoogleUser; // Ensure this is set in the session
       return session;
     },
     async jwt({ token, account, user }) {
       if (account) {
         token.email = user?.email?.toLowerCase(); // Normalize email here if needed
+        token.isGoogleUser = user?.provider === 'google'; // Add isGoogleUser flag to token
       }
       return token;
     },
