@@ -24,42 +24,25 @@ export default function SignIn() {
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle form submission
+  // Handle form submission (directly use next-auth CredentialsProvider)
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSigningIn(true); // Set signing-in state to true
 
-    try {
-      // Call the custom sign-in API
-      const response = await fetch("/api/signin", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password,
-        }),
-      });
+    const res = await signIn("credentials", {
+      redirect: false, // Prevent auto-redirect
+      email: formData.email,
+      password: formData.password,
+    });
 
-      const data = await response.json();
-
-      if (response.ok) {
-        alert("Sign In successful!");
-        router.push("/"); // Redirect to the home page on successful sign-in
-      } else {
-        if (data.message === "This email is associated with Google sign-in. Please log in using Google.") {
-          alert("Please use Google sign-in for this email.");
-        } else {
-          alert(data?.message || "Invalid credentials, please try again.");
-        }
-      }
-    } catch (error) {
-      console.error("Error during sign-in:", error);
-      alert("An error occurred, please try again.");
-    } finally {
-      setIsSigningIn(false); // Reset signing-in state
+    if (res?.error) {
+      alert(res.error); // Show error message if sign-in fails
+    } else {
+      alert("Sign In successful!");
+      router.push("/"); // Redirect to home page after successful sign-in
     }
+
+    setIsSigningIn(false); // Reset signing-in state
   };
 
   // Google sign-in handler
