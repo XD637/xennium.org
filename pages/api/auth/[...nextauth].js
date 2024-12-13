@@ -39,16 +39,17 @@ export const authOptions = {
   callbacks: {
     async signIn({ user }) {
       const client = new MongoClient(MONGODB_URI);
+      const normalizedEmail = user.email.toLowerCase(); // Normalize email to lowercase
       try {
         await client.connect();
         const db = client.db(DATABASE_NAME);
         const usersCollection = db.collection("users");
 
-        const existingUser = await usersCollection.findOne({ email: user.email });
+        const existingUser = await usersCollection.findOne({ email: normalizedEmail });
         if (!existingUser) {
           const { publicKey, privateKey } = await generateKeyPair();
           const newUser = {
-            email: user.email,
+            email: normalizedEmail, // Store email as lowercase
             publicKey,
             privateKey,
             isGoogleUser: true, // Mark this as a Google user
@@ -60,7 +61,7 @@ export const authOptions = {
           // Update the `isGoogleUser` field if not already set
           if (!existingUser.isGoogleUser) {
             await usersCollection.updateOne(
-              { email: user.email },
+              { email: normalizedEmail },
               { $set: { isGoogleUser: true } }
             );
           }
@@ -80,7 +81,7 @@ export const authOptions = {
     },
     async jwt({ token, account, user }) {
       if (account) {
-        token.email = user?.email;
+        token.email = user?.email?.toLowerCase(); // Normalize email here if needed
       }
       return token;
     },

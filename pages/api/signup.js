@@ -74,12 +74,15 @@ async function cleanupExpiredEntries(db) {
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
-    const { email, password } = req.body;
+    let { email, password } = req.body;
 
     // Input validation
     if (!email || !password) {
       return res.status(400).json({ message: "All fields are required" });
     }
+
+    // Normalize email to lowercase
+    email = email.toLowerCase();
 
     const client = new MongoClient(MONGODB_URI, { useUnifiedTopology: true });
     try {

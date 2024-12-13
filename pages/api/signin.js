@@ -1,3 +1,4 @@
+// /pages/api/signin.js
 import { MongoClient } from "mongodb";
 import bcrypt from "bcryptjs";
 
@@ -12,13 +13,15 @@ export default async function handler(req, res) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
+    const normalizedEmail = email.toLowerCase(); // Normalize email to lowercase
+
     const client = new MongoClient(MONGODB_URI);
     try {
       await client.connect();
       const db = client.db(DATABASE_NAME);
       const usersCollection = db.collection("users");
 
-      const user = await usersCollection.findOne({ email });
+      const user = await usersCollection.findOne({ email: normalizedEmail });
       if (!user) {
         return res.status(404).json({ message: "User not found" });
       }
