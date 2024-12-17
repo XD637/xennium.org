@@ -688,10 +688,6 @@ distributed, adding a layer of <strong>accountability</strong>.
           </div>
         </div>
       </div>
-
-      {/* Footer */}
-      
-      <Footer />
     </div>
   );
 }
