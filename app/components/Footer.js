@@ -17,8 +17,8 @@ const Footer = () => {
       icon: <FaDiscord className="text-xl" />,
     },
     {
-      href: "https://amoy.polygonscan.com/token/0xab114351697f1f563d6aca9cf076e88e79546097",
-      label: "Etherscan",
+      href: "https://polygonscan.com/token/0x78c7088e5c3e6cff6a94b57cb3c1e2ec4a5b7587",
+      label: "Polygonscan",
       icon: <FaCube className="text-xl" />,
     },
   ];

@@ -90,10 +90,10 @@ export default function Home() {
             &quot;The Last coin cannot be spent&quot;
           </p>
           <p className="text-md text-gray-400 mt-3 max-w-2xl mx-auto">
-            Xennium Token (XENX) is an ERC-20 token built on Ethereum. With its
+            Xennium Token (XENX) is an ERC-20 token built on Polygon. With its
             unique feature &apos;Last coin cannot be spent&apos;, XENX can be
             used in Gamification, Governance, Voting, Identification
-            (shareholders), and endless ideas!
+            (shareholders), security (avoid sweeper bots) and endless ideas!
           </p>
           <ContractButton />
           {/* Privacy Policy Link */}
