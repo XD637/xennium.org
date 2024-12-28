@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic"; // Dynamic import for CustomSnippet
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import { FaArrowRight } from "react-icons/fa";
 
 // Lazy load CustomSnippet
 const CustomSnippet = dynamic(() => import("../components/CustomSnippet"), {
@@ -27,8 +27,8 @@ export default function Support() {
           Be a reason to change the future.
         </p>
         <p className="text-md text-gray-400 mt-3 max-w-2xl mx-auto">
-          Provide ETHs, SepETHs, or even your own token to help us grow, and
-          become part of the Xennium community!
+          Provide us POLs, ETHs, or any token to help us grow, and become part of
+          the Xennium community!
         </p>
       </main>
 
@@ -37,8 +37,22 @@ export default function Support() {
         <CustomSnippet code={code} title="Wallet Address" />
       </section>
 
-      {/* Footer */}
-      <Footer />
+      <p className="relative text-md text-center text-gray-400 mt-3 max-w-2xl mx-auto">
+        OR
+      </p>
+
+      {/* Gitcoin Donate Section */}
+      <div className="relative flex flex-col items-center mb-12 pb-12">
+        <a
+          href="https://explorer.gitcoin.co/#/projects/0xeae1d90a0c580802fcfb7a53d29708ddd36dfb9f0d3f2a6816b595bc38e545a6"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-6 px-6 py-3 bg-gradient-to-r from-purple-500 to-indigo-500 text-white font-semibold rounded-md shadow-lg hover:shadow-xl transition-transform transform hover:scale-105 flex items-center gap-2"
+        >
+          <span>Donate via Gitcoin Builder</span>
+          <FaArrowRight className="text-lg" />
+        </a>
+      </div>
     </div>
   );
 }
