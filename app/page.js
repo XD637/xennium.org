@@ -5,7 +5,7 @@ import Head from "next/head";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import ContractButton from "./components/Contract";
-import SignInSignOutButton from "./components/AuthButton";
+
 
 // Lazy load heavy components
 const Cube = dynamic(() => import("./components/Cube"), { ssr: false });
@@ -78,30 +78,24 @@ export default function Home() {
         {/* Navbar */}
         <Navbar />
 
-        {/* Sign In / Sign Out Button */}
-        <SignInSignOutButton /> {/* Use the new SignInSignOutButton component */}
-
         {/* Main Content */}
         <main className="relative flex flex-col items-center justify-center text-center z-10 px-8 sm:px-16 pt-24 sm:pt-32 gap-6">
-          <h1 className="text-5xl sm:text-5xl font-extrabold text-white">
+          <h1 className=" pt-10 text-5xl sm:text-6xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-purple-900">
             Xennium - Next Gen Crypto
           </h1>
-          <p className="text-lg text-gray-300 italic">
-            &quot;where, 1 = 0&quot;
-          </p>
           <p className="text-md text-gray-400 mt-3 max-w-2xl mx-auto">
-            Xennium Token (XENX) is an ERC-20 token built on Polygon PoS. With its
-            unique feature &apos;Last Coin Transfer Restriction&apos;, XENX can be
+            Xennium Token (XENX) is an ERC-20 token built on<code className=" text-purple-500 rounded px-2">Polygon PoS.</code>With its
+            unique feature <code className=" text-purple-500 rounded px-2">&apos;Last Coin Transfer Restriction&apos;</code>, XENX can be
             used in Gamification, Governance, Voting, Identification
-            (shareholders), and endless ideas!
+            (shareholders), and<code className=" text-purple-500 rounded px-2">endless possiblities!</code>
           </p>
           <ContractButton />
           {/* Privacy Policy Link */}
-          <p className="text-md text-gray-400 mt-6">
+          <p className="text-md text-gray-400 mt-5">
             Built on trust & transparency, Read our{" "}
             <a
               href="https://www.xennium.org/privacy-policy"
-              className="text-blue-500 underline"
+              className="text-purple-500 underline"
               target="_blank"
               rel="noopener noreferrer"
             >

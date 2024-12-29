@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { FaHome, FaBook, FaUsers, FaEthereum } from "react-icons/fa"; // Updated icons
+import SignInSignOutButton from "./AuthButton"; // Assuming you have the SignInSignOutButton component
 
 const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [scrollingDown, setScrollingDown] = useState(false);
   const [prevScrollY, setPrevScrollY] = useState(0);
-  const [hoveredLink, setHoveredLink] = useState(null);
 
   // Handle scroll behavior
   useEffect(() => {
@@ -26,47 +25,41 @@ const Navbar = () => {
   }, [prevScrollY]);
 
   const links = [
-    { href: "/", label: "Home", icon: <FaHome /> },
-    { href: "/docs", label: "Docs", icon: <FaBook />},
-    { href: "/community", label: "Community", icon: <FaUsers /> },
-    { href: "/support", label: "Support", icon: <FaEthereum /> },
+    { href: "/", label: "Home" },
+    { href: "/docs", label: "Docs" },
+    { href: "/community", label: "Community" },
+    { href: "/support", label: "Support" },
   ];
 
   return (
-    <>
-      <nav
-        className={`fixed top-6 left-1/2 transform -translate-x-1/2 flex items-center space-x-8 z-50 backdrop-blur-md bg-transparent text-white py-2 px-4 rounded-lg transition-transform duration-300 ${
-          scrollingDown ? "-translate-y-24" : "translate-y-0"
-        }`}
-      >
-        {/* Navbar links */}
+    <nav
+      className={`fixed top-0 left-0 w-full flex items-center justify-between space-x-8 z-50 backdrop-blur-md bg-transparent text-white py-8 px-6 border-b-2 border-gray-800 rounded-b-lg transition-transform duration-300 ${
+        scrollingDown ? "-translate-y-24" : "translate-y-0"
+      }`}
+    >
+      {/* Left side: Xennium */}
+      <div className="text-3xl font-extrabold pl-8"> {/* Increased font size to 3xl */}
+        Xennium
+      </div>
+
+      {/* Middle: Navbar links centered */}
+      <div className="flex flex-grow justify-center space-x-8 md:space-x-12">
         {links.map((link, index) => (
           <Link
             key={index}
             href={link.href}
-            target={link.target || "_self"} // Apply target here
-            rel={link.target === "_blank" ? "noopener noreferrer" : undefined} // Apply rel here
-            onMouseEnter={() => setHoveredLink(link.label)}
-            onMouseLeave={() => setHoveredLink(null)}
-            className="relative group"
+            className="text-md font-medium hover:text-purple-500 transition-colors duration-300"
           >
-            {/* Icon Button */}
-            <div
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 text-white shadow-lg transform transition-all duration-300 hover:scale-110"
-            >
-              {link.icon}
-            </div>
-
-            {/* Floating Label */}
-            {hoveredLink === link.label && (
-              <span className="absolute top-full mt-2 px-3 py-1 bg-black/70 text-white rounded-lg text-sm shadow-md">
-                {link.label}
-              </span>
-            )}
+            {link.label}
           </Link>
         ))}
-      </nav>
-    </>
+      </div>
+
+      {/* Right side: SignIn/SignOut Button aligned */}
+      <div className="flex items-center pr-8 md:pr-16">
+        <SignInSignOutButton />
+      </div>
+    </nav>
   );
 };
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaGithub, FaDiscord, FaCube, FaTwitter } from "react-icons/fa"; // Add FaTwitter
+import { FaGithub, FaDiscord, FaCube } from "react-icons/fa"; // Removed FaTwitter
 import Link from "next/link"; // Import Next.js Link
 
 const Footer = () => {
@@ -18,15 +18,16 @@ const Footer = () => {
     },
     {
       href: "https://twitter.com/Xenniumx",
-      label: "Twitter",
-      icon: <FaTwitter className="text-xl" />, // Add Twitter icon
+      label: "X(Twitter)",
+      icon: (
+        <span className="text-xl font-bold text-white">X</span> // Custom X Icon
+      ),
     },
     {
       href: "https://polygonscan.com/token/0x78c7088e5c3e6cff6a94b57cb3c1e2ec4a5b7587",
       label: "Polygonscan",
       icon: <FaCube className="text-xl" />,
     },
-    
   ];
 
   const footerLinks = [
