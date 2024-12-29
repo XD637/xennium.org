@@ -32,7 +32,7 @@ export default function Community() {
           className="flex items-center space-x-3 px-4 py-2 bg-transparent border-2 border-purple-500 border-gradient-to-br from-purple-500 to-indigo-600 text-white rounded-full shadow-lg hover:bg-gradient-to-br hover:from-purple-500 hover:to-indigo-600 hover:border-gradient-to-br hover:scale-105 transition-all duration-300"
         >
           <span>Join Discord</span>
-          <HiArrowRight className="w-5 h-5" />
+          <HiArrowRight className="w-5 h-5"/>
         </a>
       </main>
       </div>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaGithub, FaDiscord, FaCube } from "react-icons/fa";
+import { FaGithub, FaDiscord, FaCube, FaTwitter } from "react-icons/fa"; // Add FaTwitter
 import Link from "next/link"; // Import Next.js Link
 
 const Footer = () => {
@@ -17,10 +17,16 @@ const Footer = () => {
       icon: <FaDiscord className="text-xl" />,
     },
     {
+      href: "https://twitter.com/Xenniumx",
+      label: "Twitter",
+      icon: <FaTwitter className="text-xl" />, // Add Twitter icon
+    },
+    {
       href: "https://polygonscan.com/token/0x78c7088e5c3e6cff6a94b57cb3c1e2ec4a5b7587",
       label: "Polygonscan",
       icon: <FaCube className="text-xl" />,
     },
+    
   ];
 
   const footerLinks = [
@@ -53,7 +59,7 @@ const Footer = () => {
             className="relative group"
           >
             {/* Icon Button */}
-            <div className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 text-white shadow-lg transform transition-all duration-300 hover:scale-110">
+            <div className="w-8 h-8 flex items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 text-white shadow-lg transform transition-all duration-300 hover:scale-110">
               {link.icon}
             </div>
 

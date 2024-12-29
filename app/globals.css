@@ -17,7 +17,6 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Add to your global CSS */
@@ -32,11 +31,16 @@ input[type="text"]:focus {
 }
 
 
-/* Custom modal overrides */
-.custom-modal {
-  background: transparent !important; /* Ensure the background is fully transparent */
-  padding: 0 !important; /* Remove any extra padding */
-  border: none !important; /* Eliminate borders */
-  box-shadow: none !important; /* Eliminate shadows */
+@font-face {
+  font-family: 'Funnel';
+  src: url('/fonts/Funnel.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
+
+/* Apply the font globally */
+body {
+  font-family: 'Funnel', Arial, Helvetica, sans-serif;
+}
+
 

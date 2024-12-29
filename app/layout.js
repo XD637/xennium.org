@@ -23,7 +23,7 @@ export const metadata = {
   description: "NEXT GEN CRYPTO",
   openGraph: {
     title: "Xennium - Next Gen Crypto",
-    description: "Discover the power of Xennium Token (XENX), the future of cryptocurrency.",
+    description: "Discover Xennium Token (XENX), With It's unique rule - Last Coin Transfer Restriction (LCTR), It is the way of modern utility token",
     url: "https://xennium.org", // Update this if necessary
     image: "https://xennium.org/Xen.png", // Ensure this image exists in the public folder
   },

@@ -67,7 +67,7 @@ export default function Home() {
               url: "https://xennium.org",
               logo: "https://xennium.org/Xen.png",
               description:
-                "Xennium is ERC 20 Token with unique - Last coin cannot be spent - constraint.",
+                "Discover Xennium Token (XENX), With It's unique rule - Last Coin Transfer Restriction (LCTR), It is the way of modern utility token",
             }),
           }}
         />
@@ -83,17 +83,17 @@ export default function Home() {
 
         {/* Main Content */}
         <main className="relative flex flex-col items-center justify-center text-center z-10 px-8 sm:px-16 pt-24 sm:pt-32 gap-6">
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-white">
+          <h1 className="text-5xl sm:text-5xl font-extrabold text-white">
             Xennium - Next Gen Crypto
           </h1>
           <p className="text-lg text-gray-300 italic">
-            &quot;where, 1 = 0.&quot;
+            &quot;where, 1 = 0&quot;
           </p>
           <p className="text-md text-gray-400 mt-3 max-w-2xl mx-auto">
             Xennium Token (XENX) is an ERC-20 token built on Polygon PoS. With its
             unique feature &apos;Last Coin Transfer Restriction&apos;, XENX can be
             used in Gamification, Governance, Voting, Identification
-            (shareholders), security (avoid sweeper bots) and endless ideas!
+            (shareholders), and endless ideas!
           </p>
           <ContractButton />
           {/* Privacy Policy Link */}
@@ -125,7 +125,7 @@ export default function Home() {
         </section>
 
         {/* Features Section */}
-        <div className="relative z-10 pt-12 px-8 sm:px-16 mb-12">
+        <div className="relative z-10 pt-8 px-8 sm:px-16 mb-12">
           <FeaturesSection />
         </div>
 
