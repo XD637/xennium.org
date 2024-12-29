@@ -31,6 +31,18 @@ const Navbar = () => {
     { href: "/support", label: "Support" },
   ];
 
+  // Set isMobile based on window size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768); // Adjust the breakpoint as needed
+    };
+
+    window.addEventListener("resize", checkMobile);
+    checkMobile(); // Run on mount
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <nav
       className={`fixed top-0 left-0 w-full flex items-center justify-between space-x-8 z-50 backdrop-blur-md bg-transparent text-white py-8 px-6 border-b-2 border-gray-800 rounded-b-lg transition-transform duration-300 ${
@@ -38,27 +50,39 @@ const Navbar = () => {
       }`}
     >
       {/* Left side: Xennium */}
-      <div className="text-3xl font-extrabold pl-8"> {/* Increased font size to 3xl */}
+      <div className="text-3xl font-extrabold pl-8">
         Xennium
       </div>
 
-      {/* Middle: Navbar links centered */}
-      <div className="flex flex-grow justify-center space-x-8 md:space-x-12">
-        {links.map((link, index) => (
-          <Link
-            key={index}
-            href={link.href}
-            className="text-md font-medium hover:text-purple-500 transition-colors duration-300"
-          >
-            {link.label}
-          </Link>
-        ))}
-      </div>
+      {/* Mobile: Two Lines */}
+      {isMobile && (
+        <div className="md:hidden flex flex-col items-center pr-4">
+          <span className="block w-6 h-0.5 bg-white mb-1"></span>
+          <span className="block w-6 h-0.5 bg-white"></span>
+        </div>
+      )}
+
+      {/* Middle: Navbar links centered for larger screens */}
+      {!isMobile && (
+        <div className="flex flex-grow justify-center space-x-8 md:space-x-12">
+          {links.map((link, index) => (
+            <Link
+              key={index}
+              href={link.href}
+              className="text-md font-medium hover:text-purple-500 transition-colors duration-300"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      )}
 
       {/* Right side: SignIn/SignOut Button aligned */}
-      <div className="flex items-center pr-8 md:pr-16">
-        <SignInSignOutButton />
-      </div>
+      {!isMobile && (
+        <div className="flex items-center pr-8 md:pr-16">
+          <SignInSignOutButton />
+        </div>
+      )}
     </nav>
   );
 };
