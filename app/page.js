@@ -87,7 +87,7 @@ export default function Home() {
             Xennium - Next Gen Crypto
           </h1>
           <p className="text-lg text-gray-300 italic">
-            &quot;The Last coin cannot be spent&quot;
+            &quot;where, 1 = 0.&quot;
           </p>
           <p className="text-md text-gray-400 mt-3 max-w-2xl mx-auto">
             Xennium Token (XENX) is an ERC-20 token built on Polygon PoS. With its
