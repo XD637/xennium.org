@@ -5,7 +5,7 @@ import Head from "next/head";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import ContractButton from "./components/Contract";
-
+import AddTokenButton from "./components/AddTokenButton"; // Import the AddTokenButton component
 
 // Lazy load heavy components
 const Cube = dynamic(() => import("./components/Cube"), { ssr: false });
@@ -67,7 +67,7 @@ export default function Home() {
               url: "https://xennium.org",
               logo: "https://xennium.org/Xen.png",
               description:
-                "Discover Xennium Token (XENX), With It's unique rule - Last Coin Transfer Restriction (LCTR), It is the way of modern utility token",
+                "Discover Xennium Token (XENX), With Its unique rule - Last Coin Transfer Restriction (LCTR), It is the way of modern utility token",
             }),
           }}
         />
@@ -80,14 +80,15 @@ export default function Home() {
 
         {/* Main Content */}
         <main className="relative flex flex-col items-center justify-center text-center z-10 px-8 sm:px-16 pt-24 sm:pt-32 gap-6">
-          <h1 className=" pt-10 text-5xl sm:text-6xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-purple-900">
+          <h1 className="pt-10 text-5xl sm:text-6xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-purple-900">
             Xennium - Next Gen Crypto
           </h1>
           <p className="text-md text-gray-400 mt-3 max-w-2xl mx-auto">
-            Xennium Token (XENX) is an ERC-20 token built on<code className=" text-purple-500 rounded px-2">Polygon PoS.</code>With its
-            unique feature <code className=" text-purple-500 rounded px-2">&apos;Last Coin Transfer Restriction&apos;</code>, XENX can be
+            Xennium Token (XENX) is an ERC-20 token built on
+            <code className="text-purple-500 rounded px-2">Polygon PoS.</code> With its
+            unique feature <code className="text-purple-500 rounded px-2">&apos;Last Coin Transfer Restriction&apos;</code>, XENX can be
             used in Gamification, Governance, Voting, Identification
-            (shareholders), and<code className=" text-purple-500 rounded px-2">endless possiblities!</code>
+            (shareholders), and <code className="text-purple-500 rounded px-2">endless possibilities!</code>
           </p>
           <ContractButton />
           {/* Privacy Policy Link */}
@@ -108,6 +109,14 @@ export default function Home() {
         {/* Cube Section */}
         <div className="relative flex items-center justify-center h-[250px]">
           <Cube />
+        </div>
+
+        <p className="text-md text-gray-400 mt-5 text-center">
+            Add XENX to your wallet - <code className="text-purple-500 underline">0x78c7088e5c3e6cff6a94b57cb3c1e2ec4a5b7587</code>.</p>
+
+        {/* Add Token Button Section */}
+        <div className="relative flex flex-col items-center justify-center pt-8 pb-12">
+          <AddTokenButton />
         </div>
 
         {/* Code Snippet Section */}
