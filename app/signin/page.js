@@ -56,7 +56,7 @@ export default function SignIn() {
   }
 
   return (
-    <div className="relative min-h-screen bg-[#1c1c1e] text-gray-200">
+    <div className="relative min-h-screen bg-[#1c1c1e] text-gray-200 pb-10">
       {/* Navbar */}
       <Navbar />
 

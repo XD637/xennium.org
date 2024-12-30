@@ -13,32 +13,32 @@ const FeaturesSection = () => {
   const FEATURES = useMemo(
     () => [
       {
-        icon: <FaGamepad />,
+        icon: <FaGamepad className="text-purple-500" />,
         title: "Gamification",
         description: "Incorporate XENX into gaming for unique mechanics and rewards.",
       },
       {
-        icon: <FaGavel />,
+        icon: <FaGavel className="text-purple-500" />,
         title: "Governance",
         description: "Empower decision-making with decentralized governance tools.",
       },
       {
-        icon: <FaVoteYea />,
+        icon: <FaVoteYea className="text-purple-500" />,
         title: "Voting",
         description: "Use XENX for transparent and secure voting mechanisms.",
       },
       {
-        icon: <FaIdBadge />,
+        icon: <FaIdBadge className="text-purple-500" />,
         title: "Identification",
         description: "Identify shareholders and participants with XENX tokens.",
       },
       {
-        icon: <FaInfinity />,
+        icon: <FaInfinity className="text-purple-500" />,
         title: "Endless Ideas",
         description: "Unlock limitless possibilities with innovative applications.",
       },
       {
-        icon: <FaTools />,
+        icon: <FaTools className="text-purple-500" />,
         title: "Customization",
         description: "Tailor XENX for different industries and use cases.",
       },

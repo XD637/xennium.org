@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { FaGithub, FaDiscord, FaCube } from "react-icons/fa"; // Removed FaTwitter
-import Link from "next/link"; // Import Next.js Link
+import { FaGithub, FaDiscord, FaCube } from "react-icons/fa";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXTwitter } from "@fortawesome/free-brands-svg-icons"; // Import X (Twitter) icon
+import Link from "next/link";
 
 const Footer = () => {
   const [hoveredLink, setHoveredLink] = useState(null);
@@ -20,7 +22,7 @@ const Footer = () => {
       href: "https://twitter.com/Xenniumx",
       label: "X(Twitter)",
       icon: (
-        <span className="text-xl font-bold text-white">X</span> // Custom X Icon
+        <FontAwesomeIcon icon={faXTwitter} className="text-xl" />
       ),
     },
     {
@@ -77,7 +79,11 @@ const Footer = () => {
       {/* Footer navigation links */}
       <div className="flex space-x-6 mb-4 text-sm">
         {footerLinks.map((link, index) => (
-          <Link key={index} href={link.href} className="hover:text-gray-200 hover:underline transition-all duration-200">
+          <Link
+            key={index}
+            href={link.href}
+            className="hover:text-gray-200 hover:underline transition-all duration-200"
+          >
             {link.label}
           </Link>
         ))}
