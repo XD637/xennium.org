@@ -121,9 +121,9 @@ function mint(address to, uint256 amount) { /* ... */ }`,
     <div className="relative min-h-screen bg-[#1c1c1e] text-gray-200">
       {/* Particle */}
       <ParticlesBackground />
-
+<div className="pb-10">
       {/* Navbar */}
-      <Navbar />
+      <Navbar /></div>
 
       <div className="relative flex min-h-screen pt-16">
         {/* Sidebar Container */}
