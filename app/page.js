@@ -5,7 +5,6 @@ import Head from "next/head";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import ContractButton from "./components/Contract";
-import AddTokenButton from "./components/AddTokenButton"; // Import the AddTokenButton component
 
 // Lazy load heavy components
 const Cube = dynamic(() => import("./components/Cube"), { ssr: false });
@@ -110,15 +109,6 @@ export default function Home() {
         <div className="relative flex items-center justify-center h-[250px]">
           <Cube />
         </div>
-
-        <p className="text-md text-gray-400 mt-5 text-center">
-            Add XENX to your wallet - <code className="text-purple-500 underline">0x78c7088e5c3e6cff6a94b57cb3c1e2ec4a5b7587</code>.</p>
-
-        {/* Add Token Button Section */}
-        <div className="relative flex flex-col items-center justify-center pt-8 pb-12">
-          <AddTokenButton />
-        </div>
-
         {/* Code Snippet Section */}
         <section className="relative z-10 pt-12 px-8 sm:px-16 text-left mb-12">
           <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-12 text-center">
