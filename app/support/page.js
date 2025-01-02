@@ -20,7 +20,7 @@ export default function Support() {
 
       {/* Main Content */}
       <main className="relative flex flex-col items-center text-center z-10 px-8 sm:px-16 pt-24 sm:pt-32 gap-6">
-        <h1 className="text-4xl sm:text-5xl font-extrabold text-white pt-32">
+        <h1 className="text-6xl sm:text-5xl font-extrabold text-white pt-32">
           Support us with ETHs
         </h1>
         <p className="text-md text-gray-400 mt-3 max-w-2xl mx-auto">

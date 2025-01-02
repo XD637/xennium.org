@@ -30,6 +30,25 @@ const Navbar = () => {
     { href: "/docs", label: "Docs" },
     { href: "/community", label: "Community" },
     { href: "/support", label: "Support" },
+    {
+      href: "/pools",
+      label: (
+        <>
+          Pools
+          <sup
+            style={{
+              color: "#fff",
+              padding: "1px 4px",
+              borderRadius: "4px",
+              fontSize: "10px",
+              marginLeft: "3px",
+            }}
+          >
+            New
+          </sup>
+        </>
+      ),
+    },
   ];
 
   // Set isMobile based on window size
@@ -56,9 +75,7 @@ const Navbar = () => {
         }`}
       >
         {/* Left side: Xennium */}
-        <div className="flex-1 text-3xl font-extrabold pl-8">
-          Xennium
-        </div>
+        <div className="flex-1 text-3xl font-extrabold pl-8">Xennium</div>
 
         {/* Mobile: Hamburger Menu */}
         {isMobile && (
@@ -67,7 +84,7 @@ const Navbar = () => {
             onClick={toggleSidebar}
           >
             {sidebarOpen ? (
-              <span className="text-3xl  text-white">×</span>
+              <span className="text-3xl text-white">×</span>
             ) : (
               <>
                 <span className="block w-6 h-0.5 bg-white mb-1"></span>
@@ -84,7 +101,7 @@ const Navbar = () => {
               <Link
                 key={index}
                 href={link.href}
-                className="text-md font-medium hover:text-purple-500 transition-colors duration-300"
+                className="text-md font-medium hover:text-purple-500 transition-colors duration-300 flex items-center"
               >
                 {link.label}
               </Link>
@@ -104,15 +121,16 @@ const Navbar = () => {
       {isMobile && sidebarOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-90 z-40 flex flex-col items-center justify-center space-y-8">
           {links.map((link, index) => (
-            <Link
-              key={index}
-              href={link.href}
-              onClick={() => setSidebarOpen(false)}
-              className="flex items-center text-2xl font-medium text-white hover:text-purple-500 transition-colors duration-300"
-            >
-              {link.label}
-              <span className="ml-2 text-sm text-purple-500">→</span>
-            </Link>
+  <Link
+    key={index}
+    href={link.href}
+    onClick={() => setSidebarOpen(false)}
+    className="flex items-center text-2xl font-medium text-white hover:text-purple-500 transition-colors duration-300"
+  >
+    {link.label}
+    {/* Optional symbol for all links */}
+    <span className="ml-2 text-sm text-purple-500">→</span>
+  </Link>
           ))}
           <div className="mt-8">
             <SignInSignOutButton />

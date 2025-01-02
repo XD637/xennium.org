@@ -15,7 +15,7 @@ const FeaturesSection = () => {
       {
         icon: <FaGamepad className="text-purple-500" />,
         title: "Gamification",
-        description: "Incorporate XENX into gaming for unique mechanics and rewards.",
+        description: "Incorporate XENX into gaming for unique mechanics like loyality systems.",
       },
       {
         icon: <FaGavel className="text-purple-500" />,
@@ -33,15 +33,16 @@ const FeaturesSection = () => {
         description: "Identify shareholders and participants with XENX tokens.",
       },
       {
-        icon: <FaInfinity className="text-purple-500" />,
-        title: "Endless Ideas",
-        description: "Unlock limitless possibilities with innovative applications.",
-      },
-      {
         icon: <FaTools className="text-purple-500" />,
         title: "Customization",
         description: "Tailor XENX for different industries and use cases.",
       },
+      {
+        icon: <FaInfinity className="text-purple-500" />,
+        title: "Endless Ideas",
+        description: "Unlock limitless possibilities with innovative applications.",
+      },
+     
     ],
     []
   );
