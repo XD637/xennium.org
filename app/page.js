@@ -16,13 +16,12 @@ export default function Home() {
 
   // Fetch code snippet with caching
   useEffect(() => {
+    const cacheKey = "xenniumCode";
+  
+    // Clear cache once
+    localStorage.removeItem(cacheKey);
+  
     const fetchCode = async () => {
-      const cachedCode = localStorage.getItem("xenniumCode");
-      if (cachedCode) {
-        setCode(cachedCode);
-        return;
-      }
-
       try {
         const response = await fetch("/codes/xennium.txt");
         if (!response.ok) {
@@ -30,14 +29,16 @@ export default function Home() {
         }
         const text = await response.text();
         setCode(text);
-        localStorage.setItem("xenniumCode", text);
+        localStorage.setItem(cacheKey, text); // Cache the latest version
       } catch (error) {
         console.error("Error loading code snippet:", error);
         setCode("Code snippet could not be loaded.");
       }
     };
+  
     fetchCode();
   }, []);
+  
 
   return (
     <>

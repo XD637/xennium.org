@@ -26,7 +26,7 @@ const Footer = () => {
       ),
     },
     {
-      href: "https://polygonscan.com/token/0x78c7088e5c3e6cff6a94b57cb3c1e2ec4a5b7587",
+      href: "https://polygonscan.com/token/0x0f29965ca5f1111b073efa37a739dd2fafab11e0",
       label: "Polygonscan",
       icon: <FaCube className="text-xl" />,
     },

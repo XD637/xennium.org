@@ -1,9 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import dynamic from "next/dynamic";
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import CodeSnippet from "../components/CodeSnippet";
 import ParticlesBackground from "../components/Particle";
 import CustomSnippet from "../components/CustomSnippet";
@@ -20,7 +18,6 @@ export default function Docs() {
   const sections = [
     { id: "overview", label: "Overview" },
     { id: "initialSupply", label: "Initial Supply" },
-    { id: "minting", label: "Minting" },
     { id: "lastCoinRule", label: "Last Coin Rule" },
     { id: "functions", label: "Functions" },
   ];
@@ -86,35 +83,42 @@ if __name__ == "__main__":
     xennium_simulator = xennium(initial_xennium)
     xennium_simulator.x_algorithm()
 """`,
-    initialSupply: ` constructor() ERC20("Xennium", "XENX") ERC20Permit("Xennium") Ownable(msg.sender) {
-        _mint(msg.sender, OWNER_RESERVE); // Reserve 1 million tokens for the owner
-        _mint(address(this), INITIAL_SUPPLY - OWNER_RESERVE); // Mint remaining supply to the contract
+    initialSupply: `contract XenniumToken is ERC20, Ownable, ERC20Permit {
+    uint256 private constant TOTAL_SUPPLY = 19_000_000_000 * 10**18; // 19 billion tokens MAX SUPPLY
+    uint256 private constant COMMUNITY_RESERVE = 3_000_000_000 * 10**18; // 3 billion tokens reserved for the community
+    uint256 private constant DEVELOPMENT_RESERVE = 1_000_000_000 * 10**18; // 1 billion tokens reserved for development
+
+    constructor() 
+        ERC20("Xennium", "XENX") 
+        ERC20Permit("Xennium") 
+        Ownable(msg.sender) 
+    {
+        // Mint the total supply to the contract
+        _mint(address(this), TOTAL_SUPPLY);
+
+        // Transfer the development reserve to the owner's wallet
+        _transfer(address(this), msg.sender, DEVELOPMENT_RESERVE);
     }`,
-    minting: `// Allow the owner to mint new tokens only to the contract's balance
-    function mint(uint256 amount) external onlyOwner {
-        _mint(address(this), amount);
-        emit TokensMinted(address(this), amount);
-  }`,
-    lastCoinRule: `// Prevent the last coin from being spent (Xennium special rule)
+    lastCoinRule: `// Last Coin Transfer Restriction (LCTR) Principle
     function _safeTransferCheck(address from, uint256 amount) internal view {
         require(balanceOf(from) - amount >= 1, "XENX: Cannot spend the last coin");
     }
 
-    // Override transfer with last coin check
+    // Override transfer with LCTR check
     function transfer(address to, uint256 amount) public override returns (bool) {
         _safeTransferCheck(msg.sender, amount);
         return super.transfer(to, amount);
     }
 
-    // Override transferFrom with last coin check
+    // Override transferFrom with LCTR check
     function transferFrom(address from, address to, uint256 amount) public override returns (bool) {
         _safeTransferCheck(from, amount);
         return super.transferFrom(from, to, amount);
-    }`,
+    }
+`,
     functions: `// Functions Code Snippet
 function transfer(address to, uint256 amount) { /* ... */ }
-function transferFrom(address from, address to, uint256 amount) { /* ... */ }
-function mint(address to, uint256 amount) { /* ... */ }`,
+function transferFrom(address from, address to, uint256 amount) { /* ... */ }`,
   };
 
   return (
@@ -128,7 +132,7 @@ function mint(address to, uint256 amount) { /* ... */ }`,
       <div className="relative flex min-h-screen pt-16">
         {/* Sidebar Container */}
         <div className="w-64 bg-[#2c2c2e] text-gray-300 p-4 fixed top-0 left-0 bottom-0 z-10">
-          <h2 className="text-lg font-bold mb-4">Docs</h2>
+          <h2 className="text-lg font-bold mb-4 pb-28">Docs</h2>
           <nav>
             <ul className="space-y-3">
               {sections.map((section) => (
@@ -302,7 +306,7 @@ adding a layer of complexity and uniqueness to the coin&apos;s usage.
               <>
                 <p>
                   <strong>Initial Supply:</strong> The contract begins with
-                  19,000,000 XENX tokens. Of these, 1,000,000 tokens are reserved
+                  19,000,000,000 XENX tokens. Of these, 1,000,000,000 tokens are reserved
                   for the owner to use for administrative or ecosystem-building
                   purposes.The <code>constructor</code> initializes the <strong>Xennium (XENX)</strong> token with specific configurations and initial minting logic. It ensures proper setup of the token&apos;s metadata, ownership, and initial token distribution.
 
@@ -332,17 +336,7 @@ adding a layer of complexity and uniqueness to the coin&apos;s usage.
     as the address deploying it (<code>msg.sender</code>). This uses OpenZeppelin&apos;s 
     <code>Ownable</code> contract, which provides owner-based access control.<br /><br />
   </li>
-  <li>
-    <code>_mint(msg.sender, OWNER_RESERVE)</code>: Mints a predefined number of tokens 
-    (e.g., <strong>1 million</strong>) to the owner&apos;s address. This serves as 
-    the owner&apos;s reserved supply for future use.<br /><br />
-  </li>
-  <li>
-    <code>_mint(address(this), INITIAL_SUPPLY - OWNER_RESERVE)</code>: Mints the 
-    remaining tokens from the total supply to the <strong>contract&apos;s balance</strong>. 
-    This allocation ensures tokens are held by the contract for specific purposes 
-    like distribution or liquidity.
-  </li>
+ 
 </ul>
 
 <br /><br />
@@ -388,100 +382,6 @@ standard ERC-20 practices.
 
 
                 </div>
-              </>
-            )}
-            {selectedSection === "minting" && (
-              <>
-                <p>
-                  <strong>Minting:</strong> The controlled minting feature ensures
-                  that only the owner can mint additional tokens.The <code>mint</code> function allows the <strong>owner</strong> of the 
-contract to mint (create) new tokens and add them to the 
-<strong>contract&apos;s balance</strong>, not to any user&apos;s balance. 
-This ensures that the newly minted tokens are part of the contract&apos;s 
-holdings and can later be distributed, sold, or used as specified in the 
-contract logic.
-
-<br /><br />
-                </p>
-                <div className="mt-8 pb-6">
-                  <CodeSnippet code={codeSnippets.minting} />
-                </div>
-                <div className="pb-24">
-
-<strong>Function Breakdown:</strong> <br /><br />
-<ul>
-  <li>
-    <code>external onlyOwner</code>: The <code>external</code> modifier 
-    specifies that the function can only be called from outside the 
-    contract. The <code>onlyOwner</code> modifier restricts access 
-    to the <strong>owner</strong> of the contract, ensuring that 
-    no other address can mint tokens. This is typically implemented 
-    using OpenZeppelin&apos;s <code>Ownable</code> contract.<br /><br />
-  </li>
-  <li>
-    <code>_mint(address(this), amount)</code>: This calls the internal 
-    <code>_mint</code> function to create <code>amount</code> of new 
-    tokens. These tokens are credited to the <code>contract&apos;s address 
-    (address(this))</code>, effectively adding them to the contract&apos;s 
-    balance.<br /><br />
-  </li>
-  <li>
-    <code>emit TokensMinted(address(this), amount)</code>: This triggers 
-    an <strong>event</strong> called <code>TokensMinted</code>, logging 
-    the action on the blockchain. It records that the contract 
-    (<code>address(this)</code>) received the minted tokens and specifies 
-    the <code>amount</code> minted. Events help track state changes and 
-    enable external systems to monitor contract activity.
-  </li>
-</ul>
-
-<br /><br />
-
-<strong>Use Cases:</strong><br /><br /> 
-<ul>
-  <li>
-    <strong>Controlled Supply Expansion:</strong> The function allows the 
-    contract to increase the token supply in a controlled manner for 
-    specific purposes like rewarding users, funding a project, or 
-    maintaining liquidity.
-  </li>
-  <li>
-    <strong>Ecosystem Support:</strong> Minted tokens go to the 
-    contract&apos;s balance and can later be distributed to users 
-    through airdrops, faucets, or staking rewards.
-  </li>
-</ul>
-
-<br /><br />
-
-<strong>Security Mechanisms:</strong> <br /><br />
-<ul>
-  <li>
-    The <code>onlyOwner</code> modifier ensures that only the contract 
-    owner has minting privileges, protecting against unauthorized or 
-    malicious actions.
-  </li>
-  <li>
-    Restricting minted tokens to <code>address(this)</code> prevents 
-    tokens from being directly minted to arbitrary addresses, minimizing 
-    risks of abuse.
-  </li>
-</ul>
-
-<br /><br />
-
-<strong>Example Scenario:</strong><br /><br /> In a decentralized application (dApp), 
-the owner might use the <code>mint</code> function to create additional 
-tokens to reward users for staking, participating in governance, or 
-completing tasks within the ecosystem.This implementation aligns with good tokenomics by expanding the token 
-supply in a <strong>controlled and transparent manner</strong>. Minted 
-tokens remain in the contract&apos;s custody until they are intentionally 
-distributed, adding a layer of <strong>accountability</strong>.
-
-<br /><br />
-
-
-</div>
               </>
             )}
             {selectedSection === "lastCoinRule" && (
@@ -571,20 +471,6 @@ distributed, adding a layer of <strong>accountability</strong>.
       <li>
         Requires prior approval via the <code>approve</code> function and emits 
         a <code>Transfer</code> event upon success.
-      </li>
-    </ul>
-  </li>
-  <br />
-  <li>
-    <code>mint(address to, uint256 amount)</code>: 
-    <ul>
-      <li>
-        Creates a specified <code>amount</code> of new tokens and credits them 
-        to the <code>to</code> address.
-      </li>
-      <li>
-        Only accessible by authorized roles (e.g., the contract owner) and emits 
-        a <code>TokensMinted</code> event to record the action.
       </li>
     </ul>
   </li>
