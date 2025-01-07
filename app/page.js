@@ -91,19 +91,11 @@ export default function Home() {
             (shareholders), and <code className="text-purple-500 rounded px-2">endless possibilities!</code>
           </p>
           <ContractButton />
-          {/* Privacy Policy Link */}
-          <p className="text-md text-gray-400 mt-5">
-            Built on trust & transparency, Read our{" "}
-            <a
-              href="https://www.xennium.org/privacy-policy"
-              className="text-purple-500 underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Privacy Policy
-            </a>
-            .
-          </p>
+          {/* ADD TOKEN */}
+<p className="text-sm sm:text-md text-gray-400 mt-3 sm:mt-5 px-2 sm:px-0">
+  Import XENX Token - <code className="text-purple-500 underline break-words">0x0F29965ca5f1111B073EfA37A739Dd2faFab11E0</code>.
+</p>
+
         </main>
 
         {/* Cube Section */}

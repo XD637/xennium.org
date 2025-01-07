@@ -425,11 +425,7 @@ standard ERC-20 practices.
                   <li>
                   <code>transferFrom</code>: Allows transfers on behalf of
                   another user, adhering to the same rule.
-                </li>
-                <li>
-                  <code>mint</code>: Enables the owner to mint additional
-                  tokens, which are directly added to the contract&apos;s
-                  balance.<br /><br />
+                <br /><br />
                 </li>
                 </ul>
                 <div className="mt-8 pb-6">
@@ -532,10 +528,6 @@ standard ERC-20 practices.
 
 <strong>Security Mechanisms:</strong><br /><br />
 <ul>
-  <li>
-    <code>mint</code> functions are typically restricted to the owner or a trusted 
-    role to prevent unauthorized token creation.
-  </li>
   <li>
     <code>approve</code> and <code>allowance</code> should be carefully monitored 
     to avoid vulnerabilities, such as the well-known &quot;approve front-running&quot; issue.

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaGithub, FaDiscord, FaCube } from "react-icons/fa";
+import { FaGithub, FaDiscord, FaTelegram } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons"; // Import X (Twitter) icon
 import Link from "next/link";
@@ -26,10 +26,10 @@ const Footer = () => {
       ),
     },
     {
-      href: "https://polygonscan.com/token/0x0f29965ca5f1111b073efa37a739dd2fafab11e0",
-      label: "Polygonscan",
-      icon: <FaCube className="text-xl" />,
-    },
+          href: "https://t.me/xennium",
+          label: "Telegram",
+          icon: <FaTelegram className="text-xl" />,
+        },
   ];
 
   const footerLinks = [
