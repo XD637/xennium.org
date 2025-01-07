@@ -127,8 +127,8 @@ export default function Airdrop() {
       <main className="relative flex flex-col items-center text-center z-10 px-8 sm:px-16 pt-24 sm:pt-32 gap-6">
         <h1 className="text-5xl sm:text-6xl font-extrabold text-white pt-8">XENX Airdrop</h1>
         <p className="text-md text-gray-400 mt-3 max-w-2xl mx-auto pb-6">
-          Claim your <strong>10 XENX Tokens</strong> by following our socials and submitting your details. <br />
-          <span className="text-purple-500 font-bold">Limited to the first 100 users!</span> Tokens will be manually verified and distributed. Import XENX Token and Verify after 24 hrs - <code className="text-purple-500 underline">0x0F29965ca5f1111B073EfA37A739Dd2faFab11E0</code>.
+          Claim your <strong>10 XENX Tokens</strong> by following and joining our socials. <br />
+          <span className="text-purple-500 font-bold">Limited to the first 100 users</span> Tokens will be manually verified and distributed. Import XENX Token and Verify after 24 hrs - <code className="text-purple-500 underline">0x0F29965ca5f1111B073EfA37A739Dd2faFab11E0</code>.
         </p>
         <div className="flex space-x-6 mb-4 pb-6">
           {socialLinks.map((link, index) => (
