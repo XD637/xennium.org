@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { FaCube } from "react-icons/fa"; // Import the icon
 import SignInSignOutButton from "./AuthButton"; // Assuming you have the SignInSignOutButton component
 
 const Navbar = () => {
@@ -45,6 +46,25 @@ const Navbar = () => {
             }}
           >
             New
+          </sup>
+        </>
+      ),
+    },
+    {
+      href: "/airdrop",
+      label: (
+        <>
+          Airdrop
+          <sup
+            style={{
+              color: "#fff",
+              padding: "1px 4px",
+              borderRadius: "4px",
+              fontSize: "10px",
+              marginLeft: "3px",
+            }}
+          >
+            Limited
           </sup>
         </>
       ),
@@ -109,28 +129,37 @@ const Navbar = () => {
           </div>
         )}
 
-        {/* Right side: SignIn/SignOut Button */}
-        {!isMobile && (
-          <div className="flex-1 flex justify-end items-center pr-8 md:pr-16">
-            <SignInSignOutButton />
-          </div>
-        )}
+        {/* Right side: Polygonscan icon and SignIn/SignOut Button */}
+{!isMobile && (
+  <div className="flex-1 flex justify-end items-center pr-8 md:pr-16 space-x-12">
+    <Link
+      href="https://polygonscan.com/token/0x0f29965ca5f1111b073efa37a739dd2fafab11e0"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-purple-500 flex items-center"
+    >
+      <FaCube className="text-xl" />
+    </Link>
+    <SignInSignOutButton />
+  </div>
+)}
+
       </nav>
 
       {/* Sidebar for mobile */}
       {isMobile && sidebarOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-90 z-40 flex flex-col items-center justify-center space-y-8">
           {links.map((link, index) => (
-  <Link
-    key={index}
-    href={link.href}
-    onClick={() => setSidebarOpen(false)}
-    className="flex items-center text-2xl font-medium text-white hover:text-purple-500 transition-colors duration-300"
-  >
-    {link.label}
-    {/* Optional symbol for all links */}
-    <span className="ml-2 text-sm text-purple-500">→</span>
-  </Link>
+            <Link
+              key={index}
+              href={link.href}
+              onClick={() => setSidebarOpen(false)}
+              className="flex items-center text-2xl font-medium text-white hover:text-purple-500 transition-colors duration-300"
+            >
+              {link.label}
+              {/* Optional symbol for all links */}
+              <span className="ml-2 text-sm text-purple-500">→</span>
+            </Link>
           ))}
           <div className="mt-8">
             <SignInSignOutButton />
