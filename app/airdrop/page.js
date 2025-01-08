@@ -92,7 +92,7 @@ export default function Airdrop() {
     }
 
     if (!captchaToken) {
-      alert("Please complete the hCaptcha verification."); // Alert for missing captcha
+      alert("Please complete the hCaptcha verification.");
       return;
     }
 
@@ -107,14 +107,14 @@ export default function Airdrop() {
       const data = await res.json();
 
       if (res.ok) {
-        alert("Form submitted successfully!"); // Alert for success
-        setFormData({ verificationName: "", walletAddress: "" }); // Reset form
-        setCaptchaToken(null); // Reset captcha
+        alert("Form submitted successfully!");
+        setFormData({ verificationName: "", walletAddress: "" });
+        setCaptchaToken(null);
       } else {
-        alert(data.message || "Error submitting form."); // Alert for server error
+        alert(data.message || "Error submitting form.");
       }
     } catch (error) {
-      alert("An unexpected error occurred. Please try again later."); // Alert for unexpected error
+      alert("An unexpected error occurred. Please try again later.");
       console.error(error);
     } finally {
       setIsSubmitting(false);
@@ -125,12 +125,12 @@ export default function Airdrop() {
     <div className="relative min-h-screen bg-[#1c1c1e] text-gray-200">
       <Navbar />
       <main className="relative flex flex-col items-center text-center z-10 px-8 sm:px-16 pt-24 sm:pt-32 gap-6">
-        <h1 className="text-5xl sm:text-6xl font-extrabold text-white pt-8">XENX Airdrop</h1>
+        <h1 className="text-4xl sm:text-6xl font-extrabold text-white pt-8">XENX Airdrop</h1>
         <p className="text-md text-gray-400 mt-3 max-w-2xl mx-auto pb-6">
           Claim your <strong>10 XENX Tokens</strong> by following and joining our socials. <br />
           <span className="text-purple-500 font-bold">Limited to the first 100 users</span> Tokens will be manually verified and distributed. Import XENX Token and Verify after 24 hrs - <code className="text-purple-500 underline">0x0F29965ca5f1111B073EfA37A739Dd2faFab11E0</code>.
         </p>
-        <div className="flex space-x-6 mb-4 pb-6">
+        <div className="flex flex-wrap justify-center space-x-6 mb-4 pb-6">
           {socialLinks.map((link, index) => (
             <SocialLink
               key={index}
@@ -151,6 +151,7 @@ export default function Airdrop() {
               value={formData.verificationName}
               onChange={handleChange}
               required
+              placeholder="Name of the one of the accounts you used to follow us"
               className={`w-full mt-2 px-4 py-2 text-black rounded-md border ${
                 formErrors.verificationName ? "border-red-500" : "border-gray-700"
               } focus:ring-2 focus:ring-purple-500 outline-none`}
@@ -177,9 +178,9 @@ export default function Airdrop() {
               onVerify={(token) => setCaptchaToken(token)}
               onError={(err) => {
                 console.error("HCaptcha error:", err);
-                alert("HCaptcha encountered an error. Please reload and try again."); // Alert for captcha error
+                alert("HCaptcha encountered an error. Please reload and try again.");
               }}
-              onExpire={() => alert("HCaptcha token expired. Please verify again.")} // Alert for expired captcha
+              onExpire={() => alert("HCaptcha token expired. Please verify again.")}
             />
           </div>
           <button

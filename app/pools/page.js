@@ -21,7 +21,7 @@ export default function Pools() {
         {/* Track Our Pools Button */}
         <a
           aria-label="Track our pools"
-          href="https://www.geckoterminal.com/polygon_pos/pools/0x651e2be0982bdf74c0c92b07220bdbc0377c4a89"
+          href="https://www.geckoterminal.com/polygon_pos/pools/0x9dd30c51aa1980bd05dead5b7955124f17baa6c7"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center space-x-3 px-4 py-2 bg-transparent border-2 border-purple-500 border-gradient-to-br from-purple-500 to-indigo-600 text-white rounded-full shadow-lg hover:bg-gradient-to-br hover:from-purple-500 hover:to-indigo-600 hover:border-gradient-to-br hover:scale-105 transition-all duration-300"
