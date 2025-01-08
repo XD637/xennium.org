@@ -9,7 +9,7 @@ const Footer = () => {
 
   const socialLinks = [
     {
-      href: "https://github.com/XD637/xenx/",
+      href: "https://github.com/XD637/xenniumx",
       label: "GitHub",
       icon: <FaGithub className="text-xl" />,
     },

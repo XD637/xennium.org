@@ -52,7 +52,7 @@ export default function Airdrop() {
       icon: <FontAwesomeIcon icon={faXTwitter} className="text-xl" />,
     },
     {
-      href: "https://github.com/XD637/xenx/",
+      href: "https://github.com/XD637/xenniumx",
       label: "GitHub",
       icon: <FaGithub className="text-xl" />,
     },
