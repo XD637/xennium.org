@@ -192,6 +192,6 @@ export default function Airdrop() {
           </button>
         </form>
       </main>
-    </div>
+    </div> 
   );
 }
