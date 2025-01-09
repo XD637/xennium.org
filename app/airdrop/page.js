@@ -44,22 +44,22 @@ export default function Airdrop() {
     {
       href: "https://discord.gg/7KmMBrrJEz",
       label: "Discord",
-      icon: <FaDiscord className="text-xl" />,
+      icon: <FaDiscord className="text-2xl" />,
     },
     {
       href: "https://twitter.com/Xenniumx",
       label: "X(Twitter)",
-      icon: <FontAwesomeIcon icon={faXTwitter} className="text-xl" />,
+      icon: <FontAwesomeIcon icon={faXTwitter} className="text-2xl" />,
     },
     {
       href: "https://github.com/XD637/xenniumx",
       label: "GitHub",
-      icon: <FaGithub className="text-xl" />,
+      icon: <FaGithub className="text-2xl" />,
     },
     {
       href: "https://t.me/xennium",
       label: "Telegram",
-      icon: <FaTelegram className="text-xl" />,
+      icon: <FaTelegram className="text-2xl" />,
     },
   ];
 
@@ -124,13 +124,13 @@ export default function Airdrop() {
   return (
     <div className="relative min-h-screen bg-[#1c1c1e] text-gray-200">
       <Navbar />
-      <main className="relative flex flex-col items-center text-center z-10 px-8 sm:px-16 pt-24 sm:pt-32 gap-6">
-        <h1 className="text-4xl sm:text-6xl font-extrabold text-white pt-8">XENX Airdrop</h1>
-        <p className="text-md text-gray-400 mt-3 max-w-2xl mx-auto pb-6">
+      <main className="relative flex flex-col items-center text-center z-10 px-4 sm:px-8 lg:px-16 pt-16 sm:pt-24 gap-6">
+        <h1 className="text-3xl sm:text-4xl lg:text-6xl font-extrabold text-white pt-8">XENX Airdrop</h1>
+        <p className="text-sm sm:text-md lg:text-lg text-gray-400 mt-3 max-w-xl sm:max-w-2xl mx-auto pb-6">
           Claim your <strong>10 XENX Tokens</strong> by following and joining our socials. <br />
-          <span className="text-purple-500 font-bold">Limited to the first 100 users</span> Tokens will be manually verified and distributed. Import XENX Token and Verify after 24 hrs - <code className="text-purple-500 underline">0x0F29965ca5f1111B073EfA37A739Dd2faFab11E0</code>.
+          <span className="text-purple-500 font-bold">Limited to the first 100 users</span> Tokens will be manually verified and distributed. Import XENX Token and Verify after 24 hrs - <code className="text-purple-500 underline break-words">0x0F29965ca5f1111B073EfA37A739Dd2faFab11E0</code>.
         </p>
-        <div className="flex flex-wrap justify-center space-x-6 mb-4 pb-6">
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-4 pb-6">
           {socialLinks.map((link, index) => (
             <SocialLink
               key={index}
@@ -142,7 +142,7 @@ export default function Airdrop() {
             />
           ))}
         </div>
-        <form onSubmit={handleSubmit} className="w-full max-w-lg bg-[#2a2a2c] p-6 rounded-lg shadow-lg space-y-6">
+        <form onSubmit={handleSubmit} className="w-full max-w-md sm:max-w-lg bg-[#2a2a2c] p-4 sm:p-6 rounded-lg shadow-lg space-y-4 sm:space-y-6">
           <label className="block text-left text-gray-300">
             Verification Name (Required):
             <input
