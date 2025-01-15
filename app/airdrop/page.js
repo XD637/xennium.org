@@ -124,8 +124,8 @@ export default function Airdrop() {
   return (
     <div className="relative min-h-screen bg-[#1c1c1e] text-gray-200">
       <Navbar />
-      <main className="relative flex flex-col items-center text-center z-10 px-4 sm:px-8 lg:px-16 pt-16 sm:pt-24 gap-6">
-        <h1 className="text-3xl sm:text-4xl lg:text-6xl font-extrabold text-white pt-8">XENX Airdrop</h1>
+      <main className="relative flex flex-col items-center text-center z-10 px-4 sm:px-8 lg:px-16 pt-28 sm:pt-24 gap-6">
+      <h1 className="text-3xl sm:text-4xl lg:text-6xl font-extrabold text-white pt-8">XENX Airdrop</h1>
         <p className="text-sm sm:text-md lg:text-lg text-gray-400 mt-3 max-w-xl sm:max-w-2xl mx-auto pb-6">
           Claim your <strong>10 XENX Tokens</strong> by following and joining our socials. <br />
           <span className="text-purple-500 font-bold">Limited to the first 100 users</span> Tokens will be manually verified and distributed. Import XENX Token and Verify after 24 hrs - <code className="text-purple-500 underline break-words">0x0F29965ca5f1111B073EfA37A739Dd2faFab11E0</code>.
