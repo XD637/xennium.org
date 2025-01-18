@@ -45,6 +45,10 @@ const Footer = () => {
       href: "mailto:contact@xennium.org",
       label: "Contact Us",
     },
+    {
+      href: "/support",
+      label: "Support Us",
+    },
   ];
 
   return (
@@ -77,7 +81,7 @@ const Footer = () => {
       </div>
 
       {/* Footer navigation links */}
-      <div className="flex space-x-6 mb-4 text-sm">
+      <div className="flex flex-wrap justify-center space-x-6 mb-4 text-sm">
         {footerLinks.map((link, index) => (
           <Link
             key={index}
