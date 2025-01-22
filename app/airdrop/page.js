@@ -41,6 +41,7 @@ export default function Airdrop() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [message, setMessage] = useState("");
+  const [checkboxChecked, setCheckboxChecked] = useState(false);
 
   const socialLinks = [
     {
@@ -127,11 +128,11 @@ export default function Airdrop() {
   return (
     <div className="relative min-h-screen bg-[#1c1c1e] text-gray-200">
       <Navbar />
-      <main className="relative flex flex-col items-center text-center z-10 px-4 sm:px-8 lg:px-16 pt-28 sm:pt-24 gap-6">
+      <main className="relative flex flex-col items-center text-center z-10 px-4 sm:px-8 lg:px-16 pt-32 sm:pt-38 gap-6">
         <h1 className="text-3xl sm:text-4xl lg:text-6xl font-extrabold text-white pt-8">XENX Airdrop</h1>
         <p className="text-sm sm:text-md lg:text-lg text-gray-400 mt-3 max-w-xl sm:max-w-2xl mx-auto pb-6">
-          Claim your <strong>10 XENX Tokens</strong> by following and joining our socials. <br />
-          <span className="text-purple-500 font-bold">Limited to the first 100 users</span> Tokens will be manually verified and distributed. Import XENX Token and Verify after 24 hrs - <code className="text-purple-500 underline break-words">0x0F29965ca5f1111B073EfA37A739Dd2faFab11E0</code>.
+          Claim your 10 XENX Tokens by <span className="text-purple-500 font-bold">following and joining our socials.</span>  <br />
+          Limited to the first 100 users Tokens will be manually verified and distributed. Import XENX Token and Verify after 24 hrs - <code className="text-purple-500 underline break-words">0x0F29965ca5f1111B073EfA37A739Dd2faFab11E0</code>.
         </p>
         <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-4 pb-6">
           {socialLinks.map((link, index) => (
@@ -145,12 +146,32 @@ export default function Airdrop() {
             />
           ))}
         </div>
-        <button
-          onClick={() => setIsModalOpen(true)}
-          className="bg-purple-500 text-white py-2 px-4 rounded-md hover:bg-purple-600 transition-all duration-300"
-        >
-          Continue
-        </button>
+        <div className="flex flex-col items-center gap-4">
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              id="agree"
+              required
+              checked={checkboxChecked}
+              onChange={(e) => setCheckboxChecked(e.target.checked)}
+              className="mr-2 w-4 h-4 text-purple-600 bg-gray-700 border-gray-600 rounded focus:ring-purple-500"
+            />
+            <label htmlFor="agree" className="text-gray-300 text-sm">
+              I agree that I joined and followed all the above links.
+            </label>
+          </div>
+          <button
+            onClick={() => {
+              if (checkboxChecked) setIsModalOpen(true);
+            }}
+            className={`bg-purple-500 text-white py-2 px-4 rounded-md hover:bg-purple-600 transition-all duration-300 ${
+              !checkboxChecked ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+            disabled={!checkboxChecked}
+          >
+            Continue
+          </button>
+        </div>
       </main>
 
       {isModalOpen && (
@@ -209,7 +230,7 @@ export default function Airdrop() {
                 className="w-full mt-6 bg-purple-500 text-white py-2 px-4 rounded-md hover:bg-purple-600 transition-all duration-300"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Submitting..." : "Submit"}
+                {isSubmitting ? "Please wait..." : "Submit"}
               </button>
             </form>
           </div>
