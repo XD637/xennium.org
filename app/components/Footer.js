@@ -21,15 +21,13 @@ const Footer = () => {
     {
       href: "https://twitter.com/Xenniumx",
       label: "X(Twitter)",
-      icon: (
-        <FontAwesomeIcon icon={faXTwitter} className="text-xl" />
-      ),
+      icon: <FontAwesomeIcon icon={faXTwitter} className="text-xl" />,
     },
     {
-          href: "https://t.me/xennium",
-          label: "Telegram",
-          icon: <FaTelegram className="text-xl" />,
-        },
+      href: "https://t.me/xennium",
+      label: "Telegram",
+      icon: <FaTelegram className="text-xl" />,
+    },
   ];
 
   const footerLinks = [
@@ -52,9 +50,9 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="absolute bottom-0 w-full bg-transparent text-gray-400 py-4 flex flex-col items-center justify-center z-10">
+    <footer className="relative w-full bg-transparent text-gray-400 py-8 flex flex-col items-center justify-center">
       {/* Social media links */}
-      <div className="flex space-x-6 mb-4 pb-6">
+      <div className="flex space-x-6 mb-6">
         {socialLinks.map((link, index) => (
           <a
             key={index}
@@ -94,7 +92,7 @@ const Footer = () => {
       </div>
 
       {/* Copyright message */}
-      <p className="text-center text-sm text-gray-400 pt-4">
+      <p className="text-center text-sm text-gray-400">
         © {new Date().getFullYear()} Xennium. All rights reserved.
       </p>
     </footer>

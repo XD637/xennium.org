@@ -236,6 +236,11 @@ export default function Airdrop() {
           </div>
         </div>
       )}
+
+      {/* Footer */}
+      <footer className="mt-16 sm:mt-24 py-8 text-center text-gray-400 text-sm border-t border-gray-700">
+        <p>&copy; 2025 Xennium. All rights reserved.</p>
+      </footer>
     </div>
   );
 }
