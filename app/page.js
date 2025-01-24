@@ -84,18 +84,13 @@ export default function Home() {
             Xennium - Next Gen Crypto
           </h1>
           <p className="text-md text-gray-400 mt-3 max-w-2xl mx-auto">
-            Xennium Token (XENX) is an ERC-20 token built on
+            Xennium Token (XENX) is built on
             <code className="text-purple-500 rounded px-2">Polygon PoS.</code> With its
             unique feature <code className="text-purple-500 rounded px-2">&apos;Last Coin Transfer Restriction&apos;</code>, XENX can be
             used in Gamification, Governance, Voting, Identification
-            (shareholders), and <code className="text-purple-500 rounded px-2">endless possibilities!</code>
+            (shareholders), and<code className="text-purple-500 rounded px-2">endless possibilities!</code>
           </p>
           <ContractButton />
-          {/* ADD TOKEN */}
-<p className="text-sm sm:text-md text-gray-400 mt-3 sm:mt-5 px-2 sm:px-0">
-  Import XENX Token - <code className="text-purple-500 underline break-words">0x0F29965ca5f1111B073EfA37A739Dd2faFab11E0</code>.
-</p>
-
         </main>
 
         {/* Cube Section */}

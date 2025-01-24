@@ -31,10 +31,10 @@ const Navbar = () => {
     { href: "/docs", label: "Docs" },
     { href: "/community", label: "Community" },
     {
-      href: "/pools",
+      href: "/tools",
       label: (
         <>
-          Pools
+          Tools
           <sup
             style={{
               color: "#fff",
@@ -44,7 +44,7 @@ const Navbar = () => {
               marginLeft: "3px",
             }}
           >
-            New
+            Beta
           </sup>
         </>
       ),
