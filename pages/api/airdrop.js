@@ -37,12 +37,18 @@ export default async function handler(req, res) {
         return res.status(400).json({ message: "Captcha verification failed." });
       }
 
-      // Step 2: Proceed with database insertion if captcha is valid
+      // Step 2: Check if the wallet address already exists in the database
       await client.connect();
       const db = client.db("Airdrop");
       const collection = db.collection("Addresses");
 
-      // Insert the form data into the Addresses collection
+      const existingAddress = await collection.findOne({ walletAddress });
+
+      if (existingAddress) {
+        return res.status(400).json({ message: "Wallet address already exists." });
+      }
+
+      // Step 3: Proceed with database insertion if wallet address is unique
       const result = await collection.insertOne({
         verificationName,
         walletAddress,

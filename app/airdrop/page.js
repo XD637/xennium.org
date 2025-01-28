@@ -7,25 +7,19 @@ import { FaGithub, FaDiscord, FaTelegram } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 
-function SocialLink({ href, label, icon, hoveredLink, setHoveredLink }) {
+function SocialLink({ href, label, icon, onClick, clicked }) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      onMouseEnter={() => setHoveredLink(label)}
-      onMouseLeave={() => setHoveredLink(null)}
+      onClick={onClick}
       aria-label={label}
-      className="relative group"
+      className={`relative group ${clicked ? "opacity-50 pointer-events-none" : ""}`}
     >
       <div className="w-8 h-8 flex items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 text-white shadow-lg transform transition-all duration-300 hover:scale-110">
         {icon}
       </div>
-      {hoveredLink === label && (
-        <span className="absolute top-full mt-2 px-3 py-1 bg-black/70 text-white rounded-lg text-sm shadow-md">
-          {label}
-        </span>
-      )}
     </a>
   );
 }
@@ -37,11 +31,11 @@ export default function Airdrop() {
   });
   const [formErrors, setFormErrors] = useState({});
   const [captchaToken, setCaptchaToken] = useState(null);
-  const [hoveredLink, setHoveredLink] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [checkboxChecked, setCheckboxChecked] = useState(false);
+  const [clickedLinks, setClickedLinks] = useState([]);
 
   const socialLinks = [
     {
@@ -65,6 +59,12 @@ export default function Airdrop() {
       icon: <FaTelegram className="text-2xl" />,
     },
   ];
+
+  const handleLinkClick = (label) => {
+    if (!clickedLinks.includes(label)) {
+      setClickedLinks((prev) => [...prev, label]);
+    }
+  };
 
   const validateForm = () => {
     const errors = {};
@@ -100,7 +100,7 @@ export default function Airdrop() {
     }
 
     setIsSubmitting(true);
-    setMessage(""); // Clear any previous message
+    setMessage("");
     try {
       const res = await fetch("/api/airdrop", {
         method: "POST",
@@ -125,14 +125,16 @@ export default function Airdrop() {
     }
   };
 
+  const progress = Math.round((clickedLinks.length / socialLinks.length) * 100);
+
   return (
     <div className="relative min-h-screen bg-[#1c1c1e] text-gray-200">
       <Navbar />
       <main className="relative flex flex-col items-center text-center z-10 px-4 sm:px-8 lg:px-16 pt-32 sm:pt-38 gap-6">
         <h1 className="text-3xl sm:text-4xl lg:text-6xl font-extrabold text-white pt-8">XENX Airdrop</h1>
         <p className="text-sm sm:text-md lg:text-lg text-gray-400 mt-3 max-w-xl sm:max-w-2xl mx-auto pb-6">
-          Claim your 10 XENX Tokens by <span className="text-purple-500 font-bold">following and joining our socials.</span>  <br />
-          Limited to the first 100 users Tokens will be manually verified and distributed. Import XENX Token and Verify after 24 hrs - <code className="text-purple-500 underline break-words">0x0F29965ca5f1111B073EfA37A739Dd2faFab11E0</code>.
+          Claim your 10 XENX Tokens by <span className="text-purple-500 font-bold">following and joining our socials.</span> <br />
+          Limited to the first 100 users. Tokens will be manually verified and distributed. Import XENX Token and Verify after 24 hrs - <code className="text-purple-500 underline break-words">0x0F29965ca5f1111B073EfA37A739Dd2faFab11E0</code>.
         </p>
         <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-4 pb-6">
           {socialLinks.map((link, index) => (
@@ -141,33 +143,25 @@ export default function Airdrop() {
               href={link.href}
               label={link.label}
               icon={link.icon}
-              hoveredLink={hoveredLink}
-              setHoveredLink={setHoveredLink}
+              onClick={() => handleLinkClick(link.label)}
+              clicked={clickedLinks.includes(link.label)}
             />
           ))}
         </div>
+        <div className="w-full max-w-md bg-gray-800 rounded-full h-4 mb-4 overflow-hidden">
+          <div
+            className="bg-purple-500 h-full transition-all duration-300"
+            style={{ width: `${progress}%` }}
+          ></div>
+        </div>
+        <p className="text-sm text-gray-400">{progress}% of links clicked</p>
         <div className="flex flex-col items-center gap-4">
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              id="agree"
-              required
-              checked={checkboxChecked}
-              onChange={(e) => setCheckboxChecked(e.target.checked)}
-              className="mr-2 w-4 h-4 text-purple-600 bg-gray-700 border-gray-600 rounded focus:ring-purple-500"
-            />
-            <label htmlFor="agree" className="text-gray-300 text-sm">
-              I agree that I joined and followed all the above links.
-            </label>
-          </div>
           <button
-            onClick={() => {
-              if (checkboxChecked) setIsModalOpen(true);
-            }}
+            onClick={() => setIsModalOpen(true)}
             className={`bg-purple-500 text-white py-2 px-4 rounded-md hover:bg-purple-600 transition-all duration-300 ${
-              !checkboxChecked ? "opacity-50 cursor-not-allowed" : ""
+              clickedLinks.length < socialLinks.length ? "opacity-50 cursor-not-allowed" : ""
             }`}
-            disabled={!checkboxChecked}
+            disabled={clickedLinks.length < socialLinks.length}
           >
             Continue
           </button>
@@ -193,7 +187,7 @@ export default function Airdrop() {
                   value={formData.verificationName}
                   onChange={handleChange}
                   required
-                  placeholder="Name of the one of the accounts you used to follow us"
+                  placeholder="Your Twitter handel for Verification"
                   className={`w-full mt-2 px-4 py-2 text-black rounded-md border ${
                     formErrors.verificationName ? "border-red-500" : "border-gray-700"
                   } focus:ring-2 focus:ring-purple-500 outline-none`}
