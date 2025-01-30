@@ -31,10 +31,10 @@ const Navbar = () => {
     { href: "/docs", label: "Docs" },
     { href: "/community", label: "Community" },
     {
-      href: "/tools",
+      href: "/dapps",
       label: (
         <>
-          Tools
+          Dapps
           <sup
             style={{
               color: "#fff",
