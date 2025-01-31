@@ -39,10 +39,10 @@ export default function Dapps() {
               Create Xennium-like tokens with the Last Coin Transfer Restriction (LCTR) rule for secure and tamper-free transactions.
             </p>
             <button
-              className="mt-6 bg-gray-600 text-gray-300 font-bold py-2 px-6 rounded-lg cursor-not-allowed text-sm md:text-base"
-              disabled
+              onClick={() => router.push("/dapps/tokenx")}
+              className="mt-6 bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 px-6 rounded-lg transition text-sm md:text-base"
             >
-              Coming Soon
+              Launch Dapp
             </button>
           </div>
 
