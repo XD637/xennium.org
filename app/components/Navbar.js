@@ -50,7 +50,7 @@ const Navbar = () => {
       ),
     },
     {
-      href: "/airdrop",
+      href: "https://airdrop.xennium.org/",
       label: (
         <>
           Airdrop
