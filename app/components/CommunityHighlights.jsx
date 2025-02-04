@@ -19,7 +19,7 @@ export default function CommunityHighlights() {
           </p>
           <a
             aria-label="Join Discord"
-            href="https://discord.com"
+            href="https://discord.gg/7KmMBrrJEz"
             className="mt-4 flex items-center space-x-3 px-6 py-3 bg-transparent border-2 border-purple-500 text-white rounded-full shadow-lg hover:bg-purple-500 hover:scale-105 transition-all duration-300"
           >
             <span className="text-sm sm:text-md">Join Discord</span>
@@ -39,7 +39,7 @@ export default function CommunityHighlights() {
           </p>
           <a
             aria-label="Join Telegram"
-            href="https://telegram.org"
+            href="https://t.me/xennium"
             className="mt-4 flex items-center space-x-3 px-6 py-3 bg-transparent border-2 border-purple-500 text-white rounded-full shadow-lg hover:bg-purple-500 hover:scale-105 transition-all duration-300"
           >
             <span className="text-sm sm:text-md">Join Telegram</span>
@@ -59,7 +59,7 @@ export default function CommunityHighlights() {
           </p>
           <a
             aria-label="Follow on Twitter"
-            href="https://twitter.com"
+            href="https://twitter.com/Xenniumx"
             className="mt-4 flex items-center space-x-3 px-6 py-3 bg-transparent border-2 border-purple-500 text-white rounded-full shadow-lg hover:bg-purple-500 hover:scale-105 transition-all duration-300"
           >
             <span className="text-sm sm:text-md">Follow on Twitter</span>
