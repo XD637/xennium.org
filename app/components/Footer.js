@@ -75,7 +75,7 @@ const Footer = () => {
       </div>
 
       {/* Footer navigation links */}
-      <div className="flex flex-wrap justify-center space-x-6 mb-4 text-sm">
+      <div className="flex flex-wrap justify-center space-x-6 text-sm mb-4">
         {footerLinks.map((link, index) => (
           <Link
             key={index}
@@ -86,6 +86,9 @@ const Footer = () => {
           </Link>
         ))}
       </div>
+
+      {/* Line Break */}
+      <div className="w-full h-px bg-gray-700 my-2"></div>
 
       {/* Copyright message */}
       <p className="text-center text-sm text-gray-400">

@@ -5,6 +5,7 @@ import Head from "next/head";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import ContractButton from "./components/Contract";
+import HeroSection from "./components/HeroSection"; // Import the new component
 
 // Lazy load heavy components
 const Cube = dynamic(() => import("./components/Cube"), { ssr: false });
@@ -17,10 +18,10 @@ export default function Home() {
   // Fetch code snippet with caching
   useEffect(() => {
     const cacheKey = "xenniumCode";
-  
+
     // Clear cache once
     localStorage.removeItem(cacheKey);
-  
+
     const fetchCode = async () => {
       try {
         const response = await fetch("/codes/xennium.txt");
@@ -35,10 +36,9 @@ export default function Home() {
         setCode("Code snippet could not be loaded.");
       }
     };
-  
+
     fetchCode();
   }, []);
-  
 
   return (
     <>
@@ -78,24 +78,15 @@ export default function Home() {
         {/* Navbar */}
         <Navbar />
 
-        {/* Main Content */}
-        <main className="relative flex flex-col items-center justify-center text-center z-10 px-8 sm:px-16 pt-24 sm:pt-32 gap-6">
-          <h1 className="pt-10 text-5xl sm:text-6xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-purple-900">
-            Xennium - Next Gen Crypto
-          </h1>
-          <p className="text-md text-gray-400 mt-3 max-w-2xl mx-auto">
-            Xennium (XENX) is built on
-            <code className="text-purple-500 rounded px-2">Polygon PoS.</code>With its
-            unique property,<code className="text-purple-500 rounded px-2">&apos; The Last Coin Transfer Restriction&apos;</code>, Last coin in any wallet
-            is<code className="text-purple-500 rounded px-2">locked forever!</code>
-          </p>
-          <ContractButton />
-        </main>
+        {/* Hero Section */}
+        <HeroSection />
+        <ContractButton />
 
         {/* Cube Section */}
         <div className="relative flex items-center justify-center h-[250px]">
           <Cube />
         </div>
+
         {/* Code Snippet Section */}
         <section className="relative z-10 pt-12 px-8 sm:px-16 text-left mb-12">
           <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-12 text-center">
