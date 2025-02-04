@@ -43,10 +43,6 @@ const Footer = () => {
       href: "mailto:contact@xennium.org",
       label: "Contact Us",
     },
-    {
-      href: "/support",
-      label: "Support Us",
-    },
   ];
 
   return (
