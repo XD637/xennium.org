@@ -53,7 +53,7 @@ const Navbar = () => {
       href: "https://airdrop.xennium.org/",
       label: (
         <>
-          Airdrop
+          Airdrops
           <sup
             style={{
               color: "#fff",

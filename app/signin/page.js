@@ -47,7 +47,6 @@ export default function SignIn() {
 
   // Google sign-in handler
   const handleGoogleSignIn = () => {
-    setIsSigningIn(true); // Set signing-in state to true
     signIn("google", { callbackUrl: "/" });
   };
 
@@ -56,12 +55,12 @@ export default function SignIn() {
   }
 
   return (
-    <div className="relative min-h-screen bg-[#1c1c1e] text-gray-200 pb-10">
+    <div className="relative min-h-screen bg-[#1c1c1e] text-gray-200">
       {/* Navbar */}
       <Navbar />
 
       {/* Main Content */}
-      <main className="relative flex flex-col items-center justify-center pt-24 sm:pt-32 px-4 sm:px-8 pb-20">
+      <main className="relative flex flex-col items-center justify-center pt-32 sm:pt-38 lg:pt-32 px-4 sm:px-8 pb-20">
         <div className="relative p-4 rounded-md overflow-auto bg-[#2d2d2d] text-white border border-gray-700 shadow-lg w-full max-w-lg mx-auto">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-center text-white mb-6">
             {isSigningIn ? "Signing In..." : "Sign In"}
@@ -129,14 +128,14 @@ export default function SignIn() {
             </div>
 
             {/* Google Sign-In Button */}
-            <button
-              type="button"
-              onClick={handleGoogleSignIn}
-              className="flex items-center justify-center space-x-3 px-4 py-2 bg-transparent border-2 border-purple-500 text-white rounded-full shadow-lg hover:bg-gradient-to-br hover:from-purple-500 hover:to-indigo-600 hover:scale-105 transition-all duration-300"
-              disabled={isSigningIn}
-            >
-              <span>{isSigningIn ? "Signing In..." : "Sign In with Google"}</span>
-            </button>
+<button
+  type="button"
+  onClick={handleGoogleSignIn}
+  className="flex items-center justify-center space-x-3 px-4 py-2 bg-transparent border-2 border-purple-500 text-white rounded-full shadow-lg hover:bg-gradient-to-br hover:from-purple-500 hover:to-indigo-600 hover:scale-105 transition-all duration-300"
+>
+  <span>Sign In with Google</span>
+</button>
+
           </form>
 
           {/* Don't Have an Account */}
