@@ -44,18 +44,25 @@ export default function Home() {
     <>
       {/* SEO Metadata */}
       <Head>
-        <title>Xennium - Next Gen Crypto</title>
+        <title>Xennium Token - Next Gen Crypto with LCTR</title>
         <meta
           name="description"
-          content="Discover Xennium Token (XENX), a unique ERC-20 token with innovative features for gamification, governance, and more."
+          content="Xennium Token (XENX) is a revolutionary crypto token with Last Coin Transfer Restriction (LCTR), enabling secure governance, decentralized identity, and innovative utilities."
         />
-        <meta property="og:title" content="Xennium - Next Gen Crypto" />
+        <meta name="keywords" content="Xennium, Xennium Token, XENX, crypto, cryptocurrency, blockchain, Web3, governance, decentralized identity" />
+        <meta property="og:title" content="Xennium Token - The Future of Crypto" />
         <meta
           property="og:description"
-          content="Explore the futuristic features of Xennium Token (XENX)."
+          content="Discover Xennium Token (XENX) – a next-generation cryptocurrency designed for governance, identity, and secure transactions with LCTR."
         />
         <meta property="og:image" content="/Xen.png" />
+        <meta property="og:url" content="https://xennium.org" />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Xennium Token - Next Gen Crypto" />
+        <meta
+          name="twitter:description"
+          content="Explore Xennium Token (XENX) and its groundbreaking Last Coin Transfer Restriction (LCTR) for decentralized governance and identity solutions."
+        />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <script
           type="application/ld+json"
@@ -67,7 +74,7 @@ export default function Home() {
               url: "https://xennium.org",
               logo: "https://xennium.org/Xen.png",
               description:
-                "Discover Xennium Token (XENX), With Its unique rule - Last Coin Transfer Restriction (LCTR), It is the way of modern utility token",
+                "Xennium Token (XENX) introduces the Last Coin Transfer Restriction (LCTR), revolutionizing the way crypto assets are used for governance and identity.",
             }),
           }}
         />
@@ -90,7 +97,7 @@ export default function Home() {
         {/* Code Snippet Section */}
         <section className="relative z-10 pt-12 px-8 sm:px-16 text-left mb-12">
           <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-12 text-center">
-            Transparency
+           Transparency
           </h2>
           <CodeSnippet code={code} />
         </section>

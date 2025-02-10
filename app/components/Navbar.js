@@ -67,6 +67,8 @@ const Navbar = () => {
           </sup>
         </>
       ),
+      target: "_blank", // Open in a new tab
+      rel: "noopener noreferrer",
     },
   ];
 
@@ -120,6 +122,8 @@ const Navbar = () => {
               <Link
                 key={index}
                 href={link.href}
+                target={link.target || "_self"}
+                rel={link.rel || ""}
                 className="text-md font-medium hover:text-purple-500 transition-colors duration-300 flex items-center"
               >
                 {link.label}
@@ -152,6 +156,8 @@ const Navbar = () => {
             <Link
               key={index}
               href={link.href}
+              target={link.target || "_self"}
+              rel={link.rel || ""}
               onClick={() => setSidebarOpen(false)}
               className="flex items-center text-2xl font-medium text-white hover:text-purple-500 transition-colors duration-300"
             >
