@@ -1,28 +1,10 @@
 import { MongoClient } from "mongodb";
 import bcrypt from "bcrypt";
-import crypto from "crypto";
 import nodemailer from "nodemailer";
 
 const MONGODB_URI = process.env.MONGODB_URI;
 const DATABASE_NAME = "Users";
 const VERIFICATION_EXPIRY = 30 * 60 * 1000; // 30 minutes
-
-async function generateKeyPair() {
-  return new Promise((resolve, reject) => {
-    crypto.generateKeyPair(
-      "ec",
-      {
-        namedCurve: "secp256k1",
-        publicKeyEncoding: { type: "spki", format: "pem" },
-        privateKeyEncoding: { type: "pkcs8", format: "pem" },
-      },
-      (err, publicKey, privateKey) => {
-        if (err) reject(err);
-        else resolve({ publicKey, privateKey });
-      }
-    );
-  });
-}
 
 async function sendVerificationEmail(email, code) {
   try {
@@ -109,9 +91,6 @@ export default async function handler(req, res) {
       // Hash the password
       const hashedPassword = await bcrypt.hash(password, 12);
 
-      // Generate ECC key pair
-      const { publicKey, privateKey } = await generateKeyPair();
-
       // Generate 6-digit verification code
       const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
       const expiry = new Date(Date.now() + VERIFICATION_EXPIRY);
@@ -120,8 +99,6 @@ export default async function handler(req, res) {
       const newUser = {
         email,
         password: hashedPassword,
-        publicKey,
-        privateKey,
         verificationCode,
         verificationExpiry: expiry,
         createdAt: new Date(),

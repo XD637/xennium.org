@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation"; // Use next/navigation in app directory
-import { signIn } from "next-auth/react"; // Import signIn from next-auth
+import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 import Navbar from "../components/Navbar";
 
 export default function SignUp() {
@@ -11,37 +11,34 @@ export default function SignUp() {
     password: "",
   });
   const [agreedToTerms, setAgreedToTerms] = useState(false);
-  const [isClient, setIsClient] = useState(false); // State to check if we are on the client side
-  const [isLoading, setIsLoading] = useState(false); // State for loading indicator
-  const router = useRouter(); // Initialize useRouter
+  const [isClient, setIsClient] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(""); // State for error messages
+  const router = useRouter();
 
   useEffect(() => {
-    setIsClient(true); // Set to true after the component mounts
+    setIsClient(true);
   }, []);
 
-  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle checkbox changes
   const handleCheckboxChange = (e) => {
     setAgreedToTerms(e.target.checked);
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMessage(""); // Reset error message
 
     if (!agreedToTerms) {
-      alert(
-        "Please agree to the Privacy Policy and Terms & Conditions before submitting."
-      );
+      setErrorMessage("You must agree to the Privacy Policy and Terms & Conditions.");
       return;
     }
 
-    setIsLoading(true); // Start loading
+    setIsLoading(true);
     try {
       const response = await fetch("/api/signup", {
         method: "POST",
@@ -51,20 +48,18 @@ export default function SignUp() {
         body: JSON.stringify(formData),
       });
 
+      const data = await response.json();
+
       if (response.ok) {
-        alert("Signup successful!");
-        if (isClient) {
-          router.push("/confirm-email"); // Redirect after sign up
-        }
+        router.push("/confirm-email");
       } else {
-        const errorData = await response.json();
-        alert(errorData.message || "Something went wrong, please try again.");
+        setErrorMessage(data.message || "Something went wrong. Please try again.");
       }
     } catch (error) {
       console.error("Error during form submission:", error);
-      alert("An error occurred, please try again.");
+      setErrorMessage("An error occurred. Please try again.");
     } finally {
-      setIsLoading(false); // Stop loading
+      setIsLoading(false);
     }
   };
 
@@ -84,6 +79,13 @@ export default function SignUp() {
           <h1 className="text-3xl sm:text-4xl font-extrabold text-center mb-6">
             Sign Up
           </h1>
+          {/* Error Message Display */}
+          {errorMessage && (
+              <p className="text-purple-500 text-center mb-4">
+                {errorMessage}
+              </p>
+            )}
+
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
             <div className="flex flex-col gap-2">
               <label htmlFor="email" className="text-gray-300">
@@ -147,7 +149,7 @@ export default function SignUp() {
             <button
               type="submit"
               className="flex items-center justify-center px-4 py-2 bg-transparent border-2 border-purple-500 rounded-full shadow-lg hover:bg-gradient-to-br hover:from-purple-500 hover:to-indigo-600 hover:scale-105 transition-all duration-300"
-              disabled={isLoading} // Disable button when loading
+              disabled={isLoading}
             >
               {isLoading ? "Signing up..." : "Sign Up"}
             </button>
