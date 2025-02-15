@@ -5,31 +5,30 @@ import Head from 'next/head'
 import Navbar from '../components/Navbar'
 import { motion } from 'framer-motion'
 import { MessageCircle, Twitter, Send, Users } from 'lucide-react'
-import { Compass } from 'lucide-react'
 
 const communityPlatforms = {
   Discord: [
-    { icon: <Users size={24} />, text: 'Engage with the community' },
-    { icon: <MessageCircle size={24} />, text: 'Get exclusive airdrops' },
-    { icon: <Send size={24} />, text: 'Live discussions & support' },
+    { icon: <Users size={20} />, text: 'Engage with the community' },
+    { icon: <MessageCircle size={20} />, text: 'Get exclusive airdrops' },
+    { icon: <Send size={20} />, text: 'Live discussions & support' },
   ],
   Twitter: [
-    { icon: <Users size={24} />, text: 'Stay updated with Xennium' },
-    { icon: <Twitter size={24} />, text: 'Follow for the latest news' },
-    { icon: <MessageCircle size={24} />, text: 'Join trending conversations' },
+    { icon: <Users size={20} />, text: 'Stay updated with Xennium' },
+    { icon: <Twitter size={20} />, text: 'Follow for the latest news' },
+    { icon: <MessageCircle size={20} />, text: 'Join trending conversations' },
   ],
   Telegram: [
-    { icon: <Send size={24} />, text: 'Instant crypto updates' },
-    { icon: <MessageCircle size={24} />, text: 'Connect with traders' },
-    { icon: <Users size={24} />, text: 'Private community chats' },
+    { icon: <Send size={20} />, text: 'Instant crypto updates' },
+    { icon: <MessageCircle size={20} />, text: 'Connect with traders' },
+    { icon: <Users size={20} />, text: 'Private community chats' },
   ],
 }
 
 function CommunitySection({ number, title, description, link, featuresList, reversed }) {
   return (
     <motion.div
-      className={`relative flex flex-col md:flex-row items-center gap-10 bg-[#1a1a1a] p-8 rounded-2xl shadow-lg border border-gray-700 w-full max-w-5xl min-h-[280px] ${
-        reversed ? 'md:flex-row-reverse' : ''
+      className={`relative flex flex-col sm:flex-row items-center gap-6 bg-[#1a1a1a] p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-700 w-full max-w-5xl min-h-[260px] ${
+        reversed ? 'sm:flex-row-reverse' : ''
       }`}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -37,35 +36,35 @@ function CommunitySection({ number, title, description, link, featuresList, reve
       viewport={{ once: true }}
     >
       <span
-        className={`absolute text-[12rem] font-bold text-gray-700 opacity-10 leading-none ${
-          reversed ? 'right-0 -mr-20' : 'left-0 -ml-20'
+        className={`absolute text-[6rem] sm:text-[10rem] font-bold text-gray-700 opacity-10 leading-none ${
+          reversed ? 'right-0 -mr-10 sm:-mr-20' : 'left-0 -ml-10 sm:-ml-20'
         }`}
       >
         {number}
       </span>
 
       <div className="flex-1 text-left">
-        <h2 className="text-2xl font-semibold text-white">{title}</h2>
-        <p className="text-gray-400 mt-2">{description}</p>
+        <h2 className="text-xl sm:text-2xl font-semibold text-white">{title}</h2>
+        <p className="text-gray-400 mt-2 text-sm sm:text-base">{description}</p>
         <a
           href={link}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 inline-block bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 px-6 rounded-lg transition"
+          className="mt-4 sm:mt-6 inline-block bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 px-4 sm:px-6 rounded-lg transition"
         >
           Join {title}
         </a>
       </div>
 
-      <div className="flex-1 flex flex-col items-start gap-4">
+      <div className="flex-1 flex flex-col items-start gap-3 sm:gap-4">
         {featuresList.map((feature, index) => (
           <motion.div
             key={index}
-            className="flex items-center gap-3 bg-[#252525] p-3 rounded-lg w-full max-w-xs"
+            className="flex items-center gap-3 bg-[#252525] p-2 sm:p-3 rounded-lg w-full max-w-md"
             whileHover={{ scale: 1.05 }}
           >
             <span className="text-purple-400">{feature.icon}</span>
-            <p className="text-gray-300">{feature.text}</p>
+            <p className="text-gray-300 text-sm sm:text-base">{feature.text}</p>
           </motion.div>
         ))}
       </div>
@@ -81,15 +80,15 @@ export default function Community() {
       </Head>
       <div className="relative min-h-screen bg-[#121212] text-gray-200">
         <Navbar />
-        <main className="flex flex-col items-center pt-40 px-6 md:px-10 lg:px-20 gap-16">
-          <h1 className="text-6xl font-bold text-white text-center flex items-center gap-3">
-            Join Our Community <Compass size={12} className="text-gray-700" />
+        <main className="flex flex-col items-center pt-32 sm:pt-40 px-4 sm:px-6 md:px-10 lg:px-20 gap-12 sm:gap-16">
+          <h1 className="text-4xl sm:text-6xl font-bold text-white text-center flex items-center gap-2">
+            Join Our Community
           </h1>
-          <p className="text-gray-400 text-center mt-2">
+          <p className="text-gray-400 text-center mt-2 text-sm sm:text-base">
             Connect with Xennium enthusiasts across different platforms.
           </p>
 
-          {[
+          {[ 
             {
               title: 'Discord',
               description: 'Engage in discussions, receive airdrops, and connect with the team.',
@@ -112,7 +111,7 @@ export default function Community() {
             <CommunitySection key={index} number={index + 1} reversed={index % 2 !== 0} {...platform} />
           ))}
         </main>
-        <footer className="mt-16 sm:mt-24 py-8 text-center text-gray-400 text-sm border-t border-gray-700">
+        <footer className="mt-12 sm:mt-16 py-6 text-center text-gray-400 text-xs sm:text-sm border-t border-gray-700">
           <p>&copy; {new Date().getFullYear()} Xennium. All rights reserved.</p>
         </footer>
       </div>
