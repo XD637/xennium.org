@@ -54,6 +54,15 @@ export default function MintPassport() {
     <div className="relative min-h-screen bg-[#121212] text-gray-200 flex flex-col items-center">
       <Navbar />
 
+      {/* Back Button */}
+            <button
+              onClick={() => router.back()}
+              className="absolute top-6 left-6 flex items-center text-gray-400 hover:text-purple-500 transition pt-28 pl-10"
+            >
+              <FaArrowLeft className="mr-2" />
+              <span className="text-sm md:text-base">Back</span>
+            </button>
+
       {/* Connect Button Outside the Container */}
       <div className="absolute top-6 right-6 pt-32">
         <ContractButton />
