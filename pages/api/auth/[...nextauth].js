@@ -34,8 +34,9 @@ export const authOptions = {
             throw new Error("User not found. Please sign up first.");
           }
 
+          // Prevent users who signed up with Google from using credentials login
           if (user.isGoogleUser) {
-            throw new Error("Please sign in using Google.");
+            throw new Error("You signed up with Google. Please sign in using Google.");
           }
 
           const isPasswordValid = await bcrypt.compare(credentials.password, user.password);
@@ -66,6 +67,7 @@ export const authOptions = {
         const existingUser = await usersCollection.findOne({ email: normalizedEmail });
 
         if (!existingUser) {
+          // New user, register them based on provider
           const newUser = {
             email: normalizedEmail,
             isGoogleUser: account.provider === "google",
@@ -73,15 +75,20 @@ export const authOptions = {
           };
 
           await usersCollection.insertOne(newUser);
-        } else if (!existingUser.isGoogleUser && account.provider === "google") {
-          await usersCollection.updateOne(
-            { email: normalizedEmail },
-            { $set: { isGoogleUser: true } }
-          );
+        } else {
+          // Prevent a credentials user from switching to Google login
+          if (!existingUser.isGoogleUser && account.provider === "google") {
+            throw new Error("You signed up with email/password. Please sign in using your password.");
+          }
+
+          // If user signed up with Google, ensure they always use Google
+          if (existingUser.isGoogleUser && account.provider !== "google") {
+            throw new Error("Please sign in using Google.");
+          }
         }
       } catch (err) {
-        console.error("Error during Google sign-in:", err.message);
-        throw new Error("Could not complete sign-in. Please try again.");
+        console.error("Error during sign-in:", err.message);
+        throw new Error(err.message || "Could not complete sign-in. Please try again.");
       } finally {
         await client.close();
       }
