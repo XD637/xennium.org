@@ -122,7 +122,7 @@ function transferFrom(address from, address to, uint256 amount) { /* ... */ }`,
   };
 
   return (
-    <div className="relative min-h-screen bg-[#1c1c1e] text-gray-200">
+    <div className="relative min-h-screen bg-[#121212] text-gray-200">
       {/* Particle */}
       <ParticlesBackground />
 <div className="pb-10">
