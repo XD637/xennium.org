@@ -58,6 +58,8 @@ const Footer = () => {
             onMouseEnter={() => setHoveredLink(link.label)}
             onMouseLeave={() => setHoveredLink(null)}
             className="relative group"
+            aria-label={`Visit our ${link.label} page`}
+            tabIndex={0}
           >
             {/* Icon Button */}
             <div className="w-8 h-8 flex items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 text-white shadow-lg transform transition-all duration-300 hover:scale-110">
@@ -81,6 +83,7 @@ const Footer = () => {
             key={index}
             href={link.href}
             className="hover:text-gray-200 hover:underline transition-all duration-200"
+            aria-label={link.label}
           >
             {link.label}
           </Link>

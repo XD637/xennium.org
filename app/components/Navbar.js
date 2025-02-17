@@ -103,6 +103,7 @@ const Navbar = () => {
           <button
             className="md:hidden flex flex-col items-center pr-4 z-50"
             onClick={toggleSidebar}
+            aria-label={sidebarOpen ? "Close Menu" : "Open Menu"} // Add aria-label for accessibility
           >
             {sidebarOpen ? (
               <span className="text-3xl text-white">×</span>
