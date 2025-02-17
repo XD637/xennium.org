@@ -28,7 +28,6 @@ const Navbar = () => {
 
   const links = [
     { href: "/", label: "Home" },
-    { href: "/docs", label: "Docs" },
     { href: "/community", label: "Community" },
     {
       href: "/dapps",
@@ -134,7 +133,7 @@ const Navbar = () => {
 
         {/* Right side: Polygonscan icon and SignIn/SignOut Button */}
 {!isMobile && (
-  <div className="flex-1 flex justify-end items-center pr-8 md:pr-16 space-x-12">
+  <div className="flex-1 flex justify-end items-center pr-8 md:pr-16 space-x-16 ">
     <Link
       href="https://polygonscan.com/token/0x0f29965ca5f1111b073efa37a739dd2fafab11e0"
       target="_blank"
