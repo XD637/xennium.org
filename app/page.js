@@ -4,12 +4,12 @@ import dynamic from "next/dynamic";
 import Head from "next/head";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
-import ContractButton from "./components/Contract";
-import HeroSection from "./components/HeroSection";
 
 // Lazy load heavy components
 const Cube = dynamic(() => import("./components/Cube"), { ssr: false });
 const CustomSnippet = dynamic(() => import("./components/CustomSnippet"), { ssr: false });
+const HeroSection = dynamic(() => import("./components/HeroSection"), { ssr: false });
+const ContractButton = dynamic(() => import("./components/Contract"), { ssr: false});
 
 export default function Home() {
   const [code, setCode] = useState(""); 
