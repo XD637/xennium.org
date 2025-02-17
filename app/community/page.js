@@ -1,10 +1,11 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Head from 'next/head'
 import Navbar from '../components/Navbar'
 import { motion } from 'framer-motion'
 import { MessageCircle, Twitter, Send, Users } from 'lucide-react'
+import { FaGithub } from 'react-icons/fa'  // Import GitHub icon from react-icons
 
 const communityPlatforms = {
   Discord: [
@@ -21,6 +22,11 @@ const communityPlatforms = {
     { icon: <Send size={20} />, text: 'Instant crypto updates' },
     { icon: <MessageCircle size={20} />, text: 'Connect with traders' },
     { icon: <Users size={20} />, text: 'Private community chats' },
+  ],
+  GitHub: [  // Add GitHub platform with its features
+    { icon: <FaGithub size={20} />, text: 'Explore the source code' },
+    { icon: <Users size={20} />, text: 'Contribute to the project' },
+    { icon: <Send size={20} />, text: 'Get XENX for the contribution' },
   ],
 }
 
@@ -106,6 +112,12 @@ export default function Community() {
               description: 'Join real-time discussions and get the latest Xennium updates.',
               link: 'https://t.me/xennium',
               featuresList: communityPlatforms.Telegram,
+            },
+            {
+              title: 'GitHub',  // Add GitHub section
+              description: 'Explore the code, contribute, and track progress.',
+              link: 'https://github.com/XD637/xennium.org',
+              featuresList: communityPlatforms.GitHub,
             },
           ].map((platform, index) => (
             <CommunitySection key={index} number={index + 1} reversed={index % 2 !== 0} {...platform} />

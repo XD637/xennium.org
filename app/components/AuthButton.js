@@ -1,4 +1,3 @@
-// components/SignInSignOutButton.js
 "use client";
 import { useSession, signOut } from "next-auth/react"; // Import session handling from NextAuth.js
 import Link from "next/link";
@@ -12,7 +11,7 @@ const SignInSignOutButton = () => {
       <Link
         href={session ? "#!" : "/signin"} // If session exists, don't link to signin
         onClick={session ? signOut : undefined} // Call signOut if session exists
-        className="absolute top-[35px] right-[20px] z-[1000] px-4 py-1 border border-white text-white rounded-full hover:bg-white hover:text-black transition-all duration-300 hidden md:block"
+        className="absolute top-[35px] right-[20px] z-[1000] px-6 py-2 border-2 border-white text-white rounded-full hover:bg-white hover:text-black transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white"
         style={{
           pointerEvents: "auto",
         }}
@@ -25,7 +24,7 @@ const SignInSignOutButton = () => {
         <Link
           href={session ? "#!" : "/signin"} // If session exists, don't link to signin
           onClick={session ? signOut : undefined} // Call signOut if session exists
-          className="z-[1000] px-4 py-1 border border-white text-white rounded-full hover:bg-white hover:text-black transition-all duration-300 md:hidden"
+          className="z-[1000] px-6 py-2 border-2 border-white text-white rounded-full hover:bg-white hover:text-black transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white md:hidden"
           style={{
             pointerEvents: "auto",
           }}

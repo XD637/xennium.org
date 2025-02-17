@@ -51,7 +51,7 @@ export default function SignIn() {
   if (!isClient) return null;
 
   return (
-    <div className="relative min-h-screen bg-[#1c1c1e] text-gray-200">
+    <div className="relative min-h-screen bg-[#121212] text-gray-200">
       <Navbar />
       <main className="relative flex flex-col items-center justify-center pt-32 sm:pt-38 lg:pt-32 px-4 sm:px-8 pb-20">
         <div className="relative p-4 rounded-md overflow-auto bg-[#2d2d2d] text-white border border-gray-700 shadow-lg w-full max-w-lg mx-auto">

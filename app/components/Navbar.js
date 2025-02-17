@@ -1,3 +1,4 @@
+"use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { FaCube } from "react-icons/fa"; // Import the icon
@@ -95,7 +96,7 @@ const Navbar = () => {
         }`}
       >
         {/* Left side: Xennium */}
-        <div className="flex-1 text-3xl font-extrabold pl-8">Xennium</div>
+        <div className="flex-1 text-4xl font-extrabold pl-8">Xennium</div>
 
         {/* Mobile: Hamburger Menu */}
         {isMobile && (
@@ -134,14 +135,7 @@ const Navbar = () => {
         {/* Right side: Polygonscan icon and SignIn/SignOut Button */}
 {!isMobile && (
   <div className="flex-1 flex justify-end items-center pr-8 md:pr-16 space-x-16 ">
-    <Link
-      href="https://polygonscan.com/token/0x0f29965ca5f1111b073efa37a739dd2fafab11e0"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-purple-500 flex items-center"
-    >
-      <FaCube className="text-xl" />
-    </Link>
+
     <SignInSignOutButton />
   </div>
 )}

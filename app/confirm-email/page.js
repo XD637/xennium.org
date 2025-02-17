@@ -41,7 +41,7 @@ export default function ConfirmEmail() {
   };
 
   return (
-    <div className="relative min-h-screen flex flex-col bg-[#1c1c1e] text-gray-200">
+    <div className="relative min-h-screen flex flex-col bg-[#121212] text-gray-200">
       <Navbar />
 
       <main className="flex flex-col flex-grow items-center justify-center px-4 sm:px-8 pt-24 sm:pt-32 pb-20">

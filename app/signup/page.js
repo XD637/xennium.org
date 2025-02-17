@@ -72,7 +72,7 @@ export default function SignUp() {
   }
 
   return (
-    <div className="relative min-h-screen bg-[#1c1c1e] text-gray-200 pb-10">
+    <div className="relative min-h-screen bg-[#121212] text-gray-200 pb-10">
       <Navbar />
       <main className="relative flex flex-col items-center justify-center pt-32 sm:pt-32 px-4 sm:px-8 pb-20">
         <div className="relative p-4 rounded-md bg-[#2d2d2d] text-white border border-gray-700 shadow-lg w-full max-w-lg mx-auto">
