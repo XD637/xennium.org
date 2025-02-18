@@ -1,21 +1,22 @@
 "use client";
-import React, { useEffect, useState } from 'react'
-import { useSession, signIn } from 'next-auth/react'
-import Head from 'next/head'
-import Navbar from '../components/Navbar'
-import { Rocket, Shield, Users, CheckCircle } from 'lucide-react'
+import React, { useEffect, useState } from 'react';
+import { useSession, signIn } from 'next-auth/react';
+import Head from 'next/head';
+import Navbar from '../components/Navbar';
+import { Rocket, Shield, Users, CheckCircle } from 'lucide-react';
 import DAppSection from '../components/Dappsection';
 
+
 const features = {
-  ExplorerX: [
-    { icon: <Rocket size={20} />, text: 'Real-time blockchain data' },
-    { icon: <Shield size={20} />, text: 'Secure and transparent' },
-    { icon: <Users size={20} />, text: 'User-friendly insights' },
-  ],
   TokenX: [
     { icon: <CheckCircle size={20} />, text: 'Create secure tokens' },
     { icon: <Shield size={20} />, text: 'LCTR-enabled protection' },
     { icon: <Rocket size={20} />, text: 'Fast and efficient' },
+  ],
+  ExplorerX: [
+    { icon: <Rocket size={20} />, text: 'Real-time blockchain data' },
+    { icon: <Shield size={20} />, text: 'Secure and transparent' },
+    { icon: <Users size={20} />, text: 'User-friendly insights' },
   ],
   GovernanceX: [
     { icon: <Users size={20} />, text: 'Community-driven' },
@@ -27,37 +28,18 @@ const features = {
     { icon: <CheckCircle size={20} />, text: 'LCTR-based security' },
     { icon: <Users size={20} />, text: 'Unique NFT verification' },
   ],
-}
+};
 
 export default function Dapps() {
-  const { data: session, status } = useSession()
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    if (status !== 'loading' && !session) {
-      signIn(undefined, { callbackUrl: '/dapps' })
-    } else {
-      setLoading(false)
-    }
-  }, [session, status])
-
-  if (!session) {
-    return (
-      <div className="flex justify-center items-center min-h-screen bg-[#121212] text-gray-200">
-        <div className="flex flex-col items-center">
-          <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-purple-500"></div>
-          <p className="text-sm mt-4">Sign-in before continuing...</p>
-        </div>
-      </div>
-    )
-  }
+  const { data: session, status } = useSession();
+  const [loading, setLoading] = useState(true);
 
   const dAppsList = [
-    { title: 'ExplorerX', description: 'Analyze blockchain data and explore the Xennium network.', path: '/dapps/explorerx', available: true, featuresList: features.ExplorerX },
     { title: 'TokenX', description: 'Easily create Xennium-compatible tokens with LCTR security.', path: '/dapps/tokenx', available: true, featuresList: features.TokenX },
+    { title: 'ExplorerX', description: 'Analyze blockchain data and explore the Xennium network.', path: '/dapps/explorerx', available: true, featuresList: features.ExplorerX },
     { title: 'GovernanceX', description: 'Participate in decentralized governance by proposing and voting.', available: false, featuresList: features.GovernanceX },
     { title: 'IdentityX', description: 'Secure your decentralized identity by minting an NFT ID with LCTR.', path: '/dapps/identityx', available: true, featuresList: features.IdentityX },
-  ]
+  ];
 
   return (
     <>
@@ -71,7 +53,7 @@ export default function Dapps() {
             Explore DApps
           </h1>
           <p className="text-gray-400 text-center text-sm sm:text-base mt-2">
-            Discover decentralized applications powered by Xennium.
+            Discover decentralized applications, Powered by Xennium.
           </p>
           {dAppsList.map((dapp, index) => (
             <DAppSection key={index} number={index + 1} reversed={index % 2 !== 0} {...dapp} />
@@ -82,5 +64,5 @@ export default function Dapps() {
         </footer>
       </div>
     </>
-  )
+  );
 }

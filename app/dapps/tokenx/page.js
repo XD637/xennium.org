@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState, useRef } from "react";
 import Navbar from "../../components/Navbar";
 import CustomSnippet from "../../components/CustomSnippet"; // Import CustomSnippet component
@@ -13,6 +12,8 @@ export default function TokenCreatorPage() {
   const [supplyLimit, setSupplyLimit] = useState("");
   const [generatedCode, setGeneratedCode] = useState("");
   const [error, setError] = useState("");
+  const [lctrEnabled, setLctrEnabled] = useState(false);  // State to manage LCTR checkbox
+  const [permitEnabled, setPermitEnabled] = useState(false);  // State to manage ERC20Permit checkbox
 
   const codeRef = useRef(null);
 
@@ -24,7 +25,7 @@ export default function TokenCreatorPage() {
 
     setError(""); // Clear previous errors
 
-    const contractCode = `
+    let contractCode = `
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
@@ -32,19 +33,18 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
 
-contract ${tokenName}Token is ERC20, Ownable, ERC20Permit {
+contract ${tokenName}Token is ERC20, Ownable ${permitEnabled ? ", ERC20Permit" : ""} {
     uint256 private constant TOTAL_SUPPLY = ${supplyLimit} * 10**18;
 
-    constructor() 
-        ERC20("${tokenName}", "${symbol}") 
-        ERC20Permit("${tokenName}") 
-        Ownable(msg.sender) 
+    constructor(address recipient, address initialOwner)
+        ERC20("${tokenName}", "${symbol}")
+        ${permitEnabled ? `ERC20Permit("${tokenName}")` : ""}
+        Ownable(initialOwner)
     {
-        _mint(address(this), TOTAL_SUPPLY);
-        uint256 amountToTransfer = TOTAL_SUPPLY - 1;
-        _transfer(address(this), msg.sender, amountToTransfer);
+        _mint(recipient, TOTAL_SUPPLY);
     }
 
+    ${lctrEnabled ? ` 
     function _safeTransferCheck(address from, uint256 amount) internal view {
         require(balanceOf(from) - amount >= 1, "LCTR: Cannot spend the last coin");
     }
@@ -57,8 +57,10 @@ contract ${tokenName}Token is ERC20, Ownable, ERC20Permit {
     function transferFrom(address from, address to, uint256 amount) public override returns (bool) {
         _safeTransferCheck(from, amount);
         return super.transferFrom(from, to, amount);
-    }
+    }` : ""}
 }`;
+    
+    console.log("Generated Contract Code: ", contractCode); // Add this to debug
 
     setGeneratedCode(contractCode);
 
@@ -81,13 +83,13 @@ contract ${tokenName}Token is ERC20, Ownable, ERC20Permit {
         <span className="text-sm md:text-base">Back</span>
       </button>
 
-      <main className="flex flex-col items-center justify-center w-full min-h-screen px-6 md:px-10 lg:px-20 space-y-8 py-6">
-        <h1 className="text-3xl md:text-4xl font-bold text-white text-center pt-48">
-          TokenX
-        </h1>
-        <p className="text-sm md:text-base text-gray-400 text-center max-w-lg">
-          Create your own Xennium-like token with Last Coin Transfer Restriction (LCTR).
-        </p>
+      <main className="flex flex-col items-center pt-32 sm:pt-40 px-4 sm:px-6 lg:px-10 gap-10 sm:gap-16">
+          <h1 className="text-4xl sm:text-6xl font-bold text-white text-center flex items-center gap-2 sm:gap-3">
+            TokenX 
+          </h1>
+          <p className="text-gray-400 text-center text-sm sm:text-base mt-2">
+            Create your own cryptocurrency, Powered by Xennium.
+          </p>
 
         {/* Form Inputs */}
         <div className="flex flex-col space-y-4 w-full max-w-md">
@@ -112,6 +114,32 @@ contract ${tokenName}Token is ERC20, Ownable, ERC20Permit {
             onChange={(e) => setSupplyLimit(e.target.value)}
             className="px-4 py-3 w-full border border-gray-700 bg-gray-800 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-600 text-center"
           />
+
+          {/* LCTR Checkbox */}
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              checked={lctrEnabled}
+              onChange={(e) => setLctrEnabled(e.target.checked)}
+              className="h-4 w-4 text-purple-600 border-gray-600 rounded"
+            />
+            <label className="ml-2 text-gray-400 text-sm">
+              Enable Last Coin Transfer Restriction (LCTR)
+            </label>
+          </div>
+
+          {/* ERC20Permit Checkbox */}
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              checked={permitEnabled}
+              onChange={(e) => setPermitEnabled(e.target.checked)}
+              className="h-4 w-4 text-purple-600 border-gray-600 rounded"
+            />
+            <label className="ml-2 text-gray-400 text-sm">
+              Enable ERC20Permit (for gasless transactions)
+            </label>
+          </div>
         </div>
 
         {/* Error Message */}

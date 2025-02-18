@@ -48,41 +48,31 @@ export default function MintPassport() {
     }
     setMinting(false);
   };
-  
 
   return (
-    <div className="relative min-h-screen bg-[#121212] text-gray-200 flex flex-col items-center">
+    <div className="relative min-h-screen bg-[#121212] text-gray-200 flex flex-col justify-between">
       <Navbar />
 
       {/* Back Button */}
-            <button
-              onClick={() => router.back()}
-              className="absolute top-6 left-6 flex items-center text-gray-400 hover:text-purple-500 transition pt-28 pl-10"
-            >
-              <FaArrowLeft className="mr-2" />
-              <span className="text-sm md:text-base">Back</span>
-            </button>
+      <button
+        onClick={() => router.back()}
+        className="absolute top-6 left-6 flex items-center text-gray-400 hover:text-purple-500 transition pt-28 pl-10"
+      >
+        <FaArrowLeft className="mr-2" />
+        <span className="text-sm md:text-base">Back</span>
+      </button>
 
       {/* Connect Button Outside the Container */}
       <div className="absolute top-6 right-6 pt-32">
         <ContractButton />
       </div>
 
-      {/* Back Button */}
-      <button
-        onClick={() => router.back()}
-        className="absolute top-6 left-6 flex items-center text-gray-400 hover:text-purple-500 transition"
-      >
-        <FaArrowLeft className="mr-2" />
-        <span className="text-sm md:text-base">Back</span>
-      </button>
-
-      <main className="flex flex-col items-center justify-center flex-grow px-6 md:px-10 lg:px-20">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4 text-white text-center">
-          IdentityX Passport
+      <main className="flex flex-col items-center pt-32 sm:pt-40 px-4 sm:px-6 lg:px-10 gap-10 sm:gap-16 flex-grow">
+        <h1 className="text-4xl sm:text-6xl font-bold text-white text-center flex items-center gap-2 sm:gap-3">
+          IdentityX 
         </h1>
-        <p className="text-sm md:text-base text-gray-400 mb-6 text-center max-w-lg">
-          Mint your IdentityX Passport to interact with the Xennium ecosystem securely and seamlessly.
+        <p className="text-gray-400 text-center text-sm sm:text-base mt-2">
+          Mint our IDXP DID Passport for exclusive rights, Powered by Xennium.
         </p>
 
         <div className="bg-[#1a1a1a] p-8 rounded-xl shadow-md text-center w-full max-w-md">

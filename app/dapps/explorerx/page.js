@@ -10,7 +10,7 @@ export default function ExploreToolPage() {
   const router = useRouter();
 
   return (
-    <div className="relative min-h-screen bg-[#121212] text-gray-200">
+    <div className="relative min-h-screen flex flex-col bg-[#121212] text-gray-200">
       <Navbar />
 
       {/* Back Button */}
@@ -22,18 +22,18 @@ export default function ExploreToolPage() {
         <span className="text-sm md:text-base">Back</span>
       </button>
 
-      <main className="flex flex-col items-center justify-center min-h-screen px-6 md:px-10 lg:px-20">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4 text-white text-center">
+      <main className="flex flex-col items-center pt-32 sm:pt-40 px-4 sm:px-6 lg:px-10 gap-10 sm:gap-16 flex-grow">
+        <h1 className="text-4xl sm:text-6xl font-bold text-white text-center flex items-center gap-2 sm:gap-3">
           ExplorerX
         </h1>
-        <p className="text-sm md:text-base text-gray-400 mb-6 text-center max-w-lg">
-          The Xennium Explorer helps users track transactions, explore blockchain data, and interact with the network.
+        <p className="text-gray-400 text-center text-sm sm:text-base mt-2">
+          Track transactions, Explore blockchain data, Powered by Xennium
         </p>
         <ExplorerTool />
       </main>
 
       {/* Footer */}
-      <footer className="mt-16 sm:mt-24 py-8 text-center text-gray-400 text-sm border-t border-gray-700">
+      <footer className="py-8 text-center text-gray-400 text-sm border-t border-gray-700 mt-auto">
         <p>&copy; 2025 Xennium. All rights reserved.</p>
       </footer>
     </div>
