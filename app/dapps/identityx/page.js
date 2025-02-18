@@ -38,7 +38,7 @@ export default function MintPassport() {
       console.log("Passport minted successfully!");
     } catch (error) {
       console.error("Minting failed:", error);
-
+      
       // Ensure error is safely accessed
       if (error instanceof Error) {
         setErrorMessage(error.message);
@@ -53,30 +53,25 @@ export default function MintPassport() {
     <div className="relative min-h-screen bg-[#121212] text-gray-200 flex flex-col justify-between">
       <Navbar />
 
-      {/* Back Button */}
+      {/* Back Button (hidden on small devices) */}
       <button
         onClick={() => router.back()}
-        className="absolute top-6 left-6 flex items-center text-gray-400 hover:text-purple-500 transition pt-28 pl-10"
+        className="absolute top-6 left-6 text-gray-400 hover:text-purple-500 transition pt-28 pl-10 md:block hidden"
       >
         <FaArrowLeft className="mr-2" />
-        <span className="text-sm md:text-base">Back</span>
       </button>
-
-      {/* Connect Button Outside the Container */}
-      <div className="absolute top-6 right-6 pt-32">
-        <ConnectWallet />
-      </div>
 
       <main className="flex flex-col items-center pt-32 sm:pt-40 px-4 sm:px-6 lg:px-10 gap-10 sm:gap-16 flex-grow">
         <h1 className="text-4xl sm:text-6xl font-bold text-white text-center flex items-center gap-2 sm:gap-3">
           IdentityX
         </h1>
-        <p className="text-gray-400 text-center text-sm sm:text-base mt-2">
-          Mint our IDXP DID Passport for exclusive rights, Powered by Xennium.
-        </p>
-          
 
         <div className="bg-[#1a1a1a] p-8 rounded-xl shadow-md text-center w-full max-w-md">
+          {/* Connect Wallet Button Above the Mint Button */}
+          <div className="mb-6">
+            <ConnectWallet />
+          </div>
+
           <button
             onClick={handleMint}
             disabled={minting}
@@ -84,7 +79,7 @@ export default function MintPassport() {
           >
             {minting ? (
               <>
-                <Loader2 className="animate-spin" />
+                <Loader2 className="animate-spin" size={20} />
                 <span>Minting...</span>
               </>
             ) : (

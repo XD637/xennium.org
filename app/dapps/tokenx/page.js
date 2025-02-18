@@ -58,6 +58,7 @@ contract ${tokenName}Token is ERC20, Ownable ${permitEnabled ? ", ERC20Permit" :
         _safeTransferCheck(from, amount);
         return super.transferFrom(from, to, amount);
     }` : ""}
+
 }`;
     
     console.log("Generated Contract Code: ", contractCode); // Add this to debug
@@ -77,19 +78,15 @@ contract ${tokenName}Token is ERC20, Ownable ${permitEnabled ? ", ERC20Permit" :
       {/* Back Button */}
       <button
         onClick={() => router.back()}
-        className="absolute top-6 left-6 flex items-center text-gray-400 hover:text-purple-500 transition pt-28 pl-10"
+        className="absolute top-6 left-6 text-gray-400 hover:text-purple-500 transition pt-28 pl-10 md:block hidden"
       >
         <FaArrowLeft className="mr-2" />
-        <span className="text-sm md:text-base">Back</span>
       </button>
 
       <main className="flex flex-col items-center pt-32 sm:pt-40 px-4 sm:px-6 lg:px-10 gap-10 sm:gap-16">
-          <h1 className="text-4xl sm:text-6xl font-bold text-white text-center flex items-center gap-2 sm:gap-3">
-            TokenX 
-          </h1>
-          <p className="text-gray-400 text-center text-sm sm:text-base mt-2">
-            Create your own cryptocurrency, Powered by Xennium.
-          </p>
+        <h1 className="text-4xl sm:text-6xl font-bold text-white text-center flex items-center gap-2 sm:gap-3">
+          TokenX 
+        </h1>
 
         {/* Form Inputs */}
         <div className="flex flex-col space-y-4 w-full max-w-md">
@@ -98,21 +95,21 @@ contract ${tokenName}Token is ERC20, Ownable ${permitEnabled ? ", ERC20Permit" :
             placeholder="Token Name"
             value={tokenName}
             onChange={(e) => setTokenName(e.target.value)}
-            className="px-4 py-3 w-full border border-gray-700 bg-gray-800 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-600 text-center"
+            className="px-4 py-3 w-full border border-gray-700 bg-gray-800 text-white rounded text-center"
           />
           <input
             type="text"
             placeholder="Symbol"
             value={symbol}
             onChange={(e) => setSymbol(e.target.value)}
-            className="px-4 py-3 w-full border border-gray-700 bg-gray-800 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-600 text-center"
+            className="px-4 py-3 w-full border border-gray-700 bg-gray-800 text-white rounded text-center"
           />
           <input
             type="number"
             placeholder="Max Supply (in tokens)"
             value={supplyLimit}
             onChange={(e) => setSupplyLimit(e.target.value)}
-            className="px-4 py-3 w-full border border-gray-700 bg-gray-800 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-600 text-center"
+            className="px-4 py-3 w-full border border-gray-700 bg-gray-800 text-white rounded text-center"
           />
 
           {/* LCTR Checkbox */}

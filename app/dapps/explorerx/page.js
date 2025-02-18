@@ -13,22 +13,18 @@ export default function ExploreToolPage() {
     <div className="relative min-h-screen flex flex-col bg-[#121212] text-gray-200">
       <Navbar />
 
-      {/* Back Button */}
+      {/* Back Button (hidden on small devices) */}
       <button
         onClick={() => router.back()}
-        className="absolute top-6 left-6 flex items-center text-gray-400 hover:text-purple-500 transition pt-28 pl-10"
+        className="absolute top-6 left-6 text-gray-400 hover:text-purple-500 transition pt-28 pl-10 md:block hidden"
       >
         <FaArrowLeft className="mr-2" />
-        <span className="text-sm md:text-base">Back</span>
       </button>
 
       <main className="flex flex-col items-center pt-32 sm:pt-40 px-4 sm:px-6 lg:px-10 gap-10 sm:gap-16 flex-grow">
         <h1 className="text-4xl sm:text-6xl font-bold text-white text-center flex items-center gap-2 sm:gap-3">
           ExplorerX
         </h1>
-        <p className="text-gray-400 text-center text-sm sm:text-base mt-2">
-          Track transactions, Explore blockchain data, Powered by Xennium
-        </p>
         <ExplorerTool />
       </main>
 
