@@ -8,21 +8,21 @@ const FAQSection = () => {
       </h2>
       <div className="space-y-4">
         <details className="bg-[#2a2a2a] p-4 rounded-lg shadow-md hover:bg-[#3a3a3a] transition-all">
-          <summary className="text-lg text-white cursor-pointer select-none">What is Xennium Token?</summary>
+          <summary className="text-lg text-white cursor-pointer select-none">What is Xennium?</summary>
           <p className="mt-2 text-gray-400">
-            Xennium Token (XENX) is a next-gen cryptocurrency designed with innovative features like decentralized governance and the Last Coin Transfer Restriction (LCTR) to empower secure identity management and decision-making.
-          </p>
-        </details>
-        <details className="bg-[#2a2a2a] p-4 rounded-lg shadow-md hover:bg-[#3a3a3a] transition-all">
-          <summary className="text-lg text-white cursor-pointer select-none">How do I participate in governance?</summary>
-          <p className="mt-2 text-gray-400">
-            Hold Xennium Tokens and vote on community-driven proposals. Your token holdings give you a voice in shaping the future of the Xennium ecosystem.
+            Xennium is an innovative token with the Last Coin Transfer Restriction (LCTR) feature, ensuring secure identity management and decentralized governance while offering multiple dApps.
           </p>
         </details>
         <details className="bg-[#2a2a2a] p-4 rounded-lg shadow-md hover:bg-[#3a3a3a] transition-all">
           <summary className="text-lg text-white cursor-pointer select-none">What is the LCTR feature?</summary>
           <p className="mt-2 text-gray-400">
-            The Last Coin Transfer Restriction (LCTR) ensures that the final token in circulation cannot be transferred, maintaining integrity and preserving governance and identity functions.
+            The Last Coin Transfer Restriction (LCTR) locks the last coin in any wallet forever, preventing its transfer. This ensures integrity, identity verification, and governance participation.
+          </p>
+        </details>
+        <details className="bg-[#2a2a2a] p-4 rounded-lg shadow-md hover:bg-[#3a3a3a] transition-all">
+          <summary className="text-lg text-white cursor-pointer select-none">What dApps does Xennium offer?</summary>
+          <p className="mt-2 text-gray-400">
+            Xennium powers multiple dApps, including token creation, governance, identity management, and other decentralized applications built for a secure and scalable ecosystem.
           </p>
         </details>
       </div>
