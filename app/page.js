@@ -9,7 +9,7 @@ import Navbar from "./components/Navbar";
 const Cube = dynamic(() => import("./components/Cube"), { ssr: false });
 const CustomSnippet = dynamic(() => import("./components/CustomSnippet"), { ssr: false });
 const HeroSection = dynamic(() => import("./components/HeroSection"), { ssr: false });
-const ContractButton = dynamic(() => import("./components/Contract"), { ssr: false});
+const CustomButton = dynamic(() => import("./components/CustomButton"));
 
 export default function Home() {
   const [code, setCode] = useState(""); 
@@ -64,7 +64,9 @@ export default function Home() {
 
         {/* Hero Section */}
         <HeroSection />
-        <ContractButton />
+        
+        {/* Explore Dapps Button */}
+        <CustomButton name="Explore Dapps" route="/dapps" />
 
         {/* Cube Section */}
         <div className="relative flex items-center justify-center h-[250px]">
@@ -82,7 +84,6 @@ export default function Home() {
             <CustomSnippet title={title} code={code} />
           )}
         </section>
-
 
         {/* Footer */}
         <div>

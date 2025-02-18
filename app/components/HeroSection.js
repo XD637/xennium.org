@@ -7,8 +7,8 @@ const HeroSection = () => {
       <p className="text-md text-gray-400 mt-3 max-w-2xl mx-auto">
         Xennium (XENX) is built on
         <code className="text-purple-500 rounded px-2">Polygon PoS</code>. With its
-        unique property, <code className="text-purple-500 rounded px-2">&apos;Last Coin Transfer Restriction (LCTR)&apos;</code>, the last coin in any wallet
-        is <code className="text-purple-500 rounded px-2">locked forever!</code>
+        unique property, <code className="text-purple-500 rounded px-2">&apos;Last Coin Transfer Restriction (LCTR)&apos;</code>, The Last Coin in any wallet
+        is now <code className="text-purple-500 rounded px-2">Locked Forever!</code>
       </p>
     </main>
   );

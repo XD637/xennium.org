@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { useWriteContract } from "wagmi";
 import { Loader2 } from "lucide-react";
-import ContractButton from "@/app/components/Contract";
-import Navbar from "@/app/components/Navbar";
+import ConnectWallet from "../../components/ConnectWallet";
+import Navbar from "../../components/Navbar";
 import { useRouter } from "next/navigation";
 import { FaArrowLeft } from "react-icons/fa";
 
@@ -38,7 +38,7 @@ export default function MintPassport() {
       console.log("Passport minted successfully!");
     } catch (error) {
       console.error("Minting failed:", error);
-      
+
       // Ensure error is safely accessed
       if (error instanceof Error) {
         setErrorMessage(error.message);
@@ -64,16 +64,17 @@ export default function MintPassport() {
 
       {/* Connect Button Outside the Container */}
       <div className="absolute top-6 right-6 pt-32">
-        <ContractButton />
+        <ConnectWallet />
       </div>
 
       <main className="flex flex-col items-center pt-32 sm:pt-40 px-4 sm:px-6 lg:px-10 gap-10 sm:gap-16 flex-grow">
         <h1 className="text-4xl sm:text-6xl font-bold text-white text-center flex items-center gap-2 sm:gap-3">
-          IdentityX 
+          IdentityX
         </h1>
         <p className="text-gray-400 text-center text-sm sm:text-base mt-2">
           Mint our IDXP DID Passport for exclusive rights, Powered by Xennium.
         </p>
+          
 
         <div className="bg-[#1a1a1a] p-8 rounded-xl shadow-md text-center w-full max-w-md">
           <button
