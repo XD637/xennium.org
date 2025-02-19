@@ -2,13 +2,11 @@
 
 import React from 'react'
 import Head from 'next/head'
-import dynamic from 'next/dynamic'
 import Navbar from '../components/Navbar'
 import { motion } from 'framer-motion'
 import { MessageCircle, Twitter, Send, Users } from 'lucide-react'
 import { FaGithub } from 'react-icons/fa'  // Import GitHub icon from react-icons
-
-const FAQSection = dynamic(() => import("../components/FAQSection"), { ssr: false});
+import CommunityStats from '../components/Stats'
 
 const communityPlatforms = {
   Discord: [
@@ -125,9 +123,11 @@ export default function Community() {
           ].map((platform, index) => (
             <CommunitySection key={index} number={index + 1} reversed={index % 2 !== 0} {...platform} />
           ))}
+          <CommunityStats/>
         </main>
-        {/* FAQ Section */}
-        <div className='pt-10'><FAQSection/></div>
+
+        
+        
         <footer className="mt-12 sm:mt-16 py-6 text-center text-gray-400 text-xs sm:text-sm border-t border-gray-700">
           <p>&copy; {new Date().getFullYear()} Xennium. All rights reserved.</p>
         </footer>

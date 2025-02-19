@@ -38,7 +38,7 @@ const Navbar = () => {
       label: (
         <>
           Dapps
-          <sup className="text-xs bg-purple-500 text-white px-1 rounded ml-1">Beta</sup>
+          <sup className="text-xs  text-white px-1 rounded ml-1">Beta</sup>
         </>
       ),
     },
@@ -47,7 +47,7 @@ const Navbar = () => {
       label: (
         <>
           Airdrops
-          <sup className="text-xs bg-purple-500 text-white px-1 rounded ml-1">Limited</sup>
+          <sup className="text-xs  text-white px-1 rounded ml-1">Limited</sup>
         </>
       ),
       target: "_blank",
@@ -77,7 +77,7 @@ const Navbar = () => {
           scrollingDown ? "-translate-y-24" : "translate-y-0"
         }`}
       >
-        <div className="flex-1 text-4xl font-extrabold pl-4">Xennium</div>
+        <div className="flex-1 text-5xl font-extrabold pl-4">Xennium</div>
 
         {isMobile && (
           <button
@@ -97,7 +97,7 @@ const Navbar = () => {
                 href={link.href}
                 target={link.target || "_self"}
                 rel={link.rel || ""}
-                className="text-md font-medium hover:text-purple-400 transition-colors duration-300"
+                className="text-md font-medium hover:text-purple-500 transition-colors duration-300"
               >
                 {link.label}
               </Link>
@@ -114,7 +114,7 @@ const Navbar = () => {
             rel="noopener noreferrer"
             className="text-md font-semibold text-purple-400 hover:text-purple-300 border border-purple-400 px-4 py-2 rounded-lg transition-colors duration-300"
           >
-            Buy XENX
+            Get XENX
           </Link>
         
           <SignInSignOutButton />
@@ -145,7 +145,7 @@ const Navbar = () => {
             rel="noopener noreferrer"
             className="text-xl font-semibold text-purple-400 hover:text-purple-300 border border-purple-400 px-4 py-2 rounded-lg"
           >
-            Buy XENX
+            Get XENX
           </Link>
 
           <div className="mt-8 pt-20">

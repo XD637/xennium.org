@@ -35,7 +35,7 @@ const Cube = () => {
 
     camera.position.set(0, 0, 5);
 
-    // Animation loop (no changes needed here)
+    // Animation loop
     const animate = () => {
       cube.rotation.x += 0.01;
       cube.rotation.y += 0.01;
@@ -58,8 +58,9 @@ const Cube = () => {
   }, [isInitialized]);
 
   return (
-    <div className="relative" style={{ width: "250px", height: "250px" }}>
-      <canvas ref={canvasRef} style={{ display: "block", width: "100%", height: "100%" }} />
+    <div className="relative flex flex-col items-center" style={{ width: "250px", height: "280px" }}>
+      <canvas ref={canvasRef} style={{ display: "block", width: "100%", height: "250px" }} />
+      <p className="text-xs text-gray-500 absolute bottom-[40px]">Powered by Xennium</p>
     </div>
   );
 };

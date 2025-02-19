@@ -10,6 +10,7 @@ const Cube = dynamic(() => import("./components/Cube"), { ssr: false });
 const CustomSnippet = dynamic(() => import("./components/CustomSnippet"), { ssr: false });
 const HeroSection = dynamic(() => import("./components/HeroSection"), { ssr: false });
 const CustomButton = dynamic(() => import("./components/CustomButton"));
+const FAQSection = dynamic(() => import("./components/FAQSection"), { ssr: false});
 
 export default function Home() {
   const [code, setCode] = useState(""); 
@@ -83,6 +84,9 @@ export default function Home() {
             <CustomSnippet title={title} code={code} />
           )}
         </section>
+
+        {/* FAQ Section */}
+        <div className='pt-4'><FAQSection/></div>
 
         {/* Footer */}
         <div>
