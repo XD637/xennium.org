@@ -72,7 +72,6 @@ export default function Home() {
         <div className="relative flex items-center justify-center h-[250px]">
           <Cube />
         </div>
-
         {/* Code Snippet Section */}
         <section className="relative z-10 pt-12 px-8 sm:px-16 text-left mb-12">
           <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-12 text-center">

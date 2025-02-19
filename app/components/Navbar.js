@@ -27,6 +27,9 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [prevScrollY]);
 
+  const quickswapUrl = "https://quickswap.exchange/#/swap?currency0=ETH&currency1=0x0F29965ca5f1111B073EfA37A739Dd2faFab11E0&swapIndex=2";
+  const polygonscanUrl = "https://polygonscan.com/token/0x0F29965ca5f1111B073EfA37A739Dd2faFab11E0";
+
   const links = [
     { href: "/", label: "Home" },
     { href: "/community", label: "Community" },
@@ -35,17 +38,7 @@ const Navbar = () => {
       label: (
         <>
           Dapps
-          <sup
-            style={{
-              color: "#fff",
-              padding: "1px 4px",
-              borderRadius: "4px",
-              fontSize: "10px",
-              marginLeft: "3px",
-            }}
-          >
-            Beta
-          </sup>
+          <sup className="text-xs bg-purple-500 text-white px-1 rounded ml-1">Beta</sup>
         </>
       ),
     },
@@ -54,32 +47,21 @@ const Navbar = () => {
       label: (
         <>
           Airdrops
-          <sup
-            style={{
-              color: "#fff",
-              padding: "1px 4px",
-              borderRadius: "4px",
-              fontSize: "10px",
-              marginLeft: "3px",
-            }}
-          >
-            Limited
-          </sup>
+          <sup className="text-xs bg-purple-500 text-white px-1 rounded ml-1">Limited</sup>
         </>
       ),
-      target: "_blank", // Open in a new tab
+      target: "_blank",
       rel: "noopener noreferrer",
     },
   ];
 
-  // Set isMobile based on window size
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768); // Adjust the breakpoint as needed
+      setIsMobile(window.innerWidth <= 768);
     };
 
     window.addEventListener("resize", checkMobile);
-    checkMobile(); // Run on mount
+    checkMobile();
 
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
@@ -91,41 +73,31 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 w-full flex items-center justify-between space-x-8 z-50 backdrop-blur-md bg-transparent text-white py-8 px-6 border-b-2 border-gray-800 rounded-b-lg transition-transform duration-300 ${
+        className={`fixed top-0 left-0 w-full flex items-center justify-between z-50 backdrop-blur-md bg-transparent text-white py-6 px-6 border-b border-gray-800 transition-transform duration-300 ${
           scrollingDown ? "-translate-y-24" : "translate-y-0"
         }`}
       >
-        {/* Left side: Xennium */}
-        <div className="flex-1 text-4xl font-extrabold pl-8">Xennium</div>
+        <div className="flex-1 text-4xl font-extrabold pl-4">Xennium</div>
 
-        {/* Mobile: Hamburger Menu */}
         {isMobile && (
           <button
-            className="md:hidden flex flex-col items-center pr-4 z-50"
+            className="md:hidden pr-4 z-50"
             onClick={toggleSidebar}
-            aria-label={sidebarOpen ? "Close Menu" : "Open Menu"} // Add aria-label for accessibility
+            aria-label={sidebarOpen ? "Close Menu" : "Open Menu"}
           >
-            {sidebarOpen ? (
-              <span className="text-3xl text-white">×</span>
-            ) : (
-              <>
-                <span className="block w-6 h-0.5 bg-white mb-1"></span>
-                <span className="block w-6 h-0.5 bg-white"></span>
-              </>
-            )}
+            {sidebarOpen ? <span className="text-3xl">×</span> : "☰"}
           </button>
         )}
 
-        {/* Middle: Navbar links centered for larger screens */}
         {!isMobile && (
-          <div className="flex flex-grow justify-center space-x-8 md:space-x-12">
+          <div className="flex flex-grow justify-center space-x-8">
             {links.map((link, index) => (
               <Link
                 key={index}
                 href={link.href}
                 target={link.target || "_self"}
                 rel={link.rel || ""}
-                className="text-md font-medium hover:text-purple-500 transition-colors duration-300 flex items-center"
+                className="text-md font-medium hover:text-purple-400 transition-colors duration-300"
               >
                 {link.label}
               </Link>
@@ -133,17 +105,25 @@ const Navbar = () => {
           </div>
         )}
 
-        {/* Right side: Polygonscan icon and SignIn/SignOut Button */}
-{!isMobile && (
-  <div className="flex-1 flex justify-end items-center pr-8 md:pr-16 space-x-16 ">
-
-    <SignInSignOutButton />
-  </div>
-)}
-
+        {!isMobile && (
+          <div className="flex-1 flex justify-end items-center space-x-8">
+          {/* Buy XENX Link */}
+          <Link
+            href={quickswapUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-md font-semibold text-purple-400 hover:text-purple-300 border border-purple-400 px-4 py-2 rounded-lg transition-colors duration-300"
+          >
+            Buy XENX
+          </Link>
+        
+          <SignInSignOutButton />
+        </div>
+        
+        )}
       </nav>
 
-      {/* Sidebar for mobile */}
+      {/* Sidebar for Mobile */}
       {isMobile && sidebarOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-90 z-40 flex flex-col items-center justify-center space-y-8">
           {links.map((link, index) => (
@@ -153,14 +133,22 @@ const Navbar = () => {
               target={link.target || "_self"}
               rel={link.rel || ""}
               onClick={() => setSidebarOpen(false)}
-              className="flex items-center text-2xl font-medium text-white hover:text-purple-500 transition-colors duration-300"
+              className="text-2xl font-medium text-white hover:text-purple-500"
             >
               {link.label}
-              {/* Optional symbol for all links */}
-              <span className="ml-2 text-sm text-purple-500">→</span>
             </Link>
           ))}
-          <div className="mt-8">
+          {/* Mobile Buy XENX & Polygonscan */}
+          <Link
+            href={quickswapUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xl font-semibold text-purple-400 hover:text-purple-300 border border-purple-400 px-4 py-2 rounded-lg"
+          >
+            Buy XENX
+          </Link>
+
+          <div className="mt-8 pt-20">
             <SignInSignOutButton />
           </div>
         </div>
