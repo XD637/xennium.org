@@ -46,6 +46,7 @@ export default function Home() {
       {/* SEO Metadata */}
       <Head>
         <title>Xennium Token - Next Gen Crypto with LCTR</title>
+        <link rel="canonical" href="https://xennium.org/" />
         <meta name="description" content="Xennium Token (XENX) is a revolutionary crypto token with Last Coin Transfer Restriction (LCTR), enabling secure governance, decentralized identity, and innovative utilities." />
         <meta name="keywords" content="Xennium, Xennium Token, XENX, crypto, cryptocurrency, blockchain, Web3, governance, decentralized identity" />
         <meta property="og:title" content="Xennium Token - The Future of Crypto" />
