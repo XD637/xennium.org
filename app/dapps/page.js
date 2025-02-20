@@ -38,7 +38,7 @@ export default function Dapps() {
     { title: 'TokenX', description: 'Easily create Xennium-compatible tokens with LCTR security.', path: '/dapps/tokenx', available: true, featuresList: features.TokenX },
     { title: 'ExplorerX', description: 'Analyze blockchain data and explore the Xennium network.', path: '/dapps/explorerx', available: true, featuresList: features.ExplorerX },
     { title: 'GovernanceX', description: 'Participate in decentralized governance by proposing and voting.', available: false, featuresList: features.GovernanceX },
-    { title: 'IdentityX', description: 'Secure your decentralized identity by minting an NFT ID with LCTR.', path: '/dapps/identityx', available: true, featuresList: features.IdentityX },
+    { title: 'IdentityX', description: 'Secure your decentralized identity by minting an NFT ID with LCTR.', path: '/dapps/identityx', available: false, featuresList: features.IdentityX },
   ];
 
   return (

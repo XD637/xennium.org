@@ -5,6 +5,7 @@ import CustomSnippet from "../../components/CustomSnippet"; // Import CustomSnip
 import { FaArrowLeft } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
+
 export default function TokenCreatorPage() {
   const router = useRouter();
   const [tokenName, setTokenName] = useState("");
@@ -118,7 +119,7 @@ contract ${tokenName}Token is ERC20, Ownable ${permitEnabled ? ", ERC20Permit" :
               type="checkbox"
               checked={lctrEnabled}
               onChange={(e) => setLctrEnabled(e.target.checked)}
-              className="h-4 w-4 text-purple-600 border-gray-600 rounded"
+              className="h-4 w-4 text-purple-600 border-gray-600 rounded cursor-pointer checked:bg-purple-600 checked:border-purple-600"
             />
             <label className="ml-2 text-gray-400 text-sm">
               Enable Last Coin Transfer Restriction (LCTR)
@@ -131,7 +132,7 @@ contract ${tokenName}Token is ERC20, Ownable ${permitEnabled ? ", ERC20Permit" :
               type="checkbox"
               checked={permitEnabled}
               onChange={(e) => setPermitEnabled(e.target.checked)}
-              className="h-4 w-4 text-purple-600 border-gray-600 rounded"
+              className="h-4 w-4 text-purple-600 border-gray-600 rounded cursor-pointer checked:bg-purple-600 checked:border-purple-600"
             />
             <label className="ml-2 text-gray-400 text-sm">
               Enable ERC20Permit (for gasless transactions)

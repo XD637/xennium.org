@@ -49,6 +49,7 @@ export default function Home() {
         <link rel="canonical" href="https://xennium.org/" />
         <meta name="description" content="Xennium Token (XENX) is a revolutionary crypto token with Last Coin Transfer Restriction (LCTR), enabling secure governance, decentralized identity, and innovative utilities." />
         <meta name="keywords" content="Xennium, Xennium Token, XENX, crypto, cryptocurrency, blockchain, Web3, governance, decentralized identity" />
+        <meta name="robots" content="index, follow" />
         <meta property="og:title" content="Xennium Token - The Future of Crypto" />
         <meta property="og:description" content="Discover Xennium Token (XENX) – a next-generation cryptocurrency designed for governance, identity, and secure transactions with LCTR." />
         <meta property="og:image" content="/Xen.png" />
@@ -57,6 +58,17 @@ export default function Home() {
         <meta name="twitter:title" content="Xennium Token - Next Gen Crypto" />
         <meta name="twitter:description" content="Explore Xennium Token (XENX) and its groundbreaking Last Coin Transfer Restriction (LCTR) for decentralized governance and identity solutions." />
         <link rel="icon" href="/favicon.ico" sizes="any" />
+
+        {/* Schema.org Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Xennium",
+            "url": "https://xennium.org/",
+            "description": "Xennium Token (XENX) is a revolutionary crypto token with Last Coin Transfer Restriction (LCTR)."
+          })}
+        </script>
       </Head>
 
       {/* Main Container */}
