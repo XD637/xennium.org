@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { Users, Twitter, Database } from 'lucide-react'
+import { Users, Twitter } from 'lucide-react'
+import { FaTelegramPlane } from 'react-icons/fa' // Import Telegram icon
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 
 const staticStats = {
-  discord: 70,
-  twitter: 50,
-  holders: 20,
+  discord: 72,
+  twitter: 56,
+  telegram: 13,
 }
 
 export default function CommunityStats() {
-  const [stats, setStats] = useState({ discord: 0, twitter: 0, holders: 0 })
+  const [stats, setStats] = useState({ discord: 0, twitter: 0, telegram: 0 })
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.5 })
 
   useEffect(() => {
@@ -19,7 +20,7 @@ export default function CommunityStats() {
         setStats((prev) => ({
           discord: Math.min(prev.discord + 1, staticStats.discord),
           twitter: Math.min(prev.twitter + 1, staticStats.twitter),
-          holders: Math.min(prev.holders + 1, staticStats.holders),
+          telegram: Math.min(prev.telegram + 1, staticStats.telegram),
         }))
       }, 50)
 
@@ -36,9 +37,9 @@ export default function CommunityStats() {
       transition={{ duration: 0.8 }}
     >
       {[
-        { icon: <Users size={24} />, label: 'Discord Members', count: stats.discord },
-        { icon: <Twitter size={24} />, label: 'Twitter Followers', count: stats.twitter },
-        { icon: <Database size={24} />, label: 'Holders', count: stats.holders },
+        { icon: <Users size={24} />, label: 'Discord', count: stats.discord },
+        { icon: <Twitter size={24} />, label: 'Twitter', count: stats.twitter },
+        { icon: <FaTelegramPlane size={24} />, label: 'Telegram', count: stats.telegram },
       ].map((item, index) => (
         <motion.div
           key={index}
