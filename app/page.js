@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import Head from "next/head";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import Leaderboard from "./components/Leaderboard";
 
 // Lazy load heavy components
 const Cube = dynamic(() => import("./components/Cube"), { ssr: false });
@@ -86,6 +87,13 @@ export default function Home() {
         <div className="relative flex items-center justify-center h-[250px]">
           <Cube />
         </div>
+        <section className="relative z-10 pt-12 px-8 sm:px-16 text-left mb-12">
+          <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-12 text-center pt-8">
+            Leaderboard
+          </h2>
+        <Leaderboard/>
+        </section>
+
         {/* Code Snippet Section */}
         <section className="relative z-10 pt-12 px-8 sm:px-16 text-left mb-12">
           <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-12 text-center">
