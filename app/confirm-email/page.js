@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { ImSpinner2 } from "react-icons/im"; // Import spinner icon
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 
 export default function ConfirmEmail() {
   const [email, setEmail] = useState("");
@@ -87,10 +87,17 @@ export default function ConfirmEmail() {
 
             <button
               type="submit"
-              className="flex items-center justify-center px-4 py-2 bg-transparent border-2 border-purple-500 rounded-full shadow-lg hover:bg-gradient-to-br hover:from-purple-500 hover:to-indigo-600 hover:scale-105 transition-all duration-300"
+              className="flex items-center justify-center gap-2 px-4 py-2 bg-transparent border-2 border-purple-500 rounded-full shadow-lg hover:bg-gradient-to-br hover:from-purple-500 hover:to-indigo-600 hover:scale-105 transition-all duration-300"
               disabled={isLoading}
             >
-              {isLoading ? "Verifying..." : "Verify Email"}
+              {isLoading ? (
+                <>
+                  <ImSpinner2 className="animate-spin text-lg" />
+                  Verifying...
+                </>
+              ) : (
+                "Verify Email"
+              )}
             </button>
           </form>
         </div>

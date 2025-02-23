@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { ImSpinner2 } from "react-icons/im"; // Import spinner icon
 import Navbar from "../components/Navbar";
 
 export default function PasswordReset() {
@@ -21,14 +22,12 @@ export default function PasswordReset() {
     setMessage("");
     setError("");
 
-    // Check if reset token exists
     if (!resetToken) {
       setError("Invalid or missing reset token.");
       setIsLoading(false);
       return;
     }
 
-    // Check if the passwords match
     if (password !== confirmPassword) {
       setError("Passwords do not match.");
       setIsLoading(false);
@@ -45,7 +44,7 @@ export default function PasswordReset() {
       const data = await response.json();
       if (response.ok) {
         setMessage("Password reset successful! Redirecting to sign in...");
-        setTimeout(() => router.push("/signin"), 3000); // Redirect after 3 seconds
+        setTimeout(() => router.push("/signin"), 3000);
       } else {
         setError(data.message || "Failed to reset password.");
       }
@@ -65,7 +64,7 @@ export default function PasswordReset() {
             Reset Your Password
           </h1>
           {error && <p className="text-purple-500 text-center">{error}</p>}
-            {message && <p className="text-purple-500 text-center">{message}</p>}
+          {message && <p className="text-purple-500 text-center">{message}</p>}
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
             <div className="flex flex-col gap-2">
               <label htmlFor="password" className="text-gray-300">
@@ -97,13 +96,16 @@ export default function PasswordReset() {
               />
             </div>
 
-
             <button
               type="submit"
               className="flex items-center justify-center px-4 py-2 bg-transparent border-2 border-purple-500 rounded-full shadow-lg hover:bg-gradient-to-br hover:from-purple-500 hover:to-indigo-600 hover:scale-105 transition-all duration-300 disabled:opacity-50"
               disabled={isLoading}
             >
-              {isLoading ? "Resetting..." : "Reset Password"}
+              {isLoading ? (
+                <ImSpinner2 className="animate-spin text-2xl" />
+              ) : (
+                "Reset Password"
+              )}
             </button>
           </form>
         </div>

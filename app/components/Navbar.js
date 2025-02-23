@@ -106,7 +106,7 @@ const Navbar = () => {
         )}
 
         {!isMobile && (
-          <div className="flex-1 flex justify-end items-center space-x-8">
+          <div className="flex-1 flex justify-end items-center space-x-8 pr-4">
           {/* Buy XENX Link */}
           <Link
             href={quickswapUrl}

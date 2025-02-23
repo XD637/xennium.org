@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ImSpinner2 } from "react-icons/im"; // Import spinner icon
 import Navbar from "../components/Navbar";
 
 export default function ResetPasswordRequest() {
@@ -39,12 +40,12 @@ export default function ResetPasswordRequest() {
     <div className="relative min-h-screen bg-[#121212] text-gray-200">
       <Navbar />
       <main className="flex flex-col items-center justify-center pt-24 sm:pt-32 px-4 sm:px-8 pb-20">
-        <div className="relative p-4 rounded-md bg-[#2d2d2d] text-white border border-gray-700 shadow-lg w-full max-w-lg mx-auto ">
+        <div className="relative p-4 rounded-md bg-[#2d2d2d] text-white border border-gray-700 shadow-lg w-full max-w-lg mx-auto">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-center mb-6">
             Reset Your Password
           </h1>
-           {/* Display success message without altering UI */}
-           {message && <p className="text-purple-500 text-center">{message}</p>}
+          {/* Display success message without altering UI */}
+          {message && <p className="text-purple-500 text-center">{message}</p>}
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
             <div className="flex flex-col gap-2">
               <label htmlFor="email" className="text-gray-300">
@@ -69,7 +70,11 @@ export default function ResetPasswordRequest() {
               className="flex items-center justify-center px-4 py-2 bg-transparent border-2 border-purple-500 rounded-full shadow-lg hover:bg-gradient-to-br hover:from-purple-500 hover:to-indigo-600 hover:scale-105 transition-all duration-300 disabled:opacity-50"
               disabled={isLoading}
             >
-              {isLoading ? "Sending..." : "Send Password Reset Link"}
+              {isLoading ? (
+                <ImSpinner2 className="animate-spin text-2xl" />
+              ) : (
+                "Send Password Reset Link"
+              )}
             </button>
           </form>
         </div>

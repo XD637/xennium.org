@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation"; 
+import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
+import { ImSpinner2 } from "react-icons/im"; // Import spinner icon
 import Navbar from "../components/Navbar";
 
 export default function SignIn() {
@@ -98,10 +99,10 @@ export default function SignIn() {
 
             <button
               type="submit"
-              className="flex items-center justify-center space-x-3 px-4 py-2 bg-transparent border-2 border-purple-500 text-white rounded-full shadow-lg hover:bg-gradient-to-br hover:from-purple-500 hover:to-indigo-600 hover:scale-105 transition-all duration-300"
+              className="flex items-center justify-center space-x-3 px-4 py-2 bg-transparent border-2 border-purple-500 text-white rounded-full shadow-lg hover:bg-gradient-to-br hover:from-purple-500 hover:to-indigo-600 hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               disabled={isSigningIn}
             >
-              <span>{isSigningIn ? "Signing In..." : "Sign In"}</span>
+              {isSigningIn ? <ImSpinner2 className="animate-spin text-xl" /> : <span>Sign In</span>}
             </button>
 
             <div className="flex items-center gap-2 my-4">
