@@ -80,7 +80,7 @@ export default function Home() {
         <HeroSection />
         
         {/* Explore Dapps Button */}
-        <CustomButton name="Explore Dapps" route="/dapps" />
+        <CustomButton name="Get Started" route="/signup" />
 
         {/* Cube Section */}
         <div className="relative flex items-center justify-center h-[250px]">
@@ -100,7 +100,6 @@ export default function Home() {
 
         {/* FAQ Section */}
         <div className='pt-4'><FAQSection/></div>
-
         {/* Footer */}
         <div>
           <Footer />
