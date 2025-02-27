@@ -17,10 +17,10 @@ const Leaderboard = () => {
     <div className="w-full max-w-3xl mx-auto bg-[#1a1a1a] p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg border border-gray-700">
       <h2 className="text-lg sm:text-2xl md:text-3xl font-semibold text-white flex items-center gap-2">
         <Crown size={24} className="text-yellow-400" />
-        Xennium Leaderboard
+        Top Holders
       </h2>
       <p className="text-gray-400 mt-2 text-xs sm:text-sm md:text-base">
-        Top holders of XENX tokens
+        By Xennium
       </p>
 
       <div className="mt-4 sm:mt-6 space-y-3 sm:space-y-4">
@@ -30,7 +30,7 @@ const Leaderboard = () => {
             className={`flex items-center justify-between bg-[#252525] p-2 sm:p-3 md:p-4 rounded-lg ${
               index < 3 ? 'border-l-4 border-yellow-400' : ''
             }`}
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1 }}
           >
             <div className="flex items-center gap-2 sm:gap-3">
               <span className="text-sm sm:text-lg md:text-xl font-bold text-gray-300">#{index + 1}</span>

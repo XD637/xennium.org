@@ -5,6 +5,7 @@ import Head from "next/head";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Leaderboard from "./components/Leaderboard";
+import Partnerships from "./components/Partnerships";
 
 // Lazy load heavy components
 const Cube = dynamic(() => import("./components/Cube"), { ssr: false });
@@ -89,9 +90,16 @@ export default function Home() {
         </div>
         <section className="relative z-10 pt-12 px-8 sm:px-16 text-left mb-12">
           <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-12 text-center pt-8">
-            Leaderboard
+            Weekly Leaderboard
           </h2>
         <Leaderboard/>
+        </section>
+
+        <section className="relative z-10 pt-12 px-8 sm:px-16 text-left mb-12">
+          <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-12 text-center pt-8">
+            Partnerships
+          </h2>
+        <Partnerships/>
         </section>
 
         {/* Code Snippet Section */}
