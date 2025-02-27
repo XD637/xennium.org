@@ -18,7 +18,7 @@ const Partnerships = () => {
         {/* Left Section - Image */}
         <div className="relative w-full sm:w-1/3 flex justify-center">
           <span className="absolute top-2 left-6 bg-black bg-opacity-50 text-white text-xs sm:text-sm px-2 py-1 rounded">
-            90 $POL
+            40 $POL
           </span>
           <Image
             src="/collabs/mint-nft.jpg"
