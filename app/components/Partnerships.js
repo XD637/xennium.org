@@ -17,9 +17,11 @@ const Partnerships = () => {
       <div className="mt-6 flex flex-col sm:flex-row items-center sm:items-start bg-[#252525] p-4 sm:p-6 rounded-lg">
         {/* Left Section - Image */}
         <div className="relative w-full sm:w-1/3 flex justify-center">
-          <span className="absolute top-2 left-6 bg-black bg-opacity-50 text-white text-xs sm:text-sm px-2 py-1 rounded">
-            40 $POL
-          </span>
+        <span className="absolute top-2 left-9 sm:left-6 bg-black bg-opacity-50 text-white text-xs sm:text-sm px-2 py-1 rounded">
+  40 $POL
+</span>
+
+
           <Image
             src="/collabs/mint-nft.jpg"
             alt="SpicyGnomes"

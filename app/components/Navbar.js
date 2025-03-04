@@ -27,8 +27,9 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [prevScrollY]);
 
-  const quickswapUrl = "https://quickswap.exchange/#/swap?currency0=ETH&currency1=0x0F29965ca5f1111B073EfA37A739Dd2faFab11E0&swapIndex=2";
+  const airdropUrl = "https://airdrop.xennium.org/";
   const polygonscanUrl = "https://polygonscan.com/token/0x0F29965ca5f1111B073EfA37A739Dd2faFab11E0";
+  
 
   const links = [
     { href: "/", label: "Home" },
@@ -42,17 +43,6 @@ const Navbar = () => {
           <sup className="text-xs  text-white px-1 rounded ml-1">Beta</sup>
         </>
       ),
-    },
-    {
-      href: "https://airdrop.xennium.org/",
-      label: (
-        <>
-          Airdrops
-          <sup className="text-xs  text-white px-1 rounded ml-1">Limited</sup>
-        </>
-      ),
-      target: "_blank",
-      rel: "noopener noreferrer",
     },
   ];
 
@@ -91,7 +81,7 @@ const Navbar = () => {
         )}
 
         {!isMobile && (
-          <div className="flex flex-grow justify-center space-x-8">
+          <div className="flex flex-grow justify-center space-x-16">
             {links.map((link, index) => (
               <Link
                 key={index}
@@ -110,7 +100,7 @@ const Navbar = () => {
           <div className="flex-1 flex justify-end items-center space-x-8 pr-4">
           {/* Buy XENX Link */}
           <Link
-            href={quickswapUrl}
+            href={airdropUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="text-md font-semibold text-purple-400 hover:text-purple-300 border border-purple-400 px-4 py-2 rounded-lg transition-colors duration-300"
@@ -141,7 +131,7 @@ const Navbar = () => {
           ))}
           {/* Mobile Buy XENX & Polygonscan */}
           <Link
-            href={quickswapUrl}
+            href={airdropUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="text-xl font-semibold text-purple-400 hover:text-purple-300 border border-purple-400 px-4 py-2 rounded-lg"
