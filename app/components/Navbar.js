@@ -32,6 +32,7 @@ const Navbar = () => {
 
   const links = [
     { href: "/", label: "Home" },
+    { href: "/docs", label: "Docs" },
     { href: "/community", label: "Community" },
     {
       href: "/dapps",
