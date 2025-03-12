@@ -14,7 +14,7 @@ const fakeLeaders = [
 
 const Leaderboard = () => {
   return (
-    <div className="w-full max-w-3xl mx-auto bg-[#1a1a1a] p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg border border-gray-700">
+    <div className="w-full max-w-2xl mx-auto bg-[#1a1a1a] p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg border border-gray-700">
       <h2 className="text-lg sm:text-2xl md:text-3xl font-semibold text-white flex items-center gap-2">
         <Crown size={24} className="text-yellow-400" />
         Top Holders
@@ -36,7 +36,7 @@ const Leaderboard = () => {
               <span className="text-sm sm:text-lg md:text-xl font-bold text-gray-300">#{index + 1}</span>
               <span className="text-xs sm:text-sm md:text-base text-gray-200">{user.wallet}</span>
             </div>
-            <span className="text-purple-400 font-semibold text-xs sm:text-sm md:text-base">
+            <span className="text-purple-400  text-xs sm:text-sm md:text-base">
               {user.balance} XENX
             </span>
           </motion.div>

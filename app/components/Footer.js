@@ -46,6 +46,7 @@ const Footer = () => {
   ];
 
   return (
+    
     <footer className="relative w-full bg-transparent text-gray-400 py-8 flex flex-col items-center justify-center">
       {/* Social media links */}
       <div className="flex space-x-6 mb-6">
@@ -68,7 +69,7 @@ const Footer = () => {
 
             {/* Floating Label */}
             {hoveredLink === link.label && (
-              <span className="absolute top-full mt-2 px-3 py-1 bg-black/70 text-white rounded-lg text-sm shadow-md">
+              <span className="absolute top-full mb-4 px-3 py-1 bg-black/70 text-white rounded-lg text-xs sm:text-sm shadow-md">
                 {link.label}
               </span>
             )}
@@ -77,7 +78,7 @@ const Footer = () => {
       </div>
 
       {/* Footer navigation links */}
-      <div className="flex flex-wrap justify-center space-x-6 text-sm mb-4">
+      <div className="flex flex-wrap justify-center space-x-6 text-xs sm:text-sm mb-4 ">
         {footerLinks.map((link, index) => (
           <Link
             key={index}
@@ -94,7 +95,7 @@ const Footer = () => {
       <div className="w-full h-px bg-gray-700 my-2"></div>
 
       {/* Copyright message */}
-      <p className="text-center text-sm text-gray-400">
+      <p className="text-center text-xs sm:text-sm text-gray-400">
         © {new Date().getFullYear()} Xennium. All rights reserved.
       </p>
     </footer>

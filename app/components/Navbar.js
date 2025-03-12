@@ -28,22 +28,14 @@ const Navbar = () => {
   }, [prevScrollY]);
 
   const airdropUrl = "https://airdrop.xennium.org/";
-  const polygonscanUrl = "https://polygonscan.com/token/0x0F29965ca5f1111B073EfA37A739Dd2faFab11E0";
   
 
   const links = [
     { href: "/", label: "Home" },
-    { href: "/docs", label: "Docs" },
+    {href: "/mint", label: "Mint"},
     { href: "/community", label: "Community" },
-    {
-      href: "/dapps",
-      label: (
-        <>
-          Dapps
-          <sup className="text-xs  text-white px-1 rounded ml-1">Beta</sup>
-        </>
-      ),
-    },
+    { href: "https://xenconnect.xyz", label: "Products", target:"_blanck" },
+    
   ];
 
   useEffect(() => {
@@ -105,7 +97,7 @@ const Navbar = () => {
             rel="noopener noreferrer"
             className="text-md font-semibold text-purple-400 hover:text-purple-300 border border-purple-400 px-4 py-2 rounded-lg transition-colors duration-300"
           >
-            Get XENX
+            Get $XENX
           </Link>
         
           <SignInSignOutButton />
@@ -136,7 +128,7 @@ const Navbar = () => {
             rel="noopener noreferrer"
             className="text-xl font-semibold text-purple-400 hover:text-purple-300 border border-purple-400 px-4 py-2 rounded-lg"
           >
-            Get XENX
+            Get $XENX
           </Link>
 
           <div className="mt-8 pt-20">

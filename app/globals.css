@@ -44,3 +44,13 @@ body {
 }
 
 
+/* Change the color of the active dot */
+.swiper-pagination-bullet-active {
+  background-color: #a855f7 !important; /* Purple */
+}
+
+/* Change the color of inactive dots */
+.swiper-pagination-bullet {
+  background-color: #4b5563 !important; /* Gray */
+  opacity: 0.6;
+}

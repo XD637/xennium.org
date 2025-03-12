@@ -5,8 +5,8 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 
 const staticStats = {
-  discord: 99,
-  twitter: 67,
+  discord: 106,
+  twitter: 84,
   telegram: 12,
 }
 

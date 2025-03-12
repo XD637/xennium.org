@@ -1,47 +1,19 @@
 "use client";
-import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
+import { useSession } from "next-auth/react"; // Import useSession
 import Head from "next/head";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
-import Leaderboard from "./components/Leaderboard";
-import Partnerships from "./components/Partnerships";
 
 // Lazy load heavy components
 const Cube = dynamic(() => import("./components/Cube"), { ssr: false });
-const CustomSnippet = dynamic(() => import("./components/CustomSnippet"), { ssr: false });
 const HeroSection = dynamic(() => import("./components/HeroSection"), { ssr: false });
 const CustomButton = dynamic(() => import("./components/CustomButton"));
 const FAQSection = dynamic(() => import("./components/FAQSection"), { ssr: false});
+const Leaderboard = dynamic(() => import("./components/Leaderboard"), { ssr: false});
 
 export default function Home() {
-  const [code, setCode] = useState(""); 
-  const title = "Solidity";
-
-  // Fetch code snippet with caching
-  useEffect(() => {
-    const cacheKey = "xenniumCode";
-
-    // Clear cache once
-    localStorage.removeItem(cacheKey);
-
-    const fetchCode = async () => {
-      try {
-        const response = await fetch("/codes/xennium.txt");
-        if (!response.ok) {
-          throw new Error(`Failed to load code snippet: ${response.statusText}`);
-        }
-        const text = await response.text();
-        setCode(text);
-        localStorage.setItem(cacheKey, text); // Cache the latest version
-      } catch (error) {
-        console.error("Error loading code snippet:", error);
-        setCode("Code snippet could not be loaded.");
-      }
-    };
-
-    fetchCode();
-  }, []);
+  const { data: session } = useSession(); // Check for session
 
   return (
     <>
@@ -81,41 +53,28 @@ export default function Home() {
         {/* Hero Section */}
         <HeroSection />
         
-        {/* Explore Dapps Button */}
-        <CustomButton name="Get Started" route="/signup" />
+        {/* Conditional Button */}
+        {session ? (
+          <CustomButton name="Mint Now" route="/mint" />
+        ) : (
+          <CustomButton name="Get Started" route="/signin" />
+        )}
 
         {/* Cube Section */}
         <div className="relative flex items-center justify-center h-[250px]">
           <Cube />
         </div>
+
         <section className="relative z-10 pt-12 px-8 sm:px-16 text-left mb-12">
           <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-12 text-center pt-8">
             Weekly Leaderboard
           </h2>
-        <Leaderboard/>
-        </section>
-
-        <section className="relative z-10 pt-12 px-8 sm:px-16 text-left mb-12">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-12 text-center pt-8">
-            Partnerships
-          </h2>
-        <Partnerships/>
-        </section>
-
-        {/* Code Snippet Section */}
-        <section className="relative z-10 pt-12 px-8 sm:px-16 text-left mb-12">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-12 text-center">
-            Transparency
-          </h2>
-          {code === "Code snippet could not be loaded." ? (
-            <p className="text-purple-500">There was an issue loading the code snippet.</p>
-          ) : (
-            <CustomSnippet title={title} code={code} />
-          )}
+          <Leaderboard/>
         </section>
 
         {/* FAQ Section */}
         <div className='pt-4'><FAQSection/></div>
+
         {/* Footer */}
         <div>
           <Footer />

@@ -61,6 +61,7 @@
     "rehype-highlight": "^7.0.1",
     "remark-gfm": "^4.0.0",
     "remark-loader": "^6.0.0",
+    "swiper": "^11.2.5",
     "three": "^0.170.0",
     "tsparticles": "^2.11.1",
     "viem": "^2.21.50",

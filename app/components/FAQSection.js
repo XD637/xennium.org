@@ -7,22 +7,22 @@ const FAQSection = () => {
         Frequently Asked Questions
       </h2>
       <div className="space-y-4">
-        <details className="bg-[#2a2a2a] p-4 rounded-lg shadow-md hover:bg-[#3a3a3a] transition-all ">
+        <details className="bg-[#2a2a2a] p-4 rounded-lg shadow-md hover:bg-[#3a3a3a] transition-all">
           <summary className="text-lg text-white cursor-pointer select-none">What is Xennium?</summary>
           <p className="mt-2 text-gray-400">
-            Xennium is an innovative token with the Last Coin Transfer Restriction (LCTR) feature, ensuring secure identity management and decentralized governance while offering multiple dApps.
+            Xennium (XENX) is a novel token built on the Polygon network. It features the innovative LCTR (Last Coin Transfer Restriction) mechanism, designed to prevent user from spending their last token. Verified on <a href="https://polygonscan.com/token/0x0F29965ca5f1111B073EfA37A739Dd2faFab11E0" className="text-purple-400 hover:underline">polygonscan.</a>
           </p>
         </details>
         <details className="bg-[#2a2a2a] p-4 rounded-lg shadow-md hover:bg-[#3a3a3a] transition-all">
           <summary className="text-lg text-white cursor-pointer select-none">What is the LCTR feature?</summary>
           <p className="mt-2 text-gray-400">
-            The Last Coin Transfer Restriction (LCTR) locks the last coin in any wallet forever, preventing its transfer. This ensures integrity, identity verification, and governance participation.
+            LCTR stands for Last Coin Transfer Restriction. It prevents users from transferring their last XENX token, ensuring that every wallet always holds at least one coin. See the <a href="/docs" className="text-purple-400 hover:underline">docs.</a>
           </p>
         </details>
         <details className="bg-[#2a2a2a] p-4 rounded-lg shadow-md hover:bg-[#3a3a3a] transition-all">
-          <summary className="text-lg text-white cursor-pointer select-none">What dApps does Xennium offer?</summary>
+          <summary className="text-lg text-white cursor-pointer select-none">How to get XENX?</summary>
           <p className="mt-2 text-gray-400">
-            Xennium powers multiple dApps, including token creation, governance, identity management, and other decentralized applications built for a secure and scalable ecosystem.
+            You can acquire XENX by joining our growing community, participating in events, and engaging with the ecosystem. Start by visiting our community page <a href="/community" className="text-purple-400 hover:underline">here.</a>
           </p>
         </details>
       </div>
