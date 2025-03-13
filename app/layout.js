@@ -1,9 +1,9 @@
-// RootLayout.js
-import { useSession } from "next-auth/react"; // Import useSession if needed
+import Providers from "./Provider";
 import App from "./App"; // Import the App component
 import Script from "next/script"; // Import the Script component for external scripts
 import { SpeedInsights } from "@vercel/speed-insights/next"; // Import SpeedInsights
 import localFont from "next/font/local";
+
 import "./globals.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
@@ -23,7 +23,8 @@ export const metadata = {
   description: "NEXT GEN CRYPTO",
   openGraph: {
     title: "Xennium - Next Gen Crypto",
-    description: "Discover Xennium Token (XENX), With It's unique rule - Last Coin Transfer Restriction (LCTR), It is the way of modern utility token",
+    description:
+      "Discover Xennium Token (XENX), With It's unique rule - Last Coin Transfer Restriction (LCTR), It is the way of modern utility token",
     url: "https://xennium.org", // Update this if necessary
     image: "https://xennium.org/Xen.png", // Ensure this image exists in the public folder
   },
@@ -46,12 +47,13 @@ export default function RootLayout({ children, session }) {
           `}
         </Script>
 
-
         {/* Speed Insights */}
         <SpeedInsights />
 
-        {/* Wrapping children inside App component with session */}
-        <App session={session}>{children}</App>
+        {/* Wrap with Redux Provider */}
+        <Providers>
+          <App session={session}>{children}</App>
+        </Providers>
       </body>
     </html>
   );
