@@ -23,19 +23,13 @@ export const metadata = {
     description:
       "Discover Xennium Token (XENX), With Its unique rule - Last Coin Transfer Restriction (LCTR), It is the way of modern utility token",
     url: "https://xennium.org",
-    image: "https://xennium.org/Xen.png",
+    image: "https://xennium.org/logos/Xen.png",
   },
 };
 
 export default function RootLayout({ children, session }) {
   return (
     <html lang="en">
-      <head>
-        {/* Preload Funnel Font for better performance */}
-        <link rel="preload" href="/fonts/Funnel.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
-        {/* Preload Key Images (Improves LCP) */}
-        <link rel="preload" href="/Xen.png" as="image" type="image/png" />
-      </head>
       <body className={`${funnel.variable} antialiased`}>
         {/* Google Analytics Optimization */}
         <Script
