@@ -83,8 +83,19 @@ export default function Community() {
   return (
     <>
       <Head>
-        <title>Xennium Community - Connect & Engage</title>
-      </Head>
+  <title>Xennium Community - Connect & Engage</title>
+  <meta name="description" content="Join the Xennium community on Discord, Twitter, Telegram, and GitHub. Stay updated, connect, and engage with like-minded individuals." />
+  <meta name="keywords" content="Xennium, crypto community, Web3, blockchain, Discord, Twitter, Telegram, GitHub, airdrops" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Xennium Community - Connect & Engage" />
+  <meta property="og:description" content="Be part of the Xennium community. Join discussions, get airdrops, and stay updated on all things Web3." />
+  <meta property="og:url" content="https://xennium.org/community" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Xennium Community - Connect & Engage" />
+  <meta name="twitter:description" content="Join Xennium on Discord, Twitter, Telegram, and GitHub. Connect & engage with the Web3 community." />
+</Head>
+
       <div className="relative min-h-screen bg-[#121212] text-gray-200">
         <Navbar />
         <main className="flex flex-col items-center pt-32 sm:pt-40 px-4 sm:px-6 md:px-10 lg:px-20 gap-12 sm:gap-16">

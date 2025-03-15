@@ -55,10 +55,10 @@ const Mint = () => {
         {nfts.map((nft, index) => (
           <SwiperSlide key={index}>
             <div>
-              <h2 className="text-lg sm:text-2xl md:text-3xl font-semibold text-white text-center sm:text-left">
+              <h2 className="text-lg sm:text-2xl md:text-3xl font-semibold text-white text-center">
                 {nft.title}
               </h2>
-              <p className="text-gray-400 mt-1 text-xs sm:text-sm md:text-base text-center sm:text-left">
+              <p className="text-gray-400 mt-1 text-xs sm:text-sm md:text-base text-center">
                 {nft.creator}
               </p>
 
@@ -66,7 +66,7 @@ const Mint = () => {
               <div className="mt-6 flex flex-col sm:flex-row items-center bg-[#252525] p-4 sm:p-6 rounded-lg">
                 {/* Left Section - Image */}
                 <div className="relative w-full sm:w-1/3 flex justify-center">
-                  <span className="absolute top-2 left-4 sm:left-6 bg-black bg-opacity-50 text-white text-xs sm:text-sm px-2 py-1 rounded">
+                  <span className="absolute top-2 left-1/2 transform -translate-x-1/2 sm:left-8 sm:translate-x-0 bg-black bg-opacity-50 text-white text-xs sm:text-sm px-2 py-1 rounded">
                     {nft.price}
                   </span>
                   <Image
@@ -87,7 +87,7 @@ const Mint = () => {
                     href={nft.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 sm:mt-3 inline-flex items-center justify-center sm:justify-start bg-purple-600 hover:bg-purple-700 text-white text-xs sm:text-sm md:text-base font-semibold px-4 py-2 rounded-lg transition w-full sm:w-auto"
+                    className="mt-4 sm:mt-3 inline-flex items-center justify-center bg-purple-600 hover:bg-purple-700 text-white text-xs sm:text-sm md:text-base font-semibold px-4 py-2 rounded-lg transition w-full sm:w-auto"
                   >
                     Mint {nft.title}
                     <ArrowRight size={18} className="ml-2" />
