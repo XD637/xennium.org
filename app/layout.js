@@ -1,21 +1,18 @@
 import Providers from "./Provider";
-import App from "./App"; // Import the App component
-import Script from "next/script"; // Import the Script component for external scripts
-import { SpeedInsights } from "@vercel/speed-insights/next"; // Import SpeedInsights
+import App from "./App";
+import Script from "next/script";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import localFont from "next/font/local";
 
 import "./globals.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+/* Load Funnel Font */
+const funnel = localFont({
+  src: "./fonts/Funnel.ttf",
+  variable: "--font-funnel",
+  weight: "400", // Adjust weight if needed
+  display: "swap", // Improves FCP
 });
 
 export const metadata = {
@@ -24,19 +21,28 @@ export const metadata = {
   openGraph: {
     title: "Xennium - Next Gen Crypto",
     description:
-      "Discover Xennium Token (XENX), With It's unique rule - Last Coin Transfer Restriction (LCTR), It is the way of modern utility token",
-    url: "https://xennium.org", // Update this if necessary
-    image: "https://xennium.org/Xen.png", // Ensure this image exists in the public folder
+      "Discover Xennium Token (XENX), With Its unique rule - Last Coin Transfer Restriction (LCTR), It is the way of modern utility token",
+    url: "https://xennium.org",
+    image: "https://xennium.org/Xen.png",
   },
 };
 
 export default function RootLayout({ children, session }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <head>
+        {/* Preload Funnel Font for better performance */}
+        <link rel="preload" href="/fonts/Funnel.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
+        {/* Preload Key Images (Improves LCP) */}
+        <link rel="preload" href="/Xen.png" as="image" type="image/png" />
+      </head>
+      <body className={`${funnel.variable} antialiased`}>
+        {/* Google Analytics Optimization */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-23X6JNL9XL"
           strategy="afterInteractive"
+          async
+          defer
         />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
@@ -47,7 +53,7 @@ export default function RootLayout({ children, session }) {
           `}
         </Script>
 
-        {/* Speed Insights */}
+        {/* Speed Insights (Lazy Loaded) */}
         <SpeedInsights />
 
         {/* Wrap with Redux Provider */}

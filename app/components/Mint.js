@@ -50,7 +50,7 @@ const Mint = () => {
         autoplay={{ delay: 4000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
         speed={500}
-        className="w-full"
+        className="w-full pb-8 sm:pb-6" // <-- Added extra padding below
       >
         {nfts.map((nft, index) => (
           <SwiperSlide key={index}>

@@ -4,11 +4,15 @@ const HeroSection = () => {
       <h1 className="pt-10 text-5xl sm:text-6xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-purple-900">
         Xennium - Next Gen Crypto
       </h1>
-      <p className="text-md text-gray-400 mt-3 max-w-2xl mx-auto">
-        Xennium (XENX) is built on
-        <code className="text-purple-500 rounded px-2">Polygon PoS</code>. With its
-        unique property, <code className="text-purple-500 rounded px-2">&apos;Last Coin Transfer Restriction (LCTR)&apos;</code>, The Last Coin in any wallet
-        is now<code className="text-purple-500 rounded px-2">Locked Forever!</code>
+      <p className="text-md text-gray-400 mt-3 max-w-2xl mx-auto tracking-wide">
+        Xennium (XENX) is built on{" "}
+        <span className="text-purple-500 font-medium px-2">Polygon PoS</span>. 
+        With its unique property,{" "}
+        <span className="text-purple-500 font-medium px-2">
+          &apos;Last Coin Transfer Restriction (LCTR)&apos;
+        </span>, 
+        the last coin in any wallet is now{" "}
+        <span className="text-purple-500 font-medium px-2">Locked Forever!</span>
       </p>
     </main>
   );

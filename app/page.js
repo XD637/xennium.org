@@ -32,6 +32,8 @@ export default function Home() {
         <meta name="twitter:title" content="Xennium Token - Next Gen Crypto" />
         <meta name="twitter:description" content="Explore Xennium Token (XENX) and its groundbreaking Last Coin Transfer Restriction (LCTR) for decentralized governance and identity solutions." />
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        {/* Preload Funnel Font for better performance */}
+        <link rel="preload" href="/fonts/Funnel.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
 
         {/* Schema.org Structured Data */}
         <script type="application/ld+json">
