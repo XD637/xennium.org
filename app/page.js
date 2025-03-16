@@ -41,7 +41,7 @@ export default function Home() {
             "@type": "WebSite",
             "name": "Xennium",
             "url": "https://xennium.org/",
-            "description": "Xennium Token (XENX) is a revolutionary crypto token with Last Coin Transfer Restriction (LCTR)."
+            "description": "Xennium Token (XENX) is a revolutionary crypto with Last Coin Transfer Restriction (LCTR)."
           })}
         </script>
       </Head>
