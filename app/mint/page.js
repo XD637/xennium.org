@@ -2,6 +2,7 @@
 import Navbar from "../components/Navbar";
 import Mint from "../components/Mint";
 import Head from "next/head";
+import Footer from "../components/Footer";
 
 export default function MintPage() {
   return (
@@ -30,9 +31,8 @@ export default function MintPage() {
        <Mint/>
 
       </main>
-      <footer className="mt-12 sm:mt-16 py-6 text-center text-gray-400 text-xs sm:text-sm border-t border-gray-700">
-          <p>&copy; {new Date().getFullYear()} Xennium. All rights reserved.</p>
-        </footer>
+      {/* Footer */}
+              <Footer className="mt-12 mx-auto w-full" />
     </div>
     </>
   );

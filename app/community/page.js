@@ -6,7 +6,7 @@ import Navbar from '../components/Navbar'
 import { motion } from 'framer-motion'
 import { MessageCircle, Twitter, Send, Users } from 'lucide-react'
 import { FaGithub } from 'react-icons/fa'  // Import GitHub icon from react-icons
-import CommunityStats from '../components/Stats'
+import Footer from '../components/Footer'
 
 const communityPlatforms = {
   Discord: [
@@ -134,14 +134,12 @@ export default function Community() {
           ].map((platform, index) => (
             <CommunitySection key={index} number={index + 1} reversed={index % 2 !== 0} {...platform} />
           ))}
-          <CommunityStats/>
         </main>
 
         
         
-        <footer className="mt-12 sm:mt-16 py-6 text-center text-gray-400 text-xs sm:text-sm border-t border-gray-700">
-          <p>&copy; {new Date().getFullYear()} Xennium. All rights reserved.</p>
-        </footer>
+        {/* Footer */}
+        <Footer className="mt-12 mx-auto w-full" />
       </div>
     </>
   )
