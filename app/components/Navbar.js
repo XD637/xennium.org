@@ -1,129 +1,110 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { FaCube } from "react-icons/fa"; // Import the icon
-import SignInSignOutButton from "./AuthButton"; // Assuming you have the SignInSignOutButton component
+import SignInSignOutButton from "./AuthButton";
 
 const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [scrollingDown, setScrollingDown] = useState(false);
-  const [prevScrollY, setPrevScrollY] = useState(0);
+  const prevScrollY = useRef(0);
 
-  // Handle scroll behavior
   useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
     const handleScroll = () => {
-      if (window.scrollY > prevScrollY) {
-        setScrollingDown(true); // Scrolling down
-      } else {
-        setScrollingDown(false); // Scrolling up
-      }
-      setPrevScrollY(window.scrollY); // Update scroll position
+      const scrollY = window.scrollY;
+      setScrollingDown(scrollY > prevScrollY.current);
+      prevScrollY.current = scrollY;
     };
 
+    handleResize();
+    window.addEventListener("resize", handleResize);
     window.addEventListener("scroll", handleScroll);
 
-    // Cleanup the event listener
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [prevScrollY]);
-
-  const airdropUrl = "https://airdrop.xennium.org/";
-  
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const links = [
     { href: "/", label: "Home" },
-    {href: "/mint", label: "Mint"},
+    { href: "/mint", label: "Mint" },
     { href: "/community", label: "Community" },
-    { href: "https://xenconnect.xyz", label: "Products", target:"_blanck" },
-    
+    { href: "https://xenconnect.xyz", label: "Products", target: "_blank" },
   ];
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    window.addEventListener("resize", checkMobile);
-    checkMobile();
-
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
 
   return (
     <>
+      {/* Navbar */}
       <nav
         className={`fixed top-0 left-0 w-full flex items-center justify-between z-50 backdrop-blur-md bg-transparent text-white py-6 px-6 border-b border-gray-800 transition-transform duration-300 ${
           scrollingDown ? "-translate-y-24" : "translate-y-0"
         }`}
       >
+        {/* Brand Name */}
         <div className="flex-1 text-5xl font-extrabold pl-4">Xennium</div>
 
+        {/* Mobile Menu Button */}
         {isMobile && (
           <button
             className="md:hidden pr-4 z-50"
-            onClick={toggleSidebar}
+            onClick={() => setSidebarOpen(!sidebarOpen)}
             aria-label={sidebarOpen ? "Close Menu" : "Open Menu"}
           >
             {sidebarOpen ? <span className="text-3xl">×</span> : "☰"}
           </button>
         )}
 
+        {/* Desktop Navigation */}
         {!isMobile && (
           <div className="flex flex-grow justify-center space-x-16">
-            {links.map((link, index) => (
+            {links.map(({ href, label, target }, index) => (
               <Link
                 key={index}
-                href={link.href}
-                target={link.target || "_self"}
-                rel={link.rel || ""}
+                href={href}
+                target={target || "_self"}
                 className="text-md font-medium hover:text-purple-500 transition-colors duration-300"
               >
-                {link.label}
+                {label}
               </Link>
             ))}
           </div>
         )}
 
+        {/* Desktop Buttons */}
         {!isMobile && (
           <div className="flex-1 flex justify-end items-center space-x-8 pr-4">
-          {/* Buy XENX Link */}
-          <Link
-            href={airdropUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-md font-semibold text-purple-400 hover:text-purple-300 border border-purple-400 px-4 py-2 rounded-lg transition-colors duration-300"
-          >
-            Get $XENX
-          </Link>
-        
-          <SignInSignOutButton />
-        </div>
-        
+            <Link
+              href="https://airdrop.xennium.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-md font-semibold text-purple-400 hover:text-purple-300 border border-purple-400 px-4 py-2 rounded-lg transition-colors duration-300"
+            >
+              Get $XENX
+            </Link>
+            <SignInSignOutButton />
+          </div>
         )}
       </nav>
 
-      {/* Sidebar for Mobile */}
+      {/* Mobile Sidebar */}
       {isMobile && sidebarOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-90 z-40 flex flex-col items-center justify-center space-y-8">
-          {links.map((link, index) => (
+          {links.map(({ href, label, target }, index) => (
             <Link
               key={index}
-              href={link.href}
-              target={link.target || "_self"}
-              rel={link.rel || ""}
+              href={href}
+              target={target || "_self"}
               onClick={() => setSidebarOpen(false)}
               className="text-2xl font-medium text-white hover:text-purple-500"
             >
-              {link.label}
+              {label}
             </Link>
           ))}
-          {/* Mobile Buy XENX & Polygonscan */}
+          {/* Mobile Get $XENX Button */}
           <Link
-            href={airdropUrl}
+            href="https://airdrop.xennium.org/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-xl font-semibold text-purple-400 hover:text-purple-300 border border-purple-400 px-4 py-2 rounded-lg"
