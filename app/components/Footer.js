@@ -1,103 +1,89 @@
 import { useState } from "react";
 import { FaGithub, FaDiscord, FaTelegram } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXTwitter } from "@fortawesome/free-brands-svg-icons"; // Import X (Twitter) icon
+import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 
 const Footer = () => {
-  const [hoveredLink, setHoveredLink] = useState(null);
-
   const socialLinks = [
-    {
-      href: "https://github.com/XD637/xenniumx",
-      label: "GitHub",
-      icon: <FaGithub className="text-xl" />,
-    },
-    {
-      href: "https://discord.gg/7KmMBrrJEz",
-      label: "Discord",
-      icon: <FaDiscord className="text-xl" />,
-    },
-    {
-      href: "https://twitter.com/Xenniumx",
-      label: "X(Twitter)",
-      icon: <FontAwesomeIcon icon={faXTwitter} className="text-xl" />,
-    },
-    {
-      href: "https://t.me/xennium",
-      label: "Telegram",
-      icon: <FaTelegram className="text-xl" />,
-    },
+    { href: "https://github.com/XD637/xenniumx", icon: <FaGithub /> },
+    { href: "https://discord.gg/7KmMBrrJEz", icon: <FaDiscord /> },
+    { href: "https://x.com/Xenniumx", icon: <FontAwesomeIcon icon={faXTwitter} /> },
+    { href: "https://t.me/xenniumx", icon: <FaTelegram /> },
   ];
 
-  const footerLinks = [
+  const links = [
     {
-      href: "/privacy-policy",
-      label: "Privacy Policy",
+      title: "Resources",
+      items: [
+        { href: "/docs", label: "Documentation" },
+        { href: "/Xennium-Whitepaper.pdf", label: "Whitepaper" },
+        { href: "/Xennium_Audit_Report.pdf", label: "Security Audit" },
+      ],
     },
     {
-      href: "/terms-and-conditions",
-      label: "Terms and Conditions",
+      title: "Blockchain",
+      items: [
+        { href: "https://polygonscan.com/token/0x0F29965ca5f1111B073EfA37A739Dd2faFab11E0", label: "Polygonscan" },
+        { href: "https://quickswap.exchange/#/swap?currency0=ETH&currency1=0x0F29965ca5f1111B073EfA37A739Dd2faFab11E0&swapIndex=1", label: "Quickswap" },
+        { href: "https://www.geckoterminal.com/polygon_pos/pools/0x9dd30c51aa1980bd05dead5b7955124f17baa6c7", label: "GeckoTerminal" },
+      ],
     },
     {
-      href: "mailto:contact@xennium.org",
-      label: "Contact Us",
+      title: "Products",
+      items: [
+        { href: "https://xenconnect.xyz", label: "XenConnect" },
+        { href: "https://cryptoairdrops.fun", label: "CryptoAirdrops" },
+      ],
+    },
+    {
+      title: "Company",
+      items: [
+        { href: "/privacy-policy", label: "Privacy Policy" },
+        { href: "/terms-and-conditions", label: "Terms & Conditions" },
+        { href: "mailto:contact@xennium.org", label: "Contact Us" },
+      ],
     },
   ];
 
   return (
-    
-    <footer className="relative w-full bg-transparent text-gray-400 py-8 flex flex-col items-center justify-center">
-      {/* Social media links */}
-      <div className="flex space-x-6 mb-6">
-        {socialLinks.map((link, index) => (
-          <a
-            key={index}
-            href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            onMouseEnter={() => setHoveredLink(link.label)}
-            onMouseLeave={() => setHoveredLink(null)}
-            className="relative group"
-            aria-label={`Visit our ${link.label} page`}
-            tabIndex={0}
-          >
-            {/* Icon Button */}
-            <div className="w-8 h-8 flex items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 text-white shadow-lg transform transition-all duration-300 hover:scale-110">
-              {link.icon}
+    <footer className="w-full bg-[#121212] text-gray-400 py-12 flex flex-col items-center">
+      <div className="max-w-6xl w-full mx-auto px-6 text-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:grid-cols-4 mb-6 text-left text-sm sm:text-base">
+          {links.map((section, idx) => (
+            <div key={idx} className="mx-auto w-full sm:w-1/2 md:w-auto">
+              <h3 className="text-white font-semibold text-lg mb-3">{section.title}</h3>
+              <ul className="space-y-2">
+                {section.items.map((link, index) => (
+                  <li key={index}>
+                    <Link href={link.href} className=" hover:text-purple-500 transition-all">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
+          ))}
+        </div>
 
-            {/* Floating Label */}
-            {hoveredLink === link.label && (
-              <span className="absolute top-full mb-4 px-3 py-1 bg-black/70 text-white rounded-lg text-xs sm:text-sm shadow-md">
-                {link.label}
-              </span>
-            )}
-          </a>
-        ))}
+        <div className="pt-10 flex flex-wrap justify-center gap-4 sm:gap-6 mb-6">
+          {socialLinks.map((link, index) => (
+            <a
+              key={index}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-7 h-7 flex items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 text-white shadow-lg transform transition-all hover:scale-110"
+            >
+              {link.icon}
+            </a>
+          ))}
+        </div>
+
+        <div className="w-full h-px bg-gray-700 my-4"></div>
+
+        <p className="text-center text-xs text-gray-400">© {new Date().getFullYear()} Xennium. All rights reserved.</p>
       </div>
-
-      {/* Footer navigation links */}
-      <div className="flex flex-wrap justify-center space-x-6 text-xs sm:text-sm mb-4 ">
-        {footerLinks.map((link, index) => (
-          <Link
-            key={index}
-            href={link.href}
-            className="hover:text-gray-200 hover:underline transition-all duration-200"
-            aria-label={link.label}
-          >
-            {link.label}
-          </Link>
-        ))}
-      </div>
-
-      {/* Line Break */}
-      <div className="w-full h-px bg-gray-700 my-2"></div>
-
-      {/* Copyright message */}
-      <p className="text-center text-xs sm:text-sm text-gray-400">
-        © {new Date().getFullYear()} Xennium. All rights reserved.
-      </p>
     </footer>
   );
 };

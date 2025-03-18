@@ -8,6 +8,11 @@ import { ArrowRight } from "lucide-react";
 import "swiper/css";
 import "swiper/css/pagination";
 
+const recentMints = [
+  { wallet: "0xA1...D2F3", image: "/collabs/minipixe.jpeg", time: "2 mins ago" },
+  { wallet: "0xB2...E4G5", image: "/collabs/mint-nft.jpg", time: "5 mins ago" },
+];
+
 // Dummy data for NFTs
 const nfts = [
   {
@@ -41,16 +46,16 @@ const nfts = [
 
 const Mint = () => {
   return (
-    <div className="w-full max-w-3xl mx-auto bg-[#1a1a1a] p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg border border-gray-700">
+    <div className="w-full max-w-3xl mx-auto bg-[#1a1a1a] p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg border border-gray-700 relative">
       <Swiper
         modules={[Pagination, Autoplay]}
         spaceBetween={20}
         slidesPerView={1}
         loop={true}
         autoplay={{ delay: 4000, disableOnInteraction: false }}
-        pagination={{ clickable: true }}
+        pagination={{ clickable: true, el: ".custom-pagination" }} // Moving pagination outside
         speed={500}
-        className="w-full pb-8 sm:pb-6" // <-- Added extra padding below
+        className="w-full"
       >
         {nfts.map((nft, index) => (
           <SwiperSlide key={index}>
@@ -98,7 +103,12 @@ const Mint = () => {
           </SwiperSlide>
         ))}
       </Swiper>
+
+      {/* Custom Pagination Outside */}
+      <div className="custom-pagination flex justify-center mt-4"></div>
+      
     </div>
+    
   );
 };
 

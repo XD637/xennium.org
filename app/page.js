@@ -2,13 +2,13 @@
 import dynamic from "next/dynamic";
 import { useSession } from "next-auth/react"; // Import useSession
 import Head from "next/head";
-import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import HeroSection from "./components/HeroSection";
+import CustomButton from "./components/CustomButton";
+import Cube from "./components/Cube";
 
 // Lazy load heavy components
-const Cube = dynamic(() => import("./components/Cube"), { ssr: false });
-const HeroSection = dynamic(() => import("./components/HeroSection"), { ssr: false });
-const CustomButton = dynamic(() => import("./components/CustomButton"));
+const Footer = dynamic(() => import("./components/Footer"), { ssr: false });
 const FAQSection = dynamic(() => import("./components/FAQSection"), { ssr: false});
 const Leaderboard = dynamic(() => import("./components/Leaderboard"), { ssr: false});
 
@@ -77,9 +77,8 @@ export default function Home() {
         <div className='pt-4'><FAQSection/></div>
 
         {/* Footer */}
-        <div>
-          <Footer />
-        </div>
+        <Footer className="mt-12 mx-auto w-full" />
+
       </div>
     </>
   );
