@@ -9,6 +9,7 @@ import Cube from "./components/Cube";
 
 // Lazy load heavy components
 const Footer = dynamic(() => import("./components/Footer"), { ssr: false });
+
 const FAQSection = dynamic(() => import("./components/FAQSection"), { ssr: false});
 const Leaderboard = dynamic(() => import("./components/Leaderboard"), { ssr: false});
 
@@ -50,6 +51,7 @@ export default function Home() {
       <div className="relative min-h-screen bg-[#121212] text-gray-200">
         {/* Navbar */}
         <Navbar />
+
 
         {/* Hero Section */}
         <HeroSection />

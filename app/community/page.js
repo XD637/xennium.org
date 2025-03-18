@@ -6,7 +6,8 @@ import Navbar from '../components/Navbar'
 import { motion } from 'framer-motion'
 import { MessageCircle, Twitter, Send, Users } from 'lucide-react'
 import { FaGithub } from 'react-icons/fa'  // Import GitHub icon from react-icons
-import Footer from '../components/Footer'
+import SocialFooter from '../components/SocialFooter'
+
 
 const communityPlatforms = {
   Discord: [
@@ -139,7 +140,7 @@ export default function Community() {
         
         
         {/* Footer */}
-        <Footer className="mt-12 mx-auto w-full" />
+        <SocialFooter className="mt-12 mx-auto w-full" />
       </div>
     </>
   )

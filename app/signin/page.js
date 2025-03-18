@@ -39,14 +39,14 @@ export default function SignIn() {
     if (res?.error) {
       setError(res.error); // Show error message in UI
     } else {
-      router.push("/dapps"); // Redirect silently on success
+      router.push("/"); // Redirect silently on success
     }
 
     setIsSigningIn(false);
   };
 
   const handleGoogleSignIn = () => {
-    signIn("google", { callbackUrl: "/dapps" });
+    signIn("google", { callbackUrl: "/" });
   };
 
   if (!isClient) return null;
