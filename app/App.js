@@ -8,7 +8,6 @@ import { WagmiProvider } from 'wagmi'; // Import Wagmi provider
 import { mainnet, polygon, optimism, arbitrum, base } from 'wagmi/chains'; // Import chains from Wagmi
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query"; // Import React Query provider
 import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
-import { SessionProvider } from "next-auth/react"; // Import SessionProvider here
 
 const App = ({ children, session }) => {
   const [config, setConfig] = useState(null);
@@ -28,7 +27,6 @@ const App = ({ children, session }) => {
   const queryClient = new QueryClient();
 
   return (
-    <SessionProvider session={session}>
       <WagmiProvider config={config}>
         <QueryClientProvider client={queryClient}>
           <RainbowKitProvider
@@ -43,7 +41,6 @@ const App = ({ children, session }) => {
           </RainbowKitProvider>
         </QueryClientProvider>
       </WagmiProvider>
-    </SessionProvider>
   );
 };
 

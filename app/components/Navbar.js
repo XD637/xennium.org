@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import SignInSignOutButton from "./AuthButton";
 
 const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -29,9 +28,9 @@ const Navbar = () => {
 
   const links = [
     { href: "/", label: "Home" },
-    { href: "/mint", label: "Mint" },
     { href: "/community", label: "Community" },
-    { href: "https://xenconnect.xyz", label: "Products", target: "_blank" },
+    { href: "#", label: "Tokenomics" },
+    { href: "/mint", label: "Mint" },
   ];
 
   return (
@@ -81,9 +80,8 @@ const Navbar = () => {
               rel="noopener noreferrer"
               className="text-md font-semibold text-purple-400 hover:text-purple-300 border border-purple-400 px-4 py-2 rounded-lg transition-colors duration-300"
             >
-              Get $XENX
+              GET $XENX
             </Link>
-            <SignInSignOutButton />
           </div>
         )}
       </nav>
@@ -109,12 +107,8 @@ const Navbar = () => {
             rel="noopener noreferrer"
             className="text-xl font-semibold text-purple-400 hover:text-purple-300 border border-purple-400 px-4 py-2 rounded-lg"
           >
-            Get $XENX
+            GET $XENX
           </Link>
-
-          <div className="mt-8 pt-20">
-            <SignInSignOutButton />
-          </div>
         </div>
       )}
     </>

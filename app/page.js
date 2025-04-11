@@ -1,6 +1,5 @@
 "use client";
 import dynamic from "next/dynamic";
-import { useSession } from "next-auth/react"; // Import useSession
 import Head from "next/head";
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
@@ -14,7 +13,6 @@ const FAQSection = dynamic(() => import("./components/FAQSection"), { ssr: false
 const Leaderboard = dynamic(() => import("./components/Leaderboard"), { ssr: false});
 
 export default function Home() {
-  const { data: session } = useSession(); // Check for session
 
   return (
     <>
@@ -56,12 +54,7 @@ export default function Home() {
         {/* Hero Section */}
         <HeroSection />
         
-        {/* Conditional Button */}
-        {session ? (
-          <CustomButton name="Mint Now" route="/mint" />
-        ) : (
-          <CustomButton name="Get Started" route="/signin" />
-        )}
+          <CustomButton name="GET $XENX" route="/mint" />
 
         {/* Cube Section */}
         <div className="relative flex items-center justify-center h-[250px]">

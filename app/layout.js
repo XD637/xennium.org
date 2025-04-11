@@ -52,7 +52,7 @@ export default function RootLayout({ children, session }) {
 
         {/* Wrap with Redux Provider */}
         <Providers>
-          <App session={session}>{children}</App>
+          <App>{children}</App>
         </Providers>
       </body>
     </html>
