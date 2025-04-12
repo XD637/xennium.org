@@ -104,7 +104,7 @@ export default function Community() {
             Join Our Community
           </h1>
           <p className="text-gray-400 text-center mt-2 text-sm sm:text-base">
-            Connect with Xennium enthusiasts across different platforms.
+            Join the Xennium community early to get exclusive airdrops and  rewards.
           </p>
 
           {[ 

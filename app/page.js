@@ -54,7 +54,7 @@ export default function Home() {
         {/* Hero Section */}
         <HeroSection />
         
-          <CustomButton name="GET $XENX" route="/mint" />
+          <CustomButton name="GET $XENX" route="https://airdrop.xennium.org" />
 
         {/* Cube Section */}
         <div className="relative flex items-center justify-center h-[250px]">
