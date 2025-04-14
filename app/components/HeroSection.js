@@ -7,11 +7,7 @@ const HeroSection = () => {
       <p className="text-md text-gray-400 mt-3 max-w-2xl mx-auto tracking-wide">
         Xennium (XENX) is a{""}
         <span className="text-purple-500 font-medium px-2">Special</span>Cryptocoin on Polygon.
-        With its unique{""}
-        <span className="text-purple-500 font-medium px-2">
-          (LCTR)
-        </span>property,
-        You can not transfer the last xennium coin.{""}
+        You can not transfer the last coin, no matter what.{""}
         <span className="text-purple-500 font-medium px-2">Try it!</span>
       </p>
     </main>

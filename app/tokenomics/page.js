@@ -26,31 +26,24 @@ contract XenniumToken is ERC20, Ownable, ERC20Permit {
         ERC20Permit("Xennium") 
         Ownable(msg.sender) 
     {
-        // Mint the total supply to the contract
         _mint(address(this), TOTAL_SUPPLY);
-
-        // Transfer the development reserve to the owner's wallet
         _transfer(address(this), msg.sender, DEVELOPMENT_RESERVE);
     }
 
-    // Last Coin Transfer Restriction (LCTR) Principle
     function _safeTransferCheck(address from, uint256 amount) internal view {
         require(balanceOf(from) - amount >= 1, "XENX: Cannot spend the last coin");
     }
 
-    // Override transfer with LCTR check
     function transfer(address to, uint256 amount) public override returns (bool) {
         _safeTransferCheck(msg.sender, amount);
         return super.transfer(to, amount);
     }
 
-    // Override transferFrom with LCTR check
     function transferFrom(address from, address to, uint256 amount) public override returns (bool) {
         _safeTransferCheck(from, amount);
         return super.transferFrom(from, to, amount);
     }
 
-    // Community token allocation getter (view-only function)
     function communityReserve() external pure returns (uint256) {
         return COMMUNITY_RESERVE;
     }
@@ -98,19 +91,19 @@ export default function Tokenomics() {
 
       <div className="relative min-h-screen bg-[#121212] text-gray-200">
         <Navbar />
-        <main className="flex flex-col items-center pt-32 sm:pt-40 px-4 sm:px-6 md:px-10 lg:px-20 gap-12 sm:gap-16">
-          <div className="text-center">
-            <h1 className="text-4xl sm:text-6xl font-bold text-white">Tokenomics</h1>
-            <p className="text-gray-400 mt-4 text-sm sm:text-base max-w-2xl mx-auto">
-            Built on core community and development values, enforced with LCTR.
-            </p>
-          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-5xl">
+        <main className="flex flex-col items-center pt-32 sm:pt-40 px-6 sm:px-12 md:px-20 lg:px-28 xl:px-36 gap-20">
+          <h1 className="text-4xl sm:text-6xl font-bold text-white text-center flex items-center gap-2">Tokenomics</h1>
+          <p className="text-gray-400 text-center mt-2  text-sm sm:text-base">
+              Built on core community and development values, enforced with LCTR.
+            </p>
+
+            <section className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-20 w-full max-w-6xl">
+
             {tokenData.map((item, index) => (
               <motion.div
                 key={index}
-                className="bg-[#1a1a1a] border border-gray-700 rounded-2xl p-6 flex flex-col gap-4 shadow-md"
+                className="bg-[#1a1a1a] border border-gray-700 rounded-2xl p-6 sm:p-8 flex flex-col gap-4 shadow-md"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -125,17 +118,17 @@ export default function Tokenomics() {
                 <p className="text-purple-400 font-bold text-lg">{item.amount}</p>
                 <p className="text-gray-400 text-sm">{item.description}</p>
               </motion.div>
-              
             ))}
-          </div>
-        </main>
-        <h1 className="text-2xl sm:text-3xl font-bold text-white mt-32 mb-20 text-center">Transparency</h1>
-        <div className="mt-8 pb-6">
-                              <CustomSnippet code={code}
-                              title={"Solidity"} />
-                            </div>
+          </section>
 
-        <SocialFooter className="mt-12 mx-auto w-full" />
+          <section className="w-full max-w-5xl text-center pt-24">
+            <h2 className="text-3xl font-bold text-white mb-6">Transparency</h2>
+            </section>
+      
+              <CustomSnippet code={code} title="Solidity" />
+        </main>
+
+        <SocialFooter className="mt-24" />
       </div>
     </>
   )
