@@ -121,7 +121,7 @@ export default function Tokenomics() {
             ))}
           </section>
 
-          <section className="w-full max-w-5xl text-center pt-24">
+          <section className="w-full max-w-5xl text-center pt-16">
             <h2 className="text-3xl font-bold text-white mb-6">Transparency</h2>
             </section>
       
