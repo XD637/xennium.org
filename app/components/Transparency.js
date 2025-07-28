@@ -42,10 +42,12 @@ contract XenniumToken is ERC20, Ownable, ERC20Permit {
 `;
 
 const Transparency = () => (
-    <section className="w-full max-w-5xl pt-16 mx-auto">
-        <h2 className="text-3xl font-bold text-white mb-6 text-center">Transparency</h2>
-        <p className="text-gray-300 text-lg mb-8 text-center">Xennium is fully open source and verified on Polygon. Explore the contract here:</p>
-        <CustomSnippet code={code} title="Solidity" />
+    <section className="w-full max-w-5xl pt-10 md:pt-16 px-2 sm:px-4 md:px-8 mx-auto">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6 text-center">Transparency</h2>
+        <p className="text-gray-300 text-base sm:text-lg mb-6 sm:mb-8 text-center">Xennium is fully open source and verified on polygon.</p>
+        <div>
+            <CustomSnippet code={code} title="Solidity" />
+        </div>
     </section>
 );
 
