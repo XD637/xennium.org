@@ -33,7 +33,7 @@ const Testimonials = () => (
             {testimonials.map((t, i) => (
                 <div
                     key={i}
-                    className="relative flex flex-col items-center bg-gradient-to-br from-[#23232b] to-[#18181f] rounded-2xl p-8 shadow-xl border border-[#28283a] transition-transform duration-300 hover:scale-105 hover:border-purple-700 group z-10"
+                    className="relative flex flex-col items-center bg-[#1a1a1a] p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg border border-gray-700 transition-transform duration-300 hover:scale-105 hover:border-purple-700 group z-10"
                 >
                     <p className="text-lg text-gray-200 italic mb-4 text-center">“{t.quote}”</p>
                     {t.author && <div className="text-purple-400 font-bold text-center text-md">{t.author}</div>}

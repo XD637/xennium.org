@@ -30,7 +30,7 @@ const Navbar = () => {
   const links = [
     { href: "/", label: "Home" },
     { href: "/community", label: "Community" },
-    { href: "/tokenomics", label: "Tokenomics" },
+    { href: "/docs", label: "Docmentation" },
     { href: "https://airdrop.xennium.org", label: "Airdrops", target: "_blank" },
   ];
 
