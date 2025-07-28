@@ -4,13 +4,15 @@ import Head from "next/head";
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import CustomButton from "./components/CustomButton";
+import Mint from "./components/Mint";
 import Cube from "./components/Cube";
+import Testimonials from "./components/Testimonials";
 
 // Lazy load heavy components
 const Footer = dynamic(() => import("./components/Footer"), { ssr: false });
 
-const FAQSection = dynamic(() => import("./components/FAQSection"), { ssr: false});
-const Leaderboard = dynamic(() => import("./components/Leaderboard"), { ssr: false});
+const FAQSection = dynamic(() => import("./components/FAQSection"), { ssr: false });
+const Leaderboard = dynamic(() => import("./components/Leaderboard"), { ssr: false });
 
 export default function Home() {
 
@@ -31,7 +33,7 @@ export default function Home() {
         <meta name="twitter:title" content="Xennium Token - Next Gen Crypto" />
         <meta name="twitter:description" content="Explore Xennium Token (XENX) and its groundbreaking Last Coin Transfer Restriction (LCTR) for decentralized governance and identity solutions." />
         <link rel="icon" href="/favicon.ico" sizes="any" />
-  
+
 
         {/* Schema.org Structured Data */}
         <script type="application/ld+json">
@@ -51,10 +53,11 @@ export default function Home() {
         <Navbar />
 
 
+
         {/* Hero Section */}
         <HeroSection />
-        
-          <CustomButton name="GET $XENX" route="https://airdrop.xennium.org" />
+
+        <CustomButton name="GET $XENX" route="https://airdrop.xennium.org" />
 
         {/* Cube Section */}
         <div className="relative flex items-center justify-center h-[250px]">
@@ -65,11 +68,24 @@ export default function Home() {
           <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-12 text-center pt-8">
             Weekly Leaderboard
           </h2>
-          <Leaderboard/>
+          <Leaderboard />
         </section>
 
+
+        {/* Mint Section */}
+        <section className="relative z-10 pt-12 px-8 sm:px-16 text-left mb-12">
+          <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-10 text-center pt-8">
+            Featured Mints
+          </h2>
+          <Mint />
+        </section>
+
+
+        {/* Testimonials Section */}
+        <Testimonials />
+
         {/* FAQ Section */}
-        <div className='pt-4'><FAQSection/></div>
+        <div className='pt-4'><FAQSection /></div>
 
         {/* Footer */}
         <Footer className="mt-12 mx-auto w-full" />

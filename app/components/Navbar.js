@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -37,12 +38,11 @@ const Navbar = () => {
     <>
       {/* Navbar */}
       <nav
-        className={`fixed top-0 left-0 w-full flex items-center justify-between z-50 backdrop-blur-md bg-transparent text-white py-6 px-6 border-b border-gray-800 transition-transform duration-300 ${
-          scrollingDown ? "-translate-y-24" : "translate-y-0"
-        }`}
+        className={`fixed top-0 left-0 w-full flex items-center justify-between z-50 backdrop-blur-md bg-transparent text-white py-4 px-6 border-b border-gray-800 transition-transform duration-300 ${scrollingDown ? "-translate-y-24" : "translate-y-0"
+          }`}
       >
         {/* Brand Name */}
-        <div className="flex-1 text-5xl font-extrabold pl-4">Xennium</div>
+        <div className="flex-1 text-3xl font-extrabold pl-4">Xennium</div>
 
         {/* Mobile Menu Button */}
         {isMobile && (
@@ -71,17 +71,10 @@ const Navbar = () => {
           </div>
         )}
 
-        {/* Desktop Buttons */}
+        {/* Desktop Connect Wallet Button */}
         {!isMobile && (
           <div className="flex-1 flex justify-end items-center space-x-8 pr-4">
-            <Link
-              href="https://airdrop.xennium.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-md font-semibold text-purple-400 hover:text-purple-300 border border-purple-400 px-4 py-2 rounded-lg transition-colors duration-300"
-            >
-              GET $XENX
-            </Link>
+            <ConnectButton showBalance={false} accountStatus="address" />
           </div>
         )}
       </nav>
@@ -100,15 +93,10 @@ const Navbar = () => {
               {label}
             </Link>
           ))}
-          {/* Mobile Get $XENX Button */}
-          <Link
-            href="https://airdrop.xennium.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xl font-semibold text-purple-400 hover:text-purple-300 border border-purple-400 px-4 py-2 rounded-lg"
-          >
-            GET $XENX
-          </Link>
+          {/* Mobile Connect Wallet Button */}
+          <div className="mt-4">
+            <ConnectButton showBalance={false} accountStatus="address" />
+          </div>
         </div>
       )}
     </>

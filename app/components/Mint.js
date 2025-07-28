@@ -53,22 +53,15 @@ const Mint = () => {
         slidesPerView={1}
         loop={true}
         autoplay={{ delay: 4000, disableOnInteraction: false }}
-        pagination={{ clickable: true, el: ".custom-pagination" }} // Moving pagination outside
+        pagination={{ clickable: true, el: ".custom-pagination" }}
         speed={500}
         className="w-full"
       >
         {nfts.map((nft, index) => (
           <SwiperSlide key={index}>
             <div>
-              <h2 className="text-lg sm:text-2xl md:text-3xl font-semibold text-white text-center">
-                {nft.title}
-              </h2>
-              <p className="text-gray-400 mt-1 text-xs sm:text-sm md:text-base text-center">
-                {nft.creator}
-              </p>
-
               {/* NFT Card */}
-              <div className="mt-6 flex flex-col sm:flex-row items-center bg-[#252525] p-4 sm:p-6 rounded-lg">
+              <div className="flex flex-col sm:flex-row items-center bg-[#252525] p-4 sm:p-6 rounded-lg">
                 {/* Left Section - Image */}
                 <div className="relative w-full sm:w-1/3 flex justify-center">
                   <span className="absolute top-2 left-1/2 transform -translate-x-1/2 sm:left-8 sm:translate-x-0 bg-black bg-opacity-50 text-white text-xs sm:text-sm px-2 py-1 rounded">
@@ -85,6 +78,12 @@ const Mint = () => {
 
                 {/* Right Section - Text & Button */}
                 <div className="w-full sm:w-2/3 mt-4 sm:mt-0 sm:pl-6 text-white text-center sm:text-left">
+                  <div className="text-lg sm:text-xl md:text-2xl font-semibold text-white mb-1">
+                    {nft.title}
+                  </div>
+                  <div className="text-gray-400 text-xs sm:text-sm md:text-base mb-2">
+                    {nft.creator}
+                  </div>
                   <p className="text-sm sm:text-base md:text-lg leading-relaxed">
                     {nft.description}
                   </p>
@@ -106,9 +105,7 @@ const Mint = () => {
 
       {/* Custom Pagination Outside */}
       <div className="custom-pagination flex justify-center mt-4"></div>
-      
     </div>
-    
   );
 };
 
