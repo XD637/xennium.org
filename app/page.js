@@ -8,7 +8,6 @@ import HeroSection from "./components/HeroSection";
 import CustomButton from "./components/CustomButton";
 import Mint from "./components/Mint";
 import Cube from "./components/Cube";
-import Testimonials from "./components/Testimonials";
 import Transparency from "./components/Transparency";
 
 // Lazy load heavy components
@@ -59,6 +58,7 @@ export default function Home() {
 
 
         {/* Hero Section */}
+
         <HeroSection />
 
         <CustomButton name="GET $XENX" route="https://airdrop.xennium.org" />
@@ -87,10 +87,6 @@ export default function Home() {
           </h2>
           <Mint />
         </section>
-
-
-        {/* Testimonials Section */}
-        <Testimonials />
 
         {/* FAQ Section */}
         <div className='pt-4'><FAQSection /></div>
