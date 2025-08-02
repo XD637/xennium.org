@@ -61,7 +61,7 @@ export default function Home() {
 
         <HeroSection />
 
-        <CustomButton name="GET $XENX" route="https://airdrop.xennium.org" />
+        <CustomButton name="GET $XENX" route="/buy" />
 
         {/* Cube Section */}
         <div className="relative flex items-center justify-center h-[250px]">
